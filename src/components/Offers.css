@@ -1,0 +1,79 @@
+.carousel-container {
+  display: flex;
+  align-items: center;
+  margin-top: 90px;
+}
+
+.offercard {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 5px;
+  padding: 2px;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+  height: 310px;
+  width: 23%;
+}
+
+.offercard:hover {
+  transform: translateY(-10px);
+}
+
+.offer-details p {
+  margin: 5px;
+  color: #666;
+}
+
+.offer-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.offer-title p {
+  padding: 3px;
+  font-size: 10px;
+  width: 100%;
+}
+
+.offer-details img {
+  border-radius: 30px;
+  width: 100%;
+  height: 200px;
+  padding: 15px;
+}
+
+.offer-type h3 {
+  font-size: 20px;
+  margin: 5px;
+}
+
+.offers-section {
+  display: flex;
+  overflow-x: hidden;
+  margin: 10px;
+  scroll-behavior: smooth;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.carousel-container button {
+  background-color: white;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

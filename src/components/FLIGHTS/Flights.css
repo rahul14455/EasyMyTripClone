@@ -1,0 +1,214 @@
+/* Reset and general styling */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Flight main section styling */
+.Flight-MainSection {
+  margin-top: 10px;
+  height: 40vh;
+  max-width: 100%;
+  background-color: #2f81ed;
+  background-image: linear-gradient(to right, #2f80ed, #56ccf2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.caption {
+  color: white;
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 30px;
+  border: 2px solid red;
+}
+
+/* Flight ticket box styling */
+.Flight-ticket-Box {
+  background-color: white;
+  width: 80%;
+  max-width: 1200px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+}
+
+/* Flight details styling */
+.flight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #999;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 5px 0;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Datepicker styling */
+.datepicker {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.date-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Travellers dropdown styling */
+.travellers {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.travellers-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.travellers-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.travellers-form {
+  position: absolute;
+  /* top: 0; */
+  right: 400px;
+  bottom: 300px;
+  width: 240px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+}
+
+.travellers-counter {
+  display: flex;
+  flex-direction: column;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+}
+
+.counter-label {
+  flex: 1;
+}
+
+.counter-button {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.counter-button:hover {
+  background-color: #e0e0e0;
+}
+
+.counter-value {
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+.travel-class {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.classes-label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.classes-dropdown {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.done-button {
+  background-color: #ff6f61;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.done-button:hover {
+  background-color: #ff5a4a;
+}
+
+.search-button {
+  background-color: #ff6f61;
+  color: white;
+  padding: 63px;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.search-button:hover {
+  background-color: #ff5a4a;
+}
+
+.search-container {
+  display: flex;
+  flex: 1;
+}

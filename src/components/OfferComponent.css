@@ -1,0 +1,23 @@
+/* offers */
+
+.offer-caption {
+  margin-top: 350px;
+}
+
+.offer-caption h2 {
+  font-weight: 600;
+  font-size: 30px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+.offer-caption ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 40px;
+  padding: 0 30px;
+  font-size: 20px;
+  font-weight: bold;
+}

@@ -1,0 +1,32 @@
+/* FlightPopupList.css */
+.popup-list-item {
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.popup-list-item:hover {
+  background-color: #e0e0e0;
+}
+
+.popup-list-item .flight-info {
+  display: flex;
+  align-items: center;
+}
+
+.popup-list-item .flight-info svg {
+  margin-right: 10px;
+  color: #007bff; /* Blue color for airplane icon */
+}
+
+.popup-list-item .flight-info p {
+  margin: 0;
+}
+
+.popup-list-item .iata-code {
+  font-size: 14px;
+  color: #666;
+}

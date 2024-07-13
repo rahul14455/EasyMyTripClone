@@ -1,0 +1,55 @@
+* {
+  padding: 0px;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
+
+img {
+  width: 115px;
+  margin-top: 2px;
+}
+.nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 30px;
+}
+.nolink {
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+  padding-bottom: 8px;
+}
+.center {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 500;
+  gap: 50px;
+}
+.active {
+  background-color: #abcaeb;
+  border-radius: 5px;
+  border-bottom: 1px solid black;
+}
+.myaccount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-align: center;
+  padding: 5px;
+}
+.user-icon {
+  font-size: 25px;
+}
+.myaccount p {
+  text-align: center;
+  padding-top: 15px;
+}
