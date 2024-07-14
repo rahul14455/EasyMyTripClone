@@ -1,7 +1,9 @@
-.carousel-container {
+/* .carousel-container {
   display: flex;
   align-items: center;
-  margin-top: 90px;
+  margin-top: 250px;
+  border: 2px solid red;
+  bottom: 240px;
 }
 
 .offercard {
@@ -11,10 +13,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 5px;
   padding: 2px;
-  flex-shrink: 0;
+  flex-shrink: 1/4;
   transition: transform 0.3s;
-  height: 310px;
-  width: 23%;
+  height: 299px;
+  width: 11%;
+  border: 2px solid red;
+  position: relative;
 }
 
 .offercard:hover {
@@ -76,4 +80,5 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+  z-index: 100;
+} */

@@ -1,6 +1,7 @@
 import React from "react";
 import { useOffersContext } from "../Context/OffersContext";
 import "./OfferComponent.css";
+import Offers from "./Offers";
 const OfferComponent = () => {
   const { handleFilterChange } = useOffersContext();
 
@@ -14,6 +15,9 @@ const OfferComponent = () => {
           <li onClick={() => handleFilterChange("HOTELS")}>Hotel</li>
           <li onClick={() => handleFilterChange("CABS")}>Cab</li>
         </ul>
+      </div>
+      <div>
+        <Offers />
       </div>
     </div>
   );

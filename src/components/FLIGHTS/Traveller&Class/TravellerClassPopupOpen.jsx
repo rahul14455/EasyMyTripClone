@@ -15,9 +15,9 @@ const TravellerClassPopupOpen = () => {
     travellersVisible,
   } = useFlightsMainContext();
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       {travellersVisible && (
-        <div className="travellers-form" style={{ border: "1px solid red" }}>
+        <div className="travellers-form">
           <div className="travellers-counter">
             <div className="counter">
               <div className="counter-label">Adults:</div>

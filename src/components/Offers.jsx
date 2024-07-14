@@ -11,6 +11,7 @@ const Offers = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const offersSectionRef = useRef(null);
   const { type } = useOffersContext();
+
   useEffect(() => {
     const fetchOffers = async () => {
       try {
@@ -32,7 +33,6 @@ const Offers = () => {
     };
 
     fetchOffers();
-    console.log(window.client);
   }, [type]);
 
   const handleScrollLeft = () => {
@@ -40,18 +40,21 @@ const Offers = () => {
     setScrollPosition(newPosition);
     if (offersSectionRef.current) {
       offersSectionRef.current.scrollBy({
-        left: -offersSectionRef.current.clientWidth,
+        left: -offersSectionRef.current.clientWidth / 4,
         behavior: "smooth",
       });
     }
   };
 
   const handleScrollRight = () => {
-    const newPosition = Math.min(scrollPosition + 1, offers.length - 1);
+    const newPosition = Math.min(
+      scrollPosition + 1,
+      Math.ceil(offers.length / 4)
+    );
     setScrollPosition(newPosition);
     if (offersSectionRef.current) {
       offersSectionRef.current.scrollBy({
-        left: offersSectionRef.current.clientWidth,
+        left: offersSectionRef.current.clientWidth / 4,
         behavior: "smooth",
       });
     }
@@ -85,7 +88,7 @@ const Offers = () => {
       </div>
       <button
         onClick={handleScrollRight}
-        disabled={scrollPosition === offers.length - 1}
+        disabled={scrollPosition === Math.ceil(offers.length / 4)}
       >
         <FaRegArrowAltCircleRight />
       </button>

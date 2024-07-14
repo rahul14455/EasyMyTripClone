@@ -11,6 +11,7 @@ import CheckOutPop from "./DatesCheckOut/CheckOutPop";
 import GuestNoPopup from "./HotelApiCall/Guest/GuestNoPopup";
 import GuestPopup from "./HotelApiCall/Guest/GuestPopup";
 import OfferComponent from "../OfferComponent";
+import Offers from "../Offers";
 
 const Hotels = () => {
   const {
@@ -78,7 +79,7 @@ const Hotels = () => {
           </div>
         </div>
       </div>
-      {/* <OfferComponent /> */}
+      <Offers />
     </div>
   );
 };

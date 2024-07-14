@@ -8,7 +8,6 @@ const Applayout = () => {
     <div>
       <Navbar />
       <Outlet />
-      <Offers />
     </div>
   );
 };

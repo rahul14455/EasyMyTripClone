@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Bus.css"; // Assuming you have a CSS file for styles
 import OfferComponent from "../OfferComponent";
+import Offers from "../Offers";
 
 const Bus = () => {
   const [from, setFrom] = useState("");
@@ -62,7 +63,7 @@ const Bus = () => {
           </div>
         </div>
       </div>
-      {/* <OfferComponent /> */}
+      <Offers />
     </div>
   );
 };

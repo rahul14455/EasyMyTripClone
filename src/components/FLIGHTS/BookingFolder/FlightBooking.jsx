@@ -1,7 +1,6 @@
 import React from "react";
-
 const FlightBooking = () => {
-  return <div>FlightBooking</div>;
+  return <div></div>;
 };
 
 export default FlightBooking;

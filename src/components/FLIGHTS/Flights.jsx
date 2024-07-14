@@ -14,6 +14,10 @@ import FlightDateNoPopup from "./FlightDate/FlightDateNoPopup";
 import FlightDatePopup from "./FlightDate/FlightDatePopup";
 import TravellerClassNoPopup from "./Traveller&Class/TravellerClassNoPopup";
 import TravellerClassPopupOpen from "./Traveller&Class/TravellerClassPopupOpen";
+import OfferComponent from "../OfferComponent";
+import Navbar from "../NAVBAR/Navbar";
+import { useNavigate } from "react-router-dom";
+import Offers from "../Offers";
 
 const Flights = () => {
   const { handleFilterChange } = useOffersContext();
@@ -43,6 +47,11 @@ const Flights = () => {
       document.removeEventListener("click", toHandleClickout);
     };
   }, [toHandleClickout]);
+  const navigate = useNavigate();
+
+  function HandleGo() {
+    navigate("/FlightBooking");
+  }
 
   return (
     <div className="Flight-MainSection">
@@ -84,16 +93,21 @@ const Flights = () => {
             {travellersVisible && <TravellerClassPopupOpen />}
           </div>
         </div>
-        <button className="search-button">SEARCH</button>
+        <button className="search-button" onClick={HandleGo}>
+          SEARCH
+        </button>
       </div>
       <div className="offer-caption">
         <h2>Exclusive Offers</h2>
         <ul>
-          <li onClick={() => handleFilterChange("ALL")}>BestOffers</li>
+          <li onClick={() => handleFilterChange("ALL")}>BestOffer</li>
           <li onClick={() => handleFilterChange("FLIGHTS")}>Flight</li>
           <li onClick={() => handleFilterChange("HOTELS")}>Hotel</li>
           <li onClick={() => handleFilterChange("CABS")}>Cab</li>
         </ul>
+      </div>
+      <div>
+        <Offers />
       </div>
     </div>
   );
