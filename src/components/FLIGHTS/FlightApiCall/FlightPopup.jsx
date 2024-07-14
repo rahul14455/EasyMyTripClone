@@ -25,7 +25,7 @@ const FlightPopup = ({ destination, from, setFrom }) => {
   return (
     <div
       className="flight-popup "
-      style={{ left: destination === "to" ? "440px" : "168px" }}
+      style={{ left: destination === "to" ? "260px" : "-0px" }}
     >
       <div className="searchbox">
         <CiSearch />
