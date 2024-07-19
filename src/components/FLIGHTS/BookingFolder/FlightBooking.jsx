@@ -194,7 +194,7 @@ const FlightBooking = ({ destination }) => {
             </div>
           </div>
         </div>
-        <FlightTicketCard />
+        {/* <FlightTicketCard /> */}
       </div>
     </div>
   );
