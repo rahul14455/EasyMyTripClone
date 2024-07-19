@@ -4,6 +4,7 @@ import { useTrainMainContext } from "../../Context/Trains/TrainMainContext";
 import DateNoPopup from "./DepartureDate/DateNoPopup";
 import DatePopup from "./DepartureDate/DatePopup";
 import OfferComponent from "../OfferComponent";
+import Offers from "../Offers";
 
 const Train = () => {
   const [from, setFrom] = useState("");
@@ -77,7 +78,7 @@ const Train = () => {
           <p>IRCTC Authorized Partner</p>
         </div>
       </div>
-      {/* <OfferComponent /> */}
+      <Offers />
     </div>
   );
 };
