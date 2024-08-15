@@ -16,6 +16,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { HotelIndiudvalProvider } from "../Context/Hotels/HotelIndiudvalContext";
 import { HotelMainProvider } from "../Context/Hotels/HotelMainContext";
 import { TrainMainProvider } from "../Context/Trains/TrainMainContext";
+import { Toaster } from "react-hot-toast";
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -51,6 +52,22 @@ function App() {
                       </Routes>
                     </BrowserRouter>
                   </div>
+                  <Toaster
+                    position="top-center"
+                    gutter={12}
+                    containerStyle={{ margin: "8px" }}
+                    toastOptions={{
+                      success: { duration: 3000 },
+                      error: { duration: 5000 },
+                      style: {
+                        fontSize: "text-base",
+                        maxWidth: "500px",
+                        padding: "16px 24px",
+                        backgroundColor: "rgb(249 250 251)",
+                        color: "rgb(55 65 81)",
+                      },
+                    }}
+                  />
                 </TrainMainProvider>
               </HotelMainProvider>
             </HotelIndiudvalProvider>

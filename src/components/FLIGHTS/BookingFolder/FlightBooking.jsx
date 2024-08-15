@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../BookingFolder/FlightBooking.css";
 import { useFlightsMainContext } from "../../../Context/Flights/FlightsMainContext";
 import ReactDatePicker from "react-datepicker";
@@ -7,38 +7,82 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import LandscapeIcon from "@mui/icons-material/Landscape";
 import NightlightOutlinedIcon from "@mui/icons-material/NightlightOutlined";
 import WbTwilightOutlinedIcon from "@mui/icons-material/WbTwilightOutlined";
-import FlightTicketCard from "../FlightTicket/FlightTicketCard";
+import FlightTicket from "../FlightTicket/FlightTicket";
+import FlightPopup from "../FlightApiCall/FlightPopup";
+import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
+import TravellerClassNoPopup from "../Traveller&Class/TravellerClassNoPopup";
+import TravellerClassPopupOpen from "../Traveller&Class/TravellerClassPopupOpen";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
-const FlightBooking = ({ destination }) => {
+const FlightBooking = () => {
+  const [searchparams] = useSearchParams();
+  const source = searchparams.get("source");
+  const destination = searchparams.get("destination");
+  const selectday = searchparams.get("day").slice(0, 3);
+  const selectDate = searchparams.get("date");
+  console.log(selectday);
   const {
-    travellersText,
-    setTravellersVisible,
     travelClass,
     handleDateChange,
     dayOfWeek,
     selectedDate,
     fromCity,
-    fromName,
-    fromCountry,
     fromIata_Code,
-    toCity,
-    toCountry,
     toIata_Code,
-    toName,
-    HandleGo,
+    isFromPopupOpen,
+    isToPopupOpen,
+    destinaionref,
+    handleFrom,
+    toref,
+    handleTo,
+    travellersVisible,
+    toIndex,
+    fromIndex,
+    number,
+    day,
+    year,
+    month,
+    weekday,
+    setToIndex,
+    setFromIndex,
+    setSelectedDate,
+    setTravelClass,
+    totalTravellers,
   } = useFlightsMainContext();
-  let city, iataCode, name, country;
-  if (destination === "from") {
-    city = fromCity;
-    iataCode = fromIata_Code;
-    name = fromName;
-    country = fromCountry;
-  }
-  if (destination === "to") {
-    city = toCity;
-    iataCode = toIata_Code;
-    name = toName;
-    country = toCountry;
+
+  console.log(day);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setFromIndex(source);
+    setToIndex(destination);
+    setSelectedDate(new Date(selectDate));
+    // setTravelClass(passengerType);
+    // setNumber(noOfPassengers);
+    // setMaximumPrice(highestFlightPrice);
+  }, [source, destination, selectDate]);
+
+  function handlesubSearch() {
+    if (fromIndex !== toIndex) {
+      const searchParams = new URLSearchParams();
+      searchParams.set("source", fromIata_Code);
+      searchParams.set("destination", toIata_Code);
+      searchParams.set("day", weekday);
+      searchParams.set("date", `${month}/${day}/${year}`);
+      searchParams.set("passenger", travelClass);
+      searchParams.set("number", number);
+      navigate({
+        pathname: "/FlightBooking",
+        search: `?${searchParams.toString()}`,
+      });
+    } else {
+      toast.dismiss();
+      toast.error(
+        "Cannot proceed further until the source and destination are different. Please correct it.",
+        { style: { border: "1px solid black" } }
+      );
+    }
   }
 
   return (
@@ -46,10 +90,26 @@ const FlightBooking = ({ destination }) => {
       <div className="Booking-main">
         <div className="flight-from">
           <div>
-            <FlightsNoPopup destination="from" />
+            <div
+              className="flight from"
+              onClick={handleFrom}
+              ref={destinaionref}
+            >
+              <span className="label">
+                <FaPlaneDeparture /> FROM
+              </span>
+              {!isFromPopupOpen && <FlightsNoPopup destination="from" />}
+              {isFromPopupOpen && <FlightPopup destination="from" />}
+            </div>
           </div>
           <div>
-            <FlightsNoPopup destination="to" />
+            <div className="flight to" onClick={handleTo} ref={toref}>
+              <span className="label">
+                <FaPlaneArrival /> TO
+              </span>
+              {!isToPopupOpen && <FlightsNoPopup destination="to" />}
+              {isToPopupOpen && <FlightPopup destination="to" />}
+            </div>
           </div>
         </div>
         <div className="right">
@@ -65,18 +125,15 @@ const FlightBooking = ({ destination }) => {
           {selectedDate && <span>{dayOfWeek}</span>}
 
           <div className="traveller">
-            <input
-              type="text"
-              className="travellers-input"
-              placeholder="Travellers"
-              value={travellersText}
-              onClick={() => setTravellersVisible((prev) => !prev)}
-              readOnly
-            />
+            <div className="travellers">
+              <span className="label">TRAVELLERS & CLASS</span>
+              {!travellersVisible && <TravellerClassNoPopup />}
+              {travellersVisible && <TravellerClassPopupOpen />}
+            </div>
           </div>
-          <span>{travelClass}</span>
+          {/* <span>{travelClass}</span> */}
         </div>
-        <button className="search-btn" onClick={HandleGo}>
+        <button className="search-btn" onClick={handlesubSearch}>
           SEARCH
         </button>
       </div>
@@ -194,7 +251,11 @@ const FlightBooking = ({ destination }) => {
             </div>
           </div>
         </div>
-        {/* <FlightTicketCard /> */}
+        <FlightTicket
+          source={source}
+          destination={destination}
+          weekday={selectday}
+        />
       </div>
     </div>
   );

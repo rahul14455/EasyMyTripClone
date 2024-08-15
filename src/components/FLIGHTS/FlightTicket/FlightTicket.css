@@ -1,0 +1,120 @@
+/* Container for the entire flight detail section */
+.flight-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f7f9fc;
+  /* height: 650px; */
+  /* border: 3px solid red; */
+  width: 100%;
+}
+
+/* Horizontal flight ticket card */
+.flight-ticket-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* width: 100%; */
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 150px;
+  /* border: 3px solid red; */
+}
+
+.flight-ticket-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Flight ID section */
+.ticket-id {
+  flex: 1;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333333;
+  text-align: center;
+}
+
+/* Flight route information */
+.flight-route {
+  flex: 2;
+  font-size: 16px;
+  font-weight: 500;
+  color: #007bff;
+  text-align: center;
+}
+
+/* Departure time and Arrival time */
+.time-details {
+  flex: 2;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.dept-time,
+.flight-arrival-time {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555555;
+}
+
+/* Flight duration */
+.segment-duration {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #999999;
+  text-align: center;
+}
+
+/* Ticket price */
+.ticketprice {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 700;
+  color: #28a745;
+  text-align: center;
+}
+
+/* Seats left */
+.seats {
+  font-size: 14px;
+  font-weight: 500;
+  color: #dc3545;
+  text-align: center;
+}
+
+/* Book now button */
+.booknow {
+  flex: 1;
+  text-align: center;
+}
+
+.booknow button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.booknow button:hover {
+  background-color: #0056b3;
+}
+
+/* No flights available message */
+.flight-detail-container p {
+  font-size: 16px;
+  color: #555555;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 20px;
+}

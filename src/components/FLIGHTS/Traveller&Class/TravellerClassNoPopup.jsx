@@ -5,7 +5,7 @@ const TravellerClassNoPopup = () => {
   const { travellersText, setTravellersVisible, travelClass } =
     useFlightsMainContext();
   return (
-    <div>
+    <span>
       <input
         type="text"
         className="travellers-input"
@@ -15,7 +15,7 @@ const TravellerClassNoPopup = () => {
         readOnly
       />
       <span>{travelClass}</span>
-    </div>
+    </span>
   );
 };
 

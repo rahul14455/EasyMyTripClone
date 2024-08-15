@@ -15,9 +15,9 @@ import FlightDatePopup from "./FlightDate/FlightDatePopup";
 import TravellerClassNoPopup from "./Traveller&Class/TravellerClassNoPopup";
 import TravellerClassPopupOpen from "./Traveller&Class/TravellerClassPopupOpen";
 import OfferComponent from "../OfferComponent";
-import Navbar from "../NAVBAR/Navbar";
 import { useNavigate } from "react-router-dom";
 import Offers from "../Offers";
+import toast from "react-hot-toast";
 
 const Flights = () => {
   const { handleFilterChange } = useOffersContext();
@@ -32,6 +32,18 @@ const Flights = () => {
     toref,
     isDatePopupOpen,
     travellersVisible,
+    toIndex,
+    toIata_Code,
+    fromIata_Code,
+    fromIndex,
+    travellersText,
+    travelClass,
+    number,
+
+    day,
+    year,
+    month,
+    weekday,
   } = useFlightsMainContext();
 
   useEffect(() => {
@@ -53,6 +65,28 @@ const Flights = () => {
     navigate("/FlightBooking");
   }
 
+  function handleMainSearch() {
+    if (fromIndex !== toIndex) {
+      const searchParams = new URLSearchParams();
+      searchParams.append("source", fromIata_Code);
+      searchParams.append("destination", toIata_Code);
+      searchParams.append("day", weekday);
+      searchParams.append("date", `${month}/${day}/${year}`);
+      searchParams.append("passenger", travelClass);
+      searchParams.append("number", number);
+      navigate({
+        pathname: "/FlightBooking",
+        search: `?${searchParams.toString()}`,
+      });
+    } else {
+      toast.dismiss();
+      toast.error(
+        "Cannot proceed further until the source and destination are different. Please correct it.",
+        { style: { border: "1px solid black" } }
+      );
+    }
+  }
+
   return (
     <div className="Flight-MainSection">
       {/* <p className="caption">Search Lowest Price</p> */}
@@ -63,9 +97,7 @@ const Flights = () => {
               <FaPlaneDeparture /> FROM
             </span>
             {!isFromPopupOpen && <FlightsNoPopup destination="from" />}
-            {isFromPopupOpen && (
-              <FlightPopup destination="from" from="from" setFrom="setFrom" />
-            )}
+            {isFromPopupOpen && <FlightPopup destination="from" />}
           </div>
 
           <div className="flight to" onClick={handleTo} ref={toref}>
@@ -93,7 +125,7 @@ const Flights = () => {
             {travellersVisible && <TravellerClassPopupOpen />}
           </div>
         </div>
-        <button className="search-button" onClick={HandleGo}>
+        <button className="search-button" onClick={handleMainSearch}>
           SEARCH
         </button>
       </div>

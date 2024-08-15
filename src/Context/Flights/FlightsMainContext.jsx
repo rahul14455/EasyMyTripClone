@@ -1,5 +1,6 @@
 import { createContext, useContext, useRef, useState } from "react";
 import { useFlightIndiudvalContext } from "./FlightIndiudvalContext";
+import { format } from "date-fns";
 
 const FlightsMainContext = createContext();
 
@@ -51,7 +52,10 @@ function FlightsMainProvider({ children }) {
     country: fromCountry,
     iata_code: fromIata_Code,
   } = airportList?.find(
-    (item) => item._id === fromIndex || item.city === fromIndex
+    (item) =>
+      item._id === fromIndex ||
+      item.city === fromIndex ||
+      item.iata_code === fromIndex
   ) || {};
 
   const {
@@ -60,7 +64,10 @@ function FlightsMainProvider({ children }) {
     country: toCountry,
     iata_code: toIata_Code,
   } = airportList?.find(
-    (item) => item._id === toIndex || item.city === toIndex
+    (item) =>
+      item._id === toIndex ||
+      item.city === toIndex ||
+      item.iata_code === toIndex
   ) || {};
   const handleFrom = () => {
     setIsFromPopupOpen(true);
@@ -94,27 +101,27 @@ function FlightsMainProvider({ children }) {
     }
   };
 
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [dayOfWeek, setDayOfWeek] = useState("");
-
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  // const [dayOfWeek, setDayOfWeek] = useState("");
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    const day = new Date(date).getDay();
-    setDayOfWeek(days[day]);
   };
 
+  const day = format(selectedDate, "dd");
+  const month = format(selectedDate, "MMM");
+  const year = format(selectedDate, "yyyy");
+
+  console.log(day);
+  const number = child + adults + infants;
+  const weekday = format(selectedDate, "EEEEEEE");
   return (
     <FlightsMainContext.Provider
       value={{
+        weekday,
+        year,
+        month,
+        day,
+        number,
         setTravellersVisible,
         travellersVisible,
         toref,
@@ -148,8 +155,6 @@ function FlightsMainProvider({ children }) {
         setIsDatePopupOpen,
         isDatePopupOpen,
         handleDateChange,
-        setDayOfWeek,
-        dayOfWeek,
         setSelectedDate,
         selectedDate,
         totalTravellers,
