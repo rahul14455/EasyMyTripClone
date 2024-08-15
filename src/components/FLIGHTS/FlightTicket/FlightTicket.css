@@ -19,15 +19,14 @@
   display: flex;
   padding: 20px;
   align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 150px;
   /* border: 3px solid red; */
 }
 
-.flight-ticket-card:hover {
+/* .flight-ticket-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
+} */
 
 /* Flight ID section */
 .ticket-id {
