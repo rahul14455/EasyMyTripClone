@@ -21,6 +21,11 @@ const FlightBooking = () => {
   const destination = searchparams.get("destination");
   const selectday = searchparams.get("day").slice(0, 3);
   const selectDate = searchparams.get("date");
+  const [selectedDuration, setSelectedDuration] = useState("");
+  const [selectDeparture, setSelectedDeparture] = useState("");
+  const [selectedStop, setSelectedStop] = useState("");
+  const [price, setPrice] = useState("");
+
   console.log(selectday);
   const {
     travelClass,
@@ -49,6 +54,7 @@ const FlightBooking = () => {
     setSelectedDate,
     setTravelClass,
     totalTravellers,
+    onAddFilter,
   } = useFlightsMainContext();
 
   console.log(day);
@@ -63,6 +69,26 @@ const FlightBooking = () => {
     // setMaximumPrice(highestFlightPrice);
   }, [source, destination, selectDate]);
 
+  const handlePriceChange = (e) => {
+    const selectedPrice = e.target.value;
+    setPrice(selectedPrice);
+
+    // Trigger filtering logic here based on the updated price
+    if (selectedPrice > 2000) {
+      onAddFilter({ price: { $gte: 2000 } }); // Filters tickets with prices greater than or equal to 2000
+    } else {
+      onAddFilter({ price: { $lte: selectedPrice } }); // Filters tickets with prices up to the selected value
+    }
+  };
+
+  useEffect(() => {
+    // Initial filter based on price
+    if (price > 2000) {
+      onAddFilter({ price: { $gte: 2000 } });
+    } else if (price > 0) {
+      onAddFilter({ price: { $lte: price } });
+    }
+  }, [price]);
   function handlesubSearch() {
     if (fromIndex !== toIndex) {
       const searchParams = new URLSearchParams();
@@ -143,14 +169,16 @@ const FlightBooking = () => {
             <p>FILTER</p>
           </div>
           <div className="progrss">
-            <span>One Way Price</span>
+            <span>One Way Price: {price}</span>
             <input
               type="range"
               id="slider"
               name="slider"
               min="0"
               max="2500"
-              value="100"
+              // value={price}
+              value={price}
+              onChange={handlePriceChange}
             />
             <div className="mini">
               <p>Min: 0</p>
@@ -161,17 +189,38 @@ const FlightBooking = () => {
           <div className="stops">
             <span>Stops From {fromCity}</span>
             <div className="non-stop">
-              <input type="checkbox" value="0" />
+              <input
+                type="checkbox"
+                value="0"
+                checked={selectedStop === "0"}
+                onChange={(e) => {
+                  setSelectedStop("0");
+                }}
+              />
               <label> Non Stop</label>
             </div>
 
             <div className="one-stop">
-              <input type="checkbox" value="1" />
+              <input
+                type="checkbox"
+                value="1"
+                checked={selectedStop === "1"}
+                onChange={(e) => {
+                  setSelectedStop("1");
+                }}
+              />
               <label> 1 Stop</label>
             </div>
 
             <div className="two-stop">
-              <input type="checkbox" value="2" />
+              <input
+                type="checkbox"
+                value="2"
+                checked={selectedStop === "2"}
+                onChange={(e) => {
+                  setSelectedStop("2");
+                }}
+              />
               <label> 2 Stop</label>
             </div>
           </div>
@@ -179,32 +228,74 @@ const FlightBooking = () => {
           <div className="duration">
             <span>Duration</span>
             <div className="one">
-              <input type="checkbox" value="1" />
+              <input
+                type="checkbox"
+                value="1"
+                checked={selectedDuration === "1"}
+                onChange={(e) => {
+                  setSelectedDuration("1");
+                }}
+              />
               <label>1 Hour</label>
             </div>
 
             <div className="two">
-              <input type="checkbox" value="2" />
+              <input
+                type="checkbox"
+                value="2"
+                checked={selectedDuration === "2"}
+                onChange={(e) => {
+                  setSelectedDuration("2");
+                }}
+              />
               <label>2 Hour</label>
             </div>
 
             <div className="three">
-              <input type="checkbox" value="3" />
+              <input
+                type="checkbox"
+                value="3"
+                checked={selectedDuration === "3"}
+                onChange={(e) => {
+                  setSelectedDuration("3");
+                }}
+              />
               <label>3 Hour</label>
             </div>
 
             <div className="four">
-              <input type="checkbox" value="4" />
+              <input
+                type="checkbox"
+                value="4"
+                checked={selectedDuration === "4"}
+                onChange={(e) => {
+                  setSelectedDuration("4");
+                }}
+              />
               <label>4 Hour</label>
             </div>
 
             <div className="five">
-              <input type="checkbox" value="5" />
+              <input
+                type="checkbox"
+                value="5"
+                checked={selectedDuration === "5"}
+                onChange={(e) => {
+                  setSelectedDuration("5");
+                }}
+              />
               <label>5 Hour</label>
             </div>
 
             <div className="six">
-              <input type="checkbox" value="6" />
+              <input
+                type="checkbox"
+                checked={selectedDuration === "6"}
+                value="6"
+                onChange={(e) => {
+                  setSelectedDuration("6");
+                }}
+              />
               <label>6 Hour</label>
             </div>
           </div>
@@ -212,7 +303,12 @@ const FlightBooking = () => {
           <div className="departure">
             <span>Departure From {fromCity}</span>
             <div className="filter-icons">
-              <div className="sunicon">
+              <div
+                className="sunicon"
+                onClick={() => {
+                  setSelectedDeparture({ $gte: "6:00" });
+                }}
+              >
                 <LandscapeIcon />
                 <div>
                   <span>Before</span>
@@ -221,7 +317,12 @@ const FlightBooking = () => {
                 </div>
               </div>
 
-              <div className="sunicon">
+              <div
+                className="sunicon"
+                onClick={() => {
+                  setSelectedDeparture({ $gte: "6:00", $lte: "12:00" });
+                }}
+              >
                 <LightModeIcon />
                 <div>
                   <span>6 AM-</span>
@@ -230,9 +331,13 @@ const FlightBooking = () => {
                 </div>
               </div>
 
-              <div className="sunicon">
+              <div
+                className="sunicon"
+                onClick={() => {
+                  setSelectedDeparture({ $gte: "12:00", $lte: "18:00" });
+                }}
+              >
                 <WbTwilightOutlinedIcon />
-
                 <div>
                   <span>12PM-</span>
                   <br />
@@ -240,7 +345,12 @@ const FlightBooking = () => {
                 </div>
               </div>
 
-              <div className="sunicon">
+              <div
+                className="sunicon"
+                onClick={() => {
+                  setSelectedDeparture({ $gte: "18:00" });
+                }}
+              >
                 <NightlightOutlinedIcon />
                 <div>
                   <span>After</span>
@@ -255,6 +365,10 @@ const FlightBooking = () => {
           source={source}
           destination={destination}
           weekday={selectday}
+          selectedDuration={selectedDuration}
+          selectDeparture={selectDeparture}
+          selectedStop={selectedStop}
+          price={price}
         />
       </div>
     </div>

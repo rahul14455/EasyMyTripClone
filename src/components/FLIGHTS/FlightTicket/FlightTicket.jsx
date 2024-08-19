@@ -3,18 +3,41 @@ import { flightData } from "../../Services/apiFlightdata";
 import { useFlightsMainContext } from "../../../Context/Flights/FlightsMainContext";
 import "./FlightTicket.css"; // Ensure you have the correct path
 
-const FlightTicket = ({ source, destination, weekday }) => {
+const FlightTicket = ({
+  source,
+  destination,
+  weekday,
+  selectedDuration,
+  price,
+  selectedStop,
+  selectDeparture,
+}) => {
   const [data, setData] = useState([]);
   const { fromCity, toCity } = useFlightsMainContext();
-
   const getData = async () => {
-    const flightDataArr = await flightData(source, destination, weekday);
+    const flightDataArr = await flightData(
+      source,
+      destination,
+      weekday,
+      selectedDuration,
+      price,
+      selectedStop,
+      selectDeparture
+    );
     setData(flightDataArr);
   };
 
   useEffect(() => {
     getData();
-  }, [source, destination, weekday]);
+  }, [
+    source,
+    destination,
+    weekday,
+    selectedDuration,
+    price,
+    selectedStop,
+    selectDeparture,
+  ]);
 
   return (
     <div className="flight-detail-container">

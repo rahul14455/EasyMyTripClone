@@ -73,6 +73,13 @@
   border: 0.5px solid lightgray;
 }
 
+.sunicon.clicked {
+  background-color: gray;
+}
+.sunicon.clicked span {
+  color: whitesmoke;
+}
+
 .progrss {
   display: flex;
   flex-direction: column;

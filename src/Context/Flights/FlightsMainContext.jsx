@@ -1,4 +1,4 @@
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useFlightIndiudvalContext } from "./FlightIndiudvalContext";
 import { format } from "date-fns";
 
@@ -19,6 +19,9 @@ function FlightsMainProvider({ children }) {
   const [child, setChild] = useState(0);
   const [infants, setInfants] = useState(0);
   const [travelClass, setTravelClass] = useState("Economy");
+
+  const [sort, setSort] = useState("cheap");
+  const [filter, setFilter] = useState([]);
 
   const handleAdultsChange = (value) => {
     setAdults((prev) => Math.max(1, prev + value));
@@ -114,9 +117,19 @@ function FlightsMainProvider({ children }) {
   console.log(day);
   const number = child + adults + infants;
   const weekday = format(selectedDate, "EEEEEEE");
+
+  const onAddFilter = (condition, filter) => {
+    if (condition) {
+      setFilter((prev) => [...prev, filter]);
+    } else {
+      setFilter((prev) => prev.filter((name) => name !== filter));
+    }
+  };
+
   return (
     <FlightsMainContext.Provider
       value={{
+        onAddFilter,
         weekday,
         year,
         month,
@@ -172,6 +185,10 @@ function FlightsMainProvider({ children }) {
         handleInfantsChange,
         handleTravelClassChange,
         handleDone,
+        sort,
+        setSort,
+        filter,
+        setFilter,
       }}
     >
       {children}
