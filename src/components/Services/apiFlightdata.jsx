@@ -27,7 +27,7 @@ export const flightData = async (
     filters.departureTime = selectDeparture;
   }
   if (price) {
-    filters.ticketPrice = { $lte: 0, $gte: price };
+    filters.ticketPrice = { $lte: price };
   }
 
   if (Object.keys(filters).length > 0) {

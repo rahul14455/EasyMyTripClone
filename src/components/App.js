@@ -17,6 +17,7 @@ import { HotelIndiudvalProvider } from "../Context/Hotels/HotelIndiudvalContext"
 import { HotelMainProvider } from "../Context/Hotels/HotelMainContext";
 import { TrainMainProvider } from "../Context/Trains/TrainMainContext";
 import { Toaster } from "react-hot-toast";
+import HotelBooking from "./HOTELS/HotelBooking/HotelBooking";
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -47,6 +48,10 @@ function App() {
                           <Route
                             path="/FlightBooking"
                             element={<FlightBooking />}
+                          />
+                          <Route
+                            path="/HotelBooking"
+                            element={<HotelBooking />}
                           />
                         </Route>
                       </Routes>

@@ -12,6 +12,7 @@ import GuestNoPopup from "./HotelApiCall/Guest/GuestNoPopup";
 import GuestPopup from "./HotelApiCall/Guest/GuestPopup";
 import OfferComponent from "../OfferComponent";
 import Offers from "../Offers";
+import { useNavigate } from "react-router-dom";
 
 const Hotels = () => {
   const {
@@ -31,6 +32,11 @@ const Hotels = () => {
       document.removeEventListener("click", handleClickOut);
     };
   }, [handleClickOut]);
+  const navigate = useNavigate();
+
+  function HandleGo() {
+    navigate("/HotelBooking");
+  }
 
   return (
     <div>
@@ -75,7 +81,9 @@ const Hotels = () => {
               {!dropdownOpen && <GuestNoPopup />}
               {dropdownOpen && <GuestPopup />}
             </div>
-            <button className="search-button-hotel">Search Hotels</button>
+            <button className="search-button-hotel" onClick={HandleGo}>
+              Search Hotels
+            </button>
           </div>
         </div>
       </div>

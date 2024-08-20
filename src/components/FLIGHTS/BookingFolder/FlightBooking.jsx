@@ -54,7 +54,6 @@ const FlightBooking = () => {
     setSelectedDate,
     setTravelClass,
     totalTravellers,
-    onAddFilter,
   } = useFlightsMainContext();
 
   console.log(day);
@@ -69,26 +68,17 @@ const FlightBooking = () => {
     // setMaximumPrice(highestFlightPrice);
   }, [source, destination, selectDate]);
 
-  const handlePriceChange = (e) => {
-    const selectedPrice = e.target.value;
+  const handleChange = (event) => {
+    const selectedPrice = event.target.value;
     setPrice(selectedPrice);
+    const filterCondition = {
+      price: { $lte: selectedPrice },
+    };
 
-    // Trigger filtering logic here based on the updated price
-    if (selectedPrice > 2000) {
-      onAddFilter({ price: { $gte: 2000 } }); // Filters tickets with prices greater than or equal to 2000
-    } else {
-      onAddFilter({ price: { $lte: selectedPrice } }); // Filters tickets with prices up to the selected value
-    }
+    // You can use this filterCondition to update your query or perform other actions
+    console.log("Filter Condition:", filterCondition);
   };
 
-  useEffect(() => {
-    // Initial filter based on price
-    if (price > 2000) {
-      onAddFilter({ price: { $gte: 2000 } });
-    } else if (price > 0) {
-      onAddFilter({ price: { $lte: price } });
-    }
-  }, [price]);
   function handlesubSearch() {
     if (fromIndex !== toIndex) {
       const searchParams = new URLSearchParams();
@@ -169,20 +159,19 @@ const FlightBooking = () => {
             <p>FILTER</p>
           </div>
           <div className="progrss">
-            <span>One Way Price: {price}</span>
+            <span>One Way Price: ₹{price}</span>
             <input
               type="range"
               id="slider"
               name="slider"
               min="0"
               max="2500"
-              // value={price}
               value={price}
-              onChange={handlePriceChange}
+              onChange={handleChange}
             />
             <div className="mini">
-              <p>Min: 0</p>
-              <p>Max: 2500</p>
+              <p>Min: ₹0</p>
+              <p>Max: ₹2500</p>
             </div>
           </div>
 
