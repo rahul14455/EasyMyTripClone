@@ -31,44 +31,57 @@ const HotelBooking = () => {
   }, [handleClickOut]);
 
   return (
-    <div className="main">
-      <div className="searchbox">
-        <div
-          className="dest"
-          onClick={handleDestinationPopup}
-          ref={destinationref}
-        >
-          <span className="labelicon">
-            <FaMapMarkerAlt /> DESTINATION
-          </span>
-          {!destinationPopup ? <HotelNoPopup /> : <HotelPopup />}
-        </div>
-
-        <div className="datepicker">
-          <span className="labelicon">
-            <FaCalendarAlt /> CHECK-IN
-          </span>
-          {!checkInDate && <CheckInNoPopup />}
-          {checkInDate && <CheckInPopup />}
-        </div>
-
-        <div className="datepicker">
-          <span className="labelicon">
-            <FaCalendarAlt /> CHECK-OUT
-          </span>
-          {!checkOutDate && <CheckOutNoPop />}
-          {checkOutDate && <CheckOutPop />}
-        </div>
-
-        <div className="guests">
-          <span
-            className="labelicon"
-            onClick={() => setDropdownOpen(!dropdownOpen)}
+    <div>
+      <div className="mainbooking">
+        <div className="searchbox">
+          <div
+            className="dest"
+            onClick={handleDestinationPopup}
+            ref={destinationref}
           >
-            <FaUsers /> Select Guests
-          </span>
-          {!dropdownOpen && <GuestNoPopup />}
-          {dropdownOpen && <GuestPopup />}
+            <span className="labelicon">
+              <FaMapMarkerAlt /> DESTINATION
+            </span>
+            {!destinationPopup ? <HotelNoPopup /> : <HotelPopup />}
+          </div>
+
+          <div className="datepicker">
+            <span className="labelicon">
+              <FaCalendarAlt /> CHECK-IN
+            </span>
+            {!checkInDate && <CheckInNoPopup />}
+            {checkInDate && <CheckInPopup />}
+          </div>
+
+          <div className="datepicker">
+            <span className="labelicon">
+              <FaCalendarAlt /> CHECK-OUT
+            </span>
+            {!checkOutDate && <CheckOutNoPop />}
+            {checkOutDate && <CheckOutPop />}
+          </div>
+
+          <div className="guests">
+            <span
+              className="labelicon"
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            >
+              <FaUsers /> Select Guests
+            </span>
+            {!dropdownOpen && <GuestNoPopup />}
+            {dropdownOpen && <GuestPopup />}
+          </div>
+        </div>
+      </div>
+      <div className="hotel-sidebar">
+        <div className="mapview">
+          <div className="mapimage">
+            <img
+              src="https://www.easemytrip.com/hotels/images/maplocico.svg"
+              alt="imag"
+            />
+            <button>Show on Map</button>
+          </div>
         </div>
       </div>
     </div>
