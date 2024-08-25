@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 
 const TrainMainContext = createContext();
 
@@ -7,6 +7,13 @@ function TrainMainProvider({ children }) {
   const [dayOfWeek, setDayOfWeek] = useState("");
   const [isFromPopupOpen, setIsFromPopupOpen] = useState(false);
   const [isToPopupOpen, setIsToPopupOpen] = useState(false);
+
+  const [fromIndex, setFromIndex] = useState("6514309e348f6fafa1b86600");
+  const [toIndex, setToIndex] = useState("6514309e348f6fafa1b86601");
+
+  const [search, setSearch] = useState("");
+  const inputRef = useRef(null);
+
   const handleTrainDateChange = (date) => {
     setDepartureDate(date);
     const days = [
@@ -34,6 +41,13 @@ function TrainMainProvider({ children }) {
         setIsToPopupOpen,
         isFromPopupOpen,
         setIsFromPopupOpen,
+        toIndex,
+        setToIndex,
+        fromIndex,
+        setFromIndex,
+        inputRef,
+        search,
+        setSearch,
       }}
     >
       {children}

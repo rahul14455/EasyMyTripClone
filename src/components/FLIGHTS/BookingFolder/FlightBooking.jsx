@@ -26,7 +26,6 @@ const FlightBooking = () => {
   const [selectedStop, setSelectedStop] = useState("");
   const [price, setPrice] = useState("");
 
-  console.log(selectday);
   const {
     travelClass,
     handleDateChange,

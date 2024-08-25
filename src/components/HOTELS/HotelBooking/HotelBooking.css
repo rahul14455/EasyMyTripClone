@@ -8,12 +8,14 @@
   align-items: center;
   margin-top: 10px;
 }
-
+.hotelbooking-main {
+  /* border: 3px solid red; */
+}
 .searchbox {
   display: flex;
   justify-content: space-between;
   align-items: center; /* Center align items vertically */
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   height: 14vh;
   padding: 10px;
@@ -67,13 +69,15 @@
 }
 
 /* sidebar */
-
+.hotel-sidebar {
+  width: 20vw;
+}
 .mapview {
   border: 1px solid #c9d7e1;
   box-shadow: rgb(0 0 0/20%) 0px 3px 7px;
   background-color: #fff;
   height: 22vh;
-  width: 17%;
+  width: 100%;
   padding: 5px;
   margin: 15px;
   border-radius: 10px;
@@ -85,6 +89,7 @@
     "https://www.easemytrip.com/hotels/images/showmapico.png?v=1"
   );
 }
+
 .mapimage {
   width: 95%;
   height: 95%;
@@ -108,5 +113,58 @@
 .mapimage img {
   width: 30%;
   height: auto;
+  padding: 5px;
+}
+.mapimage button {
+  background-color: #2196f3;
+  padding: 6px 20px;
+  border-radius: 50px;
+  border: none;
+  color: #ffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* .cradsalign {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid blueviolet;
+  width: 100%;
+} */
+.cradsalign {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  gap: 20px; /* Add gap between sidebar and card */
+}
+
+.hotel-filter-pannel {
+  border: 1px solid #c9d7e1;
+  box-shadow: rgb(0 0 0 / 20%) 0px 3px 7px;
+  background-color: #fff;
+  height: 60vh;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px;
+  width: 100%;
+  margin: 10px;
+}
+
+.hotel-prices h3,
+.rating-head h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin: 1em 0;
+}
+.price-checks,
+.rating-all {
+  font-size: 15px;
+  color: #737373;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 5px;
 }

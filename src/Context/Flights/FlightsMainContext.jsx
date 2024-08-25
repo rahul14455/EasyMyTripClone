@@ -118,18 +118,9 @@ function FlightsMainProvider({ children }) {
   const number = child + adults + infants;
   const weekday = format(selectedDate, "EEEEEEE");
 
-  const onAddFilter = (condition, filter) => {
-    if (condition) {
-      setFilter((prev) => [...prev, filter]);
-    } else {
-      setFilter((prev) => prev.filter((name) => name !== filter));
-    }
-  };
-
   return (
     <FlightsMainContext.Provider
       value={{
-        onAddFilter,
         weekday,
         year,
         month,

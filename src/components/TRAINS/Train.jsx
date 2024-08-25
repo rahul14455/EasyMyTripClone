@@ -5,11 +5,27 @@ import DateNoPopup from "./DepartureDate/DateNoPopup";
 import DatePopup from "./DepartureDate/DatePopup";
 import OfferComponent from "../OfferComponent";
 import Offers from "../Offers";
+import { trainCity } from "../Services/apiTrain";
+import TrainNoPopup from "./TrainPopups/TrainNoPopup";
+import TrainPopup from "./TrainPopups/TrainPopup";
 
-const Train = () => {
+const Train = ({ destination }) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const { departureDate } = useTrainMainContext();
+  const {
+    departureDate,
+    isToPopupOpen,
+    setIsToPopupOpen,
+    isFromPopupOpen,
+    setIsFromPopupOpen,
+    toIndex,
+    setToIndex,
+    fromIndex,
+    setFromIndex,
+    inputRef,
+    search,
+    setSearch,
+  } = useTrainMainContext();
 
   const handleSearch = () => {
     // Handle the search logic here
@@ -40,6 +56,8 @@ const Train = () => {
                 value={from}
                 onChange={(e) => setFrom(e.target.value)}
               />
+              {!isFromPopupOpen && <TrainNoPopup destination="from" />}
+              {isFromPopupOpen && <TrainPopup destination="from" />}
             </div>
 
             <div className="train">

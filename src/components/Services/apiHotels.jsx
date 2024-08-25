@@ -15,18 +15,18 @@ export const hotelList = async () => {
 };
 
 export const hotelListWithCityName = async (cityName) => {
-  if (!cityName) {
-    return hotelList();
-  }
-  const city = { city: cityName };
+  const city = { location: cityName };
   try {
-    const response = await fetch(`${url}/hotel`, {
-      method: "GET",
-      headers: {
-        projectID: { projectID },
-        autorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+    const response = await fetch(
+      `${url}/hotel?search=${JSON.stringify(city)}`,
+      {
+        method: "GET",
+        headers: {
+          projectID: { projectID },
+          autorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     return response.json();
   } catch (error) {
     console.log("Error fetching data:", error);

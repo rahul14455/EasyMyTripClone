@@ -3,7 +3,7 @@ import ReactDatePicker from "react-datepicker";
 import { useHotelMainContext } from "../../../../Context/Hotels/HotelMainContext";
 
 const CheckInNoPopup = () => {
-  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkInDate, setCheckInDate] = useState();
   const { setDayOfWeek, dayOfWeek } = useHotelMainContext();
   const handleDateInChange = (date) => {
     setCheckInDate(date);

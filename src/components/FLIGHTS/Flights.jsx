@@ -39,7 +39,6 @@ const Flights = () => {
     travellersText,
     travelClass,
     number,
-
     day,
     year,
     month,
