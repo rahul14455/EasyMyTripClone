@@ -29,7 +29,7 @@ const DateNoPopup = () => {
         dateFormat="dd/MM/yyyy"
         placeholderText="Select a date"
       />
-      {departureDate && <span>{dayOfWeek}</span>}
+      <div>{departureDate && <span>{dayOfWeek}</span>}</div>
     </div>
   );
 };

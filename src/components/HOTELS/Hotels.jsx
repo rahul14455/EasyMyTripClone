@@ -70,7 +70,6 @@ const Hotels = () => {
               {!checkOutDate && <CheckOutNoPop />}
               {checkOutDate && <CheckOutPop />}
             </div>
-
             <div className="guests">
               <span
                 className="label guests-label"
