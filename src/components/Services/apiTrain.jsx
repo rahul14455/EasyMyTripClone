@@ -1,4 +1,4 @@
-const trainCity = [
+export const trainCity = [
   "Delhi Junction",
   "Dhanbad Junction",
   "Surat",

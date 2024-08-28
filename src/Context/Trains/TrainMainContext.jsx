@@ -1,4 +1,5 @@
 import { createContext, useContext, useRef, useState } from "react";
+import toast from "react-hot-toast";
 
 const TrainMainContext = createContext();
 
@@ -7,12 +8,18 @@ function TrainMainProvider({ children }) {
   const [dayOfWeek, setDayOfWeek] = useState("");
   const [isFromPopupOpen, setIsFromPopupOpen] = useState(false);
   const [isToPopupOpen, setIsToPopupOpen] = useState(false);
+  const [isDatePopupOpen, setDatePopupOpen] = useState(false);
 
-  const [fromIndex, setFromIndex] = useState("6514309e348f6fafa1b86600");
-  const [toIndex, setToIndex] = useState("6514309e348f6fafa1b86601");
+  const [fromIndex, setFromIndex] = useState("Delhi Junction");
+  const [toIndex, setToIndex] = useState("Surat");
 
   const [search, setSearch] = useState("");
+  const [from, setFrom] = useState();
+  const [to, setTo] = useState();
+
   const inputRef = useRef(null);
+  const destinaionref = useRef(null);
+  const toref = useRef(null);
 
   const handleTrainDateChange = (date) => {
     setDepartureDate(date);
@@ -29,18 +36,51 @@ function TrainMainProvider({ children }) {
     setDayOfWeek(days[day]);
   };
 
+  const handleFrom = () => {
+    setIsFromPopupOpen(true);
+    setIsToPopupOpen(false);
+  };
+  const handleTo = () => {
+    setIsFromPopupOpen(false);
+    setIsToPopupOpen(true);
+  };
+  const chooseCity = (index, e, destination) => {
+    e.stopPropagation();
+    if (destination === "from") {
+      setFromIndex(index);
+      setIsFromPopupOpen(false);
+    } else if (destination === "to") {
+      setToIndex(index);
+      setIsToPopupOpen(false);
+    }
+  };
+
+  const handleClickOut = (event) => {
+    if (destinaionref && !destinaionref.current?.contains(event.target)) {
+      setIsFromPopupOpen(false);
+    }
+  };
+
+  const toHandleClickout = (event) => {
+    if (toref && !toref.current?.contains(event.target)) {
+      setIsToPopupOpen(false);
+    }
+  };
+
   return (
     <TrainMainContext.Provider
       value={{
+        handleTrainDateChange,
         departureDate,
         setDepartureDate,
-        handleTrainDateChange,
         dayOfWeek,
         setDayOfWeek,
         isToPopupOpen,
         setIsToPopupOpen,
         isFromPopupOpen,
         setIsFromPopupOpen,
+        isDatePopupOpen,
+        setDatePopupOpen,
         toIndex,
         setToIndex,
         fromIndex,
@@ -48,6 +88,11 @@ function TrainMainProvider({ children }) {
         inputRef,
         search,
         setSearch,
+        from,
+        setFrom,
+        to,
+        setTo,
+        chooseCity,
       }}
     >
       {children}

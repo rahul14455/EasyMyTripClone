@@ -1,13 +1,22 @@
 import { createContext, useContext, useState } from "react";
-
+import { trainCity } from "../../components/Services/apiTrain";
 const TrainIndiudvalContext = createContext();
 
 function TrainIndiudvalProvider({ children }) {
   const [fromtrainCity, setFromTraincity] = useState();
   const [toTrainCity, setToTrainCity] = useState();
+  const [cityName, setCityName] = useState(null);
+
   return (
     <TrainIndiudvalContext.Provider
-      value={{ fromtrainCity, setFromTraincity, toTrainCity, setToTrainCity }}
+      value={{
+        fromtrainCity,
+        setFromTraincity,
+        toTrainCity,
+        setToTrainCity,
+        cityName,
+        setCityName,
+      }}
     >
       {children}
     </TrainIndiudvalContext.Provider>

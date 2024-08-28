@@ -1,0 +1,32 @@
+/* FlightPopupList.css */
+.train-list-item {
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.train-list-item:hover {
+  background-color: #e0e0e0;
+}
+
+.train-list-item .train-info {
+  display: flex;
+  align-items: center;
+}
+
+.train-list-item .train-info svg {
+  margin-right: 10px;
+  color: #007bff; /* Blue color for airplane icon */
+}
+
+.train-list-item .train-info p {
+  margin: 0;
+}
+
+.train-list-item .iata-code {
+  font-size: 14px;
+  color: #666;
+}

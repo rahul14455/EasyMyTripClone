@@ -1,30 +1,28 @@
-import React, { useState } from "react";
-import "./Train.css"; // Assuming you have a CSS file for styles
+import React, { useState, useEffect } from "react";
+import "./Train.css";
 import { useTrainMainContext } from "../../Context/Trains/TrainMainContext";
 import DateNoPopup from "./DepartureDate/DateNoPopup";
 import DatePopup from "./DepartureDate/DatePopup";
 import OfferComponent from "../OfferComponent";
 import Offers from "../Offers";
-import { trainCity } from "../Services/apiTrain";
+import TrainPopup from "../TRAINS/TrainPopups/TrainPopup";
 import TrainNoPopup from "./TrainPopups/TrainNoPopup";
-import TrainPopup from "./TrainPopups/TrainPopup";
-
+import { trainCity } from "../Services/apiTrain";
 const Train = ({ destination }) => {
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
   const {
     departureDate,
+    to,
+    setTo,
+    from,
+    setFrom,
     isToPopupOpen,
     setIsToPopupOpen,
     isFromPopupOpen,
     setIsFromPopupOpen,
-    toIndex,
-    setToIndex,
-    fromIndex,
-    setFromIndex,
-    inputRef,
-    search,
-    setSearch,
+    isDatePopupOpen,
+    setDatePopupOpen,
+    destinaionref,
+    handleFrom,
   } = useTrainMainContext();
 
   const handleSearch = () => {
@@ -39,12 +37,12 @@ const Train = ({ destination }) => {
             src="https://www.easemytrip.com/images/train-img/train-icon.svg"
             alt="irctc"
           />
-          <p> Book Train Tickets</p>
+          <p>Book Train Tickets</p>
         </div>
 
         <div className="Train-ticket-Box">
           <div className="tsearch">
-            <div className="train">
+            <div className="train" onClick={handleFrom} ref={destinaionref}>
               <label className="label" htmlFor="from">
                 From
               </label>
@@ -55,12 +53,19 @@ const Train = ({ destination }) => {
                 placeholder="Enter departure station"
                 value={from}
                 onChange={(e) => setFrom(e.target.value)}
+                onFocus={() => {
+                  setIsFromPopupOpen(true);
+                  setIsToPopupOpen(false);
+                }}
               />
-              {!isFromPopupOpen && <TrainNoPopup destination="from" />}
-              {isFromPopupOpen && <TrainPopup destination="from" />}
+              {isFromPopupOpen ? (
+                <TrainPopup destination="from" />
+              ) : (
+                <TrainNoPopup destination="from" />
+              )}
             </div>
 
-            <div className="train">
+            <div className="train" onClick={handleFrom} ref={destinaionref}>
               <label className="label" htmlFor="to">
                 To
               </label>
@@ -71,15 +76,24 @@ const Train = ({ destination }) => {
                 placeholder="Enter destination station"
                 value={to}
                 onChange={(e) => setTo(e.target.value)}
+                onFocus={() => {
+                  setIsToPopupOpen(true);
+                  setIsFromPopupOpen(false);
+                }}
               />
+              {isToPopupOpen ? (
+                <TrainPopup destination="to" />
+              ) : (
+                <TrainNoPopup destination="to" />
+              )}
             </div>
 
             <div className="datepicker-train">
               <label className="label" htmlFor="departureDate">
                 Departure Date
               </label>
-              {!departureDate && <DateNoPopup />}
-              {departureDate && <DatePopup />}
+              {!isDatePopupOpen && <DateNoPopup />}
+              {isDatePopupOpen && <DatePopup />}
             </div>
 
             <button className="search-button-train" onClick={handleSearch}>
@@ -87,6 +101,7 @@ const Train = ({ destination }) => {
             </button>
           </div>
         </div>
+
         <div className="bottom-heading">
           <img
             src="https://www.easemytrip.com/images/train-img/IRCTC-logo-nw2.png"
