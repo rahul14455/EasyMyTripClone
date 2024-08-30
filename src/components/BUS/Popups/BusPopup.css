@@ -1,0 +1,90 @@
+.train-popup {
+  position: absolute;
+  max-width: 400px;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  top: 265px;
+  /* left: -0px; */
+}
+
+.searchbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.searchbox svg {
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.searchbox input[type="text"] {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  flex: 1;
+  outline: none;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.searchbox input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+.flight-list {
+  margin-top: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #fff;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.popup-list-item {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ced4da;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.popup-list-item:last-child {
+  border-bottom: none;
+}
+
+.popup-list-item:hover {
+  background-color: #f0f0f0;
+}
+
+.popup-list-item .flight-info {
+  display: flex;
+  align-items: center;
+}
+
+.popup-list-item .flight-info svg {
+  margin-right: 8px;
+  color: #007bff;
+}
+
+.popup-list-item .flight-info p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.popup-list-item .iata-code {
+  font-size: 14px;
+  color: #666;
+}

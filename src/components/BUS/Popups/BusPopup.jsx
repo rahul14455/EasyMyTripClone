@@ -1,21 +1,18 @@
 import React, { useEffect } from "react";
-import { useTrainMainContext } from "../../../Context/Trains/TrainMainContext";
-import TrainPopupList from "../TrainPopupList";
+import { useBusMainContext } from "../../../Context/Bus/BusMainContext";
 import { CiSearch } from "react-icons/ci";
-import { trainCity } from "../../Services/apiTrain";
-import "../TrainPopups/TrainPopup.css";
-const TrainPopup = ({ destination }) => {
-  const { inputRef, search, setSearch } = useTrainMainContext();
+import { BusCity } from "../../Services/apiBus";
+import "../Popups/BusPopupList";
+import BusPopupList from "../Popups/BusPopupList";
+import "../Popups/BusPopupList.css";
+const BusPopup = ({ destination }) => {
+  const { inputRef, search, setSearch } = useBusMainContext();
 
   useEffect(() => {
     if (inputRef.current) inputRef.current.focus();
   }, []);
-
   return (
-    <div
-      className="train-popup"
-      //   style={{ left: destination === "to" ? "260px" : "-0px" }}
-    >
+    <div className="train-popup">
       <div className="searchbox">
         <CiSearch />
         <input
@@ -34,12 +31,12 @@ const TrainPopup = ({ destination }) => {
         />
       </div>
       <div className="flight-list">
-        {trainCity?.map((item, index) => (
-          <TrainPopupList key={index} destination={destination} item={item} />
+        {BusCity?.map((item, index) => (
+          <BusPopupList key={index} destination={destination} item={item} />
         ))}
       </div>
     </div>
   );
 };
 
-export default TrainPopup;
+export default BusPopup;

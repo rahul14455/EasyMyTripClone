@@ -19,6 +19,10 @@ import { TrainMainProvider } from "../Context/Trains/TrainMainContext";
 import { Toaster } from "react-hot-toast";
 import HotelBooking from "./HOTELS/HotelBooking/HotelBooking";
 import { TrainIndiudvalProvider } from "../Context/Trains/TrainIndiudvalContext";
+import TrainBooking from "./TRAINS/TrainBooking/TrainBooking";
+import BusBooking from "./BUS/BusBooking/BusBooking";
+import { BusMainProvider } from "../Context/Bus/BusMainContext";
+import { BusIndiudvalProvider } from "../Context/Bus/BusIndiudvalContext";
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -36,45 +40,60 @@ function App() {
               <HotelMainProvider>
                 <TrainIndiudvalProvider>
                   <TrainMainProvider>
-                    <div className="App">
-                      <BrowserRouter>
-                        <ReactQueryDevtools initialIsOpen={false} />
-                        <Routes>
-                          <Route element={<Applayout />}>
-                            <Route path="/" element={<Flights />} />
-                            <Route path="/Hotel" element={<Hotels />} />
-                            <Route path="/Train" element={<Train />} />
-                            <Route path="/Bus" element={<Bus />} />
-                            <Route path="/Login" element={<Login />} />
-                            <Route path="/HomePage" element={<HomePage />} />
-                            <Route
-                              path="/FlightBooking"
-                              element={<FlightBooking />}
-                            />
-                            <Route
-                              path="/HotelBooking"
-                              element={<HotelBooking />}
-                            />
-                          </Route>
-                        </Routes>
-                      </BrowserRouter>
-                    </div>
-                    <Toaster
-                      position="top-center"
-                      gutter={12}
-                      containerStyle={{ margin: "8px" }}
-                      toastOptions={{
-                        success: { duration: 3000 },
-                        error: { duration: 5000 },
-                        style: {
-                          fontSize: "text-base",
-                          maxWidth: "500px",
-                          padding: "16px 24px",
-                          backgroundColor: "rgb(249 250 251)",
-                          color: "rgb(55 65 81)",
-                        },
-                      }}
-                    />
+                    <BusIndiudvalProvider>
+                      <BusMainProvider>
+                        <div className="App">
+                          <BrowserRouter>
+                            <ReactQueryDevtools initialIsOpen={false} />
+                            <Routes>
+                              <Route element={<Applayout />}>
+                                <Route path="/" element={<Flights />} />
+                                <Route path="/Hotel" element={<Hotels />} />
+                                <Route path="/Train" element={<Train />} />
+                                <Route path="/Bus" element={<Bus />} />
+                                <Route path="/Login" element={<Login />} />
+                                <Route
+                                  path="/HomePage"
+                                  element={<HomePage />}
+                                />
+                                <Route
+                                  path="/FlightBooking"
+                                  element={<FlightBooking />}
+                                />
+                                <Route
+                                  path="/HotelBooking"
+                                  element={<HotelBooking />}
+                                />
+                                <Route
+                                  path="/TrainBooking"
+                                  element={<TrainBooking />}
+                                />
+                                <Route
+                                  path="/BusBooking"
+                                  element={<BusBooking />}
+                                />
+                              </Route>
+                            </Routes>
+                          </BrowserRouter>
+                        </div>
+                        <Toaster
+                          position="top-center"
+                          gutter={12}
+                          containerStyle={{ margin: "8px" }}
+                          toastOptions={{
+                            success: { duration: 3000 },
+                            error: { duration: 5000 },
+                            style: {
+                              fontSize: "text-base",
+                              maxWidth: "500px",
+                              padding: "16px 24px",
+                              backgroundColor: "rgb(249 250 251)",
+                              color: "rgb(55 65 81)",
+                            },
+                          }}
+                        />
+                      </BusMainProvider>
+                    </BusIndiudvalProvider>
                   </TrainMainProvider>
                 </TrainIndiudvalProvider>
               </HotelMainProvider>

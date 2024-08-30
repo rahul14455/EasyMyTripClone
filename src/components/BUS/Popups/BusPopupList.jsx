@@ -1,13 +1,11 @@
 import React from "react";
-import { useTrainMainContext } from "../../Context/Trains/TrainMainContext";
-import { trainCity } from "../Services/apiTrain";
-import { FaTrainSubway } from "react-icons/fa6";
-import "../TRAINS/TrainPopupList.css";
-const TrainPopupList = ({ item, destination }) => {
-  const { setFrom, setTo, setIsFromPopupOpen, setIsToPopupOpen } =
-    useTrainMainContext();
-  console.log(trainCity);
-
+import { useBusMainContext } from "../../../Context/Bus/BusMainContext";
+import { FaBus } from "react-icons/fa";
+import { BusCity } from "../../Services/apiBus";
+import "../Popups/BusPopupList.css";
+const BusPopupList = ({ destination, item }) => {
+  const { setTo, setFrom, setIsFromPopupOpen, setIsToPopupOpen } =
+    useBusMainContext();
   const chooseCity = (index, e, destination) => {
     e.stopPropagation();
     if (destination === "from") {
@@ -23,11 +21,13 @@ const TrainPopupList = ({ item, destination }) => {
       <div
         className="train-list-item"
         onClick={(e) => {
+          // setFrom(item);
+          // setTo(item);
           chooseCity(item, e, destination);
         }}
       >
         <div className="train-info">
-          <FaTrainSubway />
+          <FaBus />
           <p>{item}</p>
         </div>
       </div>
@@ -35,4 +35,4 @@ const TrainPopupList = ({ item, destination }) => {
   );
 };
 
-export default TrainPopupList;
+export default BusPopupList;

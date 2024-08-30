@@ -105,7 +105,7 @@ function FlightsMainProvider({ children }) {
   };
 
   const [selectedDate, setSelectedDate] = useState(new Date());
-  // const [dayOfWeek, setDayOfWeek] = useState("");
+  const [dayOfWeek, setDayOfWeek] = useState("");
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };

@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Train.css";
 import { useTrainMainContext } from "../../Context/Trains/TrainMainContext";
 import DateNoPopup from "./DepartureDate/DateNoPopup";
 import DatePopup from "./DepartureDate/DatePopup";
-import OfferComponent from "../OfferComponent";
 import Offers from "../Offers";
 import TrainPopup from "../TRAINS/TrainPopups/TrainPopup";
 import TrainNoPopup from "./TrainPopups/TrainNoPopup";
-import { trainCity } from "../Services/apiTrain";
-const Train = ({ destination }) => {
+import { useNavigate } from "react-router-dom";
+
+const Train = () => {
   const {
-    departureDate,
     to,
     setTo,
     from,
@@ -20,13 +19,14 @@ const Train = ({ destination }) => {
     isFromPopupOpen,
     setIsFromPopupOpen,
     isDatePopupOpen,
-    setDatePopupOpen,
     destinaionref,
     handleFrom,
   } = useTrainMainContext();
 
+  const navigate = useNavigate();
+
   const handleSearch = () => {
-    // Handle the search logic here
+    navigate("/TrainBooking");
   };
 
   return (
@@ -42,7 +42,7 @@ const Train = ({ destination }) => {
 
         <div className="Train-ticket-Box">
           <div className="tsearch">
-            <div className="train" onClick={handleFrom} ref={destinaionref}>
+            <div className="train" ref={destinaionref}>
               <label className="label" htmlFor="from">
                 From
               </label>
@@ -65,7 +65,7 @@ const Train = ({ destination }) => {
               )}
             </div>
 
-            <div className="train" onClick={handleFrom} ref={destinaionref}>
+            <div className="train" ref={destinaionref}>
               <label className="label" htmlFor="to">
                 To
               </label>

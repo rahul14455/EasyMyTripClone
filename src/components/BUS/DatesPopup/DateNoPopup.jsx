@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { useTrainMainContext } from "../../../Context/Trains/TrainMainContext";
+import React from "react";
 import ReactDatePicker from "react-datepicker";
-
+import { useBusMainContext } from "../../../Context/Bus/BusMainContext";
 const DateNoPopup = () => {
-  const { dayOfWeek, setDayOfWeek } = useTrainMainContext();
-  const [departureDate, setDepartureDate] = useState(null);
-
-  const handleTrainDateChange = (date) => {
+  const { departureDate, setDepartureDate, dayOfWeek, setDayOfWeek } =
+    useBusMainContext();
+  const handleBusDateChange = (date) => {
     setDepartureDate(date);
     const days = [
       "Sunday",
@@ -24,7 +22,7 @@ const DateNoPopup = () => {
     <div>
       <ReactDatePicker
         selected={departureDate}
-        onChange={handleTrainDateChange}
+        onChange={handleBusDateChange}
         className="date-input"
         dateFormat="dd/MM/yyyy"
         placeholderText="Select a date"

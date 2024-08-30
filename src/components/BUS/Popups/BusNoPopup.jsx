@@ -1,8 +1,8 @@
 import React from "react";
-import { useTrainMainContext } from "../../../Context/Trains/TrainMainContext";
+import { useBusMainContext } from "../../../Context/Bus/BusMainContext";
 
-const TrainNoPopup = ({item, destination}) => {
-  const { setToIndex, setFromIndex } = useTrainMainContext();
+const BusNoPopup = ({ item, destination }) => {
+  const { setToIndex, setFromIndex } = useBusMainContext();
   const chooseCity = (index, e, destination) => {
     e.stopPropagation();
     if (destination === "from") {
@@ -14,4 +14,4 @@ const TrainNoPopup = ({item, destination}) => {
   return <div>{item}</div>;
 };
 
-export default TrainNoPopup;
+export default BusNoPopup;
