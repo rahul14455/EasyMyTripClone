@@ -6,7 +6,6 @@ import "../TRAINS/TrainPopupList.css";
 const TrainPopupList = ({ item, destination }) => {
   const { setFrom, setTo, setIsFromPopupOpen, setIsToPopupOpen } =
     useTrainMainContext();
-  console.log(trainCity);
 
   const chooseCity = (index, e, destination) => {
     e.stopPropagation();

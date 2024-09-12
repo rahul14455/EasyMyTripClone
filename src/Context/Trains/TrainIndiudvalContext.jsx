@@ -6,7 +6,7 @@ function TrainIndiudvalProvider({ children }) {
   const [fromtrainCity, setFromTraincity] = useState();
   const [toTrainCity, setToTrainCity] = useState();
   const [cityName, setCityName] = useState(null);
-
+  console.log(fromtrainCity);
   return (
     <TrainIndiudvalContext.Provider
       value={{

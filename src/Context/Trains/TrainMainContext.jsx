@@ -1,22 +1,23 @@
 import { createContext, useContext, useRef, useState } from "react";
 import toast from "react-hot-toast";
+import { trainCity } from "../../components/Services/apiTrain";
+import { useTrainIndiudvalContext } from "./TrainIndiudvalContext";
 
 const TrainMainContext = createContext();
 
 function TrainMainProvider({ children }) {
-  const [departureDate, setDepartureDate] = useState("");
-  const [dayOfWeek, setDayOfWeek] = useState("");
+  // const [fromIndex, setFromIndex] = useState();
+  // const [toIndex, setToIndex] = useState();
   const [isFromPopupOpen, setIsFromPopupOpen] = useState(false);
   const [isToPopupOpen, setIsToPopupOpen] = useState(false);
   const [isDatePopupOpen, setDatePopupOpen] = useState(false);
-
-  const [fromIndex, setFromIndex] = useState("Delhi Junction");
-  const [toIndex, setToIndex] = useState("Surat");
+  const [departureDate, setDepartureDate] = useState("");
+  const [dayOfWeek, setDayOfWeek] = useState("");
+  const {} = useTrainIndiudvalContext();
 
   const [search, setSearch] = useState("");
-  const [from, setFrom] = useState();
-  const [to, setTo] = useState();
-
+  const [from, setFrom] = useState("Delhi Junction"); // Initialized with fromIndex
+  const [to, setTo] = useState("Surat"); // Initialized with toIndex
   const inputRef = useRef(null);
   const destinaionref = useRef(null);
   const toref = useRef(null);
@@ -44,13 +45,16 @@ function TrainMainProvider({ children }) {
     setIsFromPopupOpen(false);
     setIsToPopupOpen(true);
   };
+  console.log(from);
+  console.log(to);
   const chooseCity = (index, e, destination) => {
     e.stopPropagation();
+    const cityName = trainCity[index]; // Fetch the city name from trainCity array
     if (destination === "from") {
-      setFromIndex(index);
+      setFrom(cityName); // Set the from city
       setIsFromPopupOpen(false);
     } else if (destination === "to") {
-      setToIndex(index);
+      setTo(cityName); // Set the to city
       setIsToPopupOpen(false);
     }
   };
@@ -81,18 +85,17 @@ function TrainMainProvider({ children }) {
         setIsFromPopupOpen,
         isDatePopupOpen,
         setDatePopupOpen,
-        toIndex,
-        setToIndex,
-        fromIndex,
-        setFromIndex,
+
         inputRef,
         search,
         setSearch,
-        from,
-        setFrom,
-        to,
-        setTo,
+        from, // Exposing the from state
+        setFrom, // Exposing the setFrom function
+        to, // Exposing the to state
+        setTo, // Exposing the setTo function
         chooseCity,
+        toHandleClickout,
+        handleClickOut,
       }}
     >
       {children}
@@ -103,7 +106,7 @@ function TrainMainProvider({ children }) {
 function useTrainMainContext() {
   const context = useContext(TrainMainContext);
   if (context === undefined) {
-    throw new Error("TrainMainContext was used outside of  TrainMainProvider");
+    throw new Error("TrainMainContext was used outside of TrainMainProvider");
   }
   return context;
 }

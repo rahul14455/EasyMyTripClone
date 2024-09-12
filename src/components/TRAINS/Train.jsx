@@ -7,7 +7,8 @@ import Offers from "../Offers";
 import TrainPopup from "../TRAINS/TrainPopups/TrainPopup";
 import TrainNoPopup from "./TrainPopups/TrainNoPopup";
 import { useNavigate } from "react-router-dom";
-
+import toast from "react-hot-toast";
+import { trainData, trainCity } from "../Services/apiTrain";
 const Train = () => {
   const {
     to,
@@ -28,6 +29,29 @@ const Train = () => {
   const handleSearch = () => {
     navigate("/TrainBooking");
   };
+
+  console.log({ from, to });
+
+  function handleMainSearch() {
+    if (from !== to) {
+      const searchParams = new URLSearchParams();
+      searchParams.append("source");
+      searchParams.append("destination");
+      searchParams.append("destination");
+      // searchParams.append("date", `${month}/${day}/${year}`);
+      searchParams.append("arrival");
+      navigate({
+        pathname: "/FlightBooking",
+        search: `?${searchParams.toString()}`,
+      });
+    } else {
+      toast.dismiss();
+      toast.error(
+        "Cannot proceed further until the source and destination are different. Please correct it.",
+        { style: { border: "1px solid black" } }
+      );
+    }
+  }
 
   return (
     <div>
