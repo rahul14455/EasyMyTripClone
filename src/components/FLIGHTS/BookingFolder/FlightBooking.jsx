@@ -349,6 +349,7 @@ const FlightBooking = () => {
             </div>
           </div>
         </div>
+
         <FlightTicket
           source={source}
           destination={destination}

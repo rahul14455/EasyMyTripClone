@@ -120,127 +120,131 @@ const TrainBooking = () => {
         </div>
       </div>
       {/* train-side-pannel */}
-      <div className="train-side-pannel">
-        <span>Filter By</span>
-        <div className="journey-coach">
-          <h3>Journey Coach Filter</h3>
-          <div className="journey-price-checks">
-            <input type="checkbox" value={price} onChange={handleChange} />
-            <label> Below - ₹ 600 </label>
+
+      <div className="train-center">
+        <div className="train-side-pannel">
+          <span>Filter By</span>
+          <div className="journey-coach">
+            <h3>Journey Coach Filter</h3>
+            <div className="journey-price-checks">
+              <input type="checkbox" value={price} onChange={handleChange} />
+              <label> Below - ₹ 600 </label>
+            </div>
+
+            <div className="price-checks">
+              <input type="checkbox" value={price} onChange={handleChange} />
+              <label> ₹ 601 - ₹ 1200</label>
+            </div>
+
+            <div className="price-checks">
+              <input type="checkbox" value={price} onChange={handleChange} />
+              <label> 1201 - ₹ 1600</label>
+            </div>
+
+            <div className="price-checks">
+              <input type="checkbox" value={price} onChange={handleChange} />
+              <label> above - ₹ 1600</label>
+            </div>
           </div>
 
-          <div className="price-checks">
-            <input type="checkbox" value={price} onChange={handleChange} />
-            <label> ₹ 601 - ₹ 1200</label>
+          <div className="departure-coach">
+            <h3>Departure From New Delhi</h3>
+
+            <div className="departure-checks">
+              <input
+                type="checkbox"
+                onClick={() => {
+                  setDeparture({ $gte: "12:00", $lte: "6:00" });
+                }}
+              />
+              <label> Early Morning 12am - 6am</label>
+            </div>
+
+            <div className="departure-checks">
+              <input
+                type="checkbox"
+                onClick={() => {
+                  setDeparture({ $gte: "7:00", $lte: "11:00" });
+                }}
+              />
+              <label> Morning 7am - 11 am</label>
+            </div>
+
+            <div className="departure-checks">
+              <input
+                type="checkbox"
+                onClick={() => {
+                  setDeparture({ $gte: "12:00", $lte: "17:00" });
+                }}
+              />
+              <label> Afternoon 12pm - 5pm</label>
+            </div>
+
+            <div className="departure-checks">
+              <input
+                type="checkbox"
+                onClick={() => {
+                  setDeparture({ $gte: "18:00", $lte: "12:00" });
+                }}
+              />
+              <label> Night 6pm - 12am</label>
+            </div>
           </div>
 
-          <div className="price-checks">
-            <input type="checkbox" value={price} onChange={handleChange} />
-            <label> 1201 - ₹ 1600</label>
-          </div>
+          <div className="arrival-coach">
+            <h3>Arrival From New Delhi</h3>
 
-          <div className="price-checks">
-            <input type="checkbox" value={price} onChange={handleChange} />
-            <label> above - ₹ 1600</label>
+            <div className="arrival-checks">
+              <input
+                type="checkbox"
+                onClick={() => {
+                  setDeparture({ $gte: "12:00", $lte: "6:00" });
+                }}
+              />
+              <label> Early Morning 12am - 6am</label>
+            </div>
+
+            <div className="arrival-checks">
+              <input
+                type="checkbox"
+                onClick={() => {
+                  setDeparture({ $gte: "7:00", $lte: "11:00" });
+                }}
+              />
+              <label> Morning 7am - 11 am</label>
+            </div>
+
+            <div className="arrival-checks">
+              <input
+                type="checkbox"
+                onClick={() => {
+                  setDeparture({ $gte: "12:00", $lte: "17:00" });
+                }}
+              />
+              <label> Afternoon 12pm - 5pm</label>
+            </div>
+
+            <div className="arrival-checks">
+              <input
+                type="checkbox"
+                onClick={() => {
+                  setDeparture({ $gte: "18:00", $lte: "12:00" });
+                }}
+              />
+              <label> Night 6pm - 12am</label>
+            </div>
           </div>
         </div>
 
-        <div className="departure-coach">
-          <h3>Departure From New Delhi</h3>
-
-          <div className="departure-checks">
-            <input
-              type="checkbox"
-              onClick={() => {
-                setDeparture({ $gte: "12:00", $lte: "6:00" });
-              }}
-            />
-            <label> Early Morning 12am - 6am</label>
-          </div>
-
-          <div className="departure-checks">
-            <input
-              type="checkbox"
-              onClick={() => {
-                setDeparture({ $gte: "7:00", $lte: "11:00" });
-              }}
-            />
-            <label> Morning 7am - 11 am</label>
-          </div>
-
-          <div className="departure-checks">
-            <input
-              type="checkbox"
-              onClick={() => {
-                setDeparture({ $gte: "12:00", $lte: "17:00" });
-              }}
-            />
-            <label> Afternoon 12pm - 5pm</label>
-          </div>
-
-          <div className="departure-checks">
-            <input
-              type="checkbox"
-              onClick={() => {
-                setDeparture({ $gte: "18:00", $lte: "12:00" });
-              }}
-            />
-            <label> Night 6pm - 12am</label>
-          </div>
-        </div>
-
-        <div className="arrival-coach">
-          <h3>Arrival From New Delhi</h3>
-
-          <div className="arrival-checks">
-            <input
-              type="checkbox"
-              onClick={() => {
-                setDeparture({ $gte: "12:00", $lte: "6:00" });
-              }}
-            />
-            <label> Early Morning 12am - 6am</label>
-          </div>
-
-          <div className="arrival-checks">
-            <input
-              type="checkbox"
-              onClick={() => {
-                setDeparture({ $gte: "7:00", $lte: "11:00" });
-              }}
-            />
-            <label> Morning 7am - 11 am</label>
-          </div>
-
-          <div className="arrival-checks">
-            <input
-              type="checkbox"
-              onClick={() => {
-                setDeparture({ $gte: "12:00", $lte: "17:00" });
-              }}
-            />
-            <label> Afternoon 12pm - 5pm</label>
-          </div>
-
-          <div className="arrival-checks">
-            <input
-              type="checkbox"
-              onClick={() => {
-                setDeparture({ $gte: "18:00", $lte: "12:00" });
-              }}
-            />
-            <label> Night 6pm - 12am</label>
-          </div>
-        </div>
+        <TrainTicket
+          source={source}
+          destination={destination}
+          // weekday={selectday}
+          setDeparture={setDeparture}
+          setArrival={setArrival}
+          price={price}
+        />
       </div>
-      <TrainTicket
-        source={source}
-        destination={destination}
-        // weekday={selectday}
-        setDeparture={setDeparture}
-        setArrival={setArrival}
-        price={price}
-      />
     </div>
   );
 };

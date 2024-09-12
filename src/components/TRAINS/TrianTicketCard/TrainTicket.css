@@ -1,0 +1,132 @@
+.train-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  width: 100%;
+}
+
+.train-ticket-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 170vh; /* Smaller width for a compact card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.train-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.train-number {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.train-route {
+  font-size: 1rem;
+  color: #2980b9;
+  margin-bottom: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.train-timing {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #34495e;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.train-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.train-duration {
+  color: #8e44ad;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.fare {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.coaches-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.coach-details {
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  text-align: center;
+  width: 100px;
+}
+
+.coach-type {
+  font-weight: bold;
+}
+
+.seats {
+  margin-top: 5px;
+  font-size: 0.75rem;
+}
+
+.available {
+  background-color: #27ae60; /* Green for available coaches */
+  color: white;
+}
+
+.not-available {
+  background-color: #e74c3c; /* Red for not available coaches */
+  color: white;
+}
+
+.book-now {
+  display: flex;
+  justify-content: flex-end; /* Aligns the button to the right */
+  margin-top: 10px;
+}
+
+.book-now button {
+  padding: 10px 20px;
+  background: #3498db;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.book-now button:hover {
+  background: #2980b9;
+}

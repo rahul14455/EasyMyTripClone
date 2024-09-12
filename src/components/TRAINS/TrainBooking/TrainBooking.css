@@ -98,6 +98,10 @@ body {
 .search-button:hover {
   background-color: #ff5a4a;
 }
+.train-center {
+  display: flex;
+  align-items: self-start;
+}
 
 .train-side-pannel {
   border: 1px solid #c9d7e1;

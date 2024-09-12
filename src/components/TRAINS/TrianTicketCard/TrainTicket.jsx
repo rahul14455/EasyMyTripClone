@@ -2,69 +2,99 @@ import React, { useEffect, useState } from "react";
 import { trainData } from "../../Services/apiTrain";
 import { useTrainMainContext } from "../../../Context/Trains/TrainMainContext";
 import { format } from "date-fns";
-const TrainTicket = ({
-  source,
-  destination,
-  weekday,
-  price,
-  setArrival,
-  setDeparture,
-}) => {
-  const [data, setData] = useState([]);
-  const { from, to, departureDate } = useTrainMainContext();
-  // console.log({ from, to }, format(departureDate, "EEE"));
-  const day = format(departureDate, "EEE");
-  const getData = async () => {
-    console.log({ day });
-    const trainDataArr = await trainData(
-      from,
-      to,
-      day,
-      source,
-      destination,
-      weekday,
-      setArrival,
-      price,
-      setDeparture
-    );
-    setData(trainDataArr);
-  };
+import "./TrainTicket.css";
 
-  console.log(data);
+const TrainTicket = ({ source, destination, weekday, price }) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { from, to, departureDate } = useTrainMainContext();
+  const day = format(departureDate, "EEE");
+
+  const getData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const trainDataArr = await trainData(
+        from,
+        to,
+        day,
+        source,
+        destination,
+        weekday,
+        price
+      );
+      setData(trainDataArr);
+    } catch (err) {
+      setError("Failed to fetch train data");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     getData();
-  }, [source, destination, weekday, setArrival, price, setDeparture]);
+  }, [from, to, day, source, destination, weekday, price]);
 
   return (
-    <div className="flight-detail-container">
-      {data.length > 0 ? (
-        data.map((item, index) => (
-          <div key={index} className="flight-ticket-card">
-            <div className="ticket-id">
-              <span>{item.trainNumber}</span>
+    <div className="train-detail-container">
+      {loading ? (
+        <p>Loading trains...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : data.length > 0 ? (
+        data.map((item) => (
+          <div key={item._id} className="train-ticket-card">
+            {/* Train Header */}
+            <div className="train-header">
+              <h3 className="train-name">{item.trainName}</h3>
+              <div className="train-number">#{item.trainNumber}</div>
             </div>
-            <div className="flight-route">
+
+            {/* Route Info */}
+            <div className="train-route">
               <span>{item.source}</span> → <span>{item.destination}</span>
             </div>
-            <div className="dept-time">{item.departureTime}</div>
-            <div className="segment-duration">
-              <span>{item.arrivalTime}h 10m</span>
+
+            {/* Timings */}
+            <div className="train-timing">
+              <div>Departure: {item.departureTime}</div>
+              <div>Arrival: {item.arrivalTime}</div>
             </div>
-            <div className="flight-arrival-time">{item.arrivalTime}</div>
-            <div className="ticketprice">
-              ₹ {item.fare}
-              <div className="seats">
-                <span>Seats left: {item.availableSeats}</span>
-              </div>
+
+            {/* Duration and Fare */}
+            <div className="train-info">
+              <div className="train-duration">{item.travelDuration}</div>
+              <div className="fare">₹ {item.fare}</div>
             </div>
-            <div className="booknow">
+
+            {/* Coaches */}
+            <div className="coaches-info">
+              {item.coaches.map((coach) => (
+                <div
+                  key={coach._id}
+                  className={`coach-details ${
+                    coach.numberOfSeats > 0 ? "available" : "not-available"
+                  }`}
+                >
+                  <div className="coach-type">{coach.coachType}</div>
+                  <div className="seats">
+                    {coach.numberOfSeats > 0
+                      ? `${coach.numberOfSeats} Seats Available`
+                      : "NOT AVAILABLE"}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Book Now Button */}
+            <div className="book-now">
               <button>Book Now</button>
             </div>
           </div>
         ))
       ) : (
-        <p>No Trains available for the selected route and date.</p>
+        <p>No trains available for the selected route and date.</p>
       )}
     </div>
   );
