@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { trainData } from "../../Services/apiTrain";
 import { useTrainMainContext } from "../../../Context/Trains/TrainMainContext";
+import { format } from "date-fns";
 const TrainTicket = ({
   source,
   destination,
@@ -10,12 +11,15 @@ const TrainTicket = ({
   setDeparture,
 }) => {
   const [data, setData] = useState([]);
-  const { from, to } = useTrainMainContext();
-  console.log({ from, to });
+  const { from, to, departureDate } = useTrainMainContext();
+  // console.log({ from, to }, format(departureDate, "EEE"));
+  const day = format(departureDate, "EEE");
   const getData = async () => {
+    console.log({ day });
     const trainDataArr = await trainData(
       from,
       to,
+      day,
       source,
       destination,
       weekday,
@@ -34,7 +38,7 @@ const TrainTicket = ({
 
   return (
     <div className="flight-detail-container">
-      {data?.length > 0 ? (
+      {data.length > 0 ? (
         data.map((item, index) => (
           <div key={index} className="flight-ticket-card">
             <div className="ticket-id">

@@ -56,9 +56,10 @@ export const trainData = async (
     source: source,
     destination: destination,
   };
+
   let apiVal = `https://academics.newtonschool.co/api/v1/bookingportals/train?search=${JSON.stringify(
     travelData
-  )}&day=${"Sun"}`;
+  )}&day=${day}`;
 
   const filters = {};
   // console.log(travelData);

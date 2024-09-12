@@ -1,23 +1,20 @@
 import { createContext, useContext, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { trainCity } from "../../components/Services/apiTrain";
-import { useTrainIndiudvalContext } from "./TrainIndiudvalContext";
+import { format } from "date-fns";
 
 const TrainMainContext = createContext();
 
 function TrainMainProvider({ children }) {
-  // const [fromIndex, setFromIndex] = useState();
-  // const [toIndex, setToIndex] = useState();
   const [isFromPopupOpen, setIsFromPopupOpen] = useState(false);
   const [isToPopupOpen, setIsToPopupOpen] = useState(false);
   const [isDatePopupOpen, setDatePopupOpen] = useState(false);
-  const [departureDate, setDepartureDate] = useState("");
+  const [departureDate, setDepartureDate] = useState(new Date());
   const [dayOfWeek, setDayOfWeek] = useState("");
-  const {} = useTrainIndiudvalContext();
 
   const [search, setSearch] = useState("");
-  const [from, setFrom] = useState("Delhi Junction"); // Initialized with fromIndex
-  const [to, setTo] = useState("Surat"); // Initialized with toIndex
+  const [from, setFrom] = useState("Delhi Junction");
+  const [to, setTo] = useState("Surat");
   const inputRef = useRef(null);
   const destinaionref = useRef(null);
   const toref = useRef(null);
@@ -35,6 +32,7 @@ function TrainMainProvider({ children }) {
     ];
     const day = new Date(date).getDay();
     setDayOfWeek(days[day]);
+    console.log(day);
   };
 
   const handleFrom = () => {
@@ -45,8 +43,8 @@ function TrainMainProvider({ children }) {
     setIsFromPopupOpen(false);
     setIsToPopupOpen(true);
   };
-  console.log(from);
-  console.log(to);
+
+  console.log(departureDate);
   const chooseCity = (index, e, destination) => {
     e.stopPropagation();
     const cityName = trainCity[index]; // Fetch the city name from trainCity array

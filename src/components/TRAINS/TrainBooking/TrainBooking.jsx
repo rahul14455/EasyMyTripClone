@@ -32,7 +32,6 @@ const TrainBooking = () => {
   const [price, setPrice] = useState("");
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
-  console.log(trainData);
 
   // useEffect(() => {
   //   setFrom(source);
@@ -54,7 +53,6 @@ const TrainBooking = () => {
     // You can use this filterCondition to update your query or perform other actions
     console.log("Filter Condition:", filterCondition);
   };
-  console.log(trainData);
 
   return (
     <div>

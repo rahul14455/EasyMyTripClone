@@ -22,6 +22,8 @@ const Train = () => {
     isDatePopupOpen,
     destinaionref,
     handleFrom,
+    departureDate,
+    day,
   } = useTrainMainContext();
 
   const navigate = useNavigate();
@@ -30,15 +32,13 @@ const Train = () => {
     navigate("/TrainBooking");
   };
 
-  console.log({ from, to });
-
   function handleMainSearch() {
     if (from !== to) {
       const searchParams = new URLSearchParams();
       searchParams.append("source");
       searchParams.append("destination");
       searchParams.append("destination");
-      // searchParams.append("date", `${month}/${day}/${year}`);
+      searchParams.append("date", `${day}`);
       searchParams.append("arrival");
       navigate({
         pathname: "/FlightBooking",
@@ -52,6 +52,8 @@ const Train = () => {
       );
     }
   }
+
+  console.log({ from, to, day });
 
   return (
     <div>

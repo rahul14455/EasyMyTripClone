@@ -3,8 +3,8 @@ import { useTrainMainContext } from "../../../Context/Trains/TrainMainContext";
 import ReactDatePicker from "react-datepicker";
 
 const DateNoPopup = () => {
-  const { dayOfWeek, setDayOfWeek } = useTrainMainContext();
-  const [departureDate, setDepartureDate] = useState(null);
+  const { dayOfWeek, setDayOfWeek, departureDate, setDepartureDate } =
+    useTrainMainContext();
 
   const handleTrainDateChange = (date) => {
     setDepartureDate(date);
