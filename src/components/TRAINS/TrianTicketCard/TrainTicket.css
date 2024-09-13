@@ -1,132 +1,211 @@
 .train-detail-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  background-color: #f9f9f9;
-  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  background-color: #fff;
   width: 100%;
 }
 
 .train-ticket-card {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  width: 170vh; /* Smaller width for a compact card */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
-.train-header {
+.train-route-header {
+  background-color: #f5f7fa;
+  padding: 20px;
+  border: 5px solid red;
+}
+
+.route-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.2rem;
   margin-bottom: 10px;
-  color: #2c3e50;
-}
-
-.train-number {
-  font-size: 0.9rem;
-  color: #7f8c8d;
+  border: 5px solid green;
 }
 
 .train-route {
-  font-size: 1rem;
-  color: #2980b9;
-  margin-bottom: 8px;
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  font-size: 16px;
+  color: #333;
+  border: 5px solid orangered;
+  padding: 5px;
 }
 
-.train-timing {
-  font-size: 0.9rem;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  color: #34495e;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+.train-arrow {
+  color: #007bff;
+  margin: 0 8px;
 }
 
-.train-info {
+.days-of-operation {
+  font-size: 14px;
+  color: #28a745;
+  padding: 5px;
+}
+
+.train-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.9rem;
+  border: 5px solid blue;
+}
+
+.train-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  border: 5px solid black;
+}
+
+.train-number {
+  font-size: 16px;
+  color: #666;
+  border: 5px solid orange;
+}
+
+.journey-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7f9fc;
+  padding: 20px;
+  border: 8px solid seagreen;
+}
+
+.time-block {
+  text-align: center;
+  border: 5px solid blueviolet;
+}
+
+.time {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  border: 5px solid brown;
+}
+
+.station {
+  font-size: 16px;
+  color: #666;
+  border: 5px solid gold;
+}
+
+.date {
+  font-size: 14px;
+  color: #999;
+  border: 5px solid yellowgreen;
+}
+
+.duration-block {
+  text-align: center;
+  border: 5px solid palegoldenrod;
+}
+
+.duration {
+  font-size: 18px;
+  color: #ff5722;
+  font-weight: bold;
+}
+
+.seats-left {
+  font-size: 16px;
+  color: #28a745;
+}
+
+.seat-availability {
+  padding: 20px;
+  border: 5px solid aqua;
+}
+
+.seat-availability h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
   margin-bottom: 15px;
 }
 
-.train-duration {
-  color: #8e44ad;
+.coaches-section {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.fare {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #e74c3c;
-}
-
-.coaches-info {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 10px;
-}
-
-.coach-details {
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 0.85rem;
+.coach-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
   text-align: center;
-  width: 100px;
+  width: calc(20% - 8px);
+}
+
+.coach-card.available {
+  border-color: #28a745;
+}
+
+.coach-card.not-available {
+  border-color: #dc3545;
 }
 
 .coach-type {
   font-weight: bold;
+  color: #333;
+  font-size: 16px;
 }
 
-.seats {
-  margin-top: 5px;
-  font-size: 0.75rem;
+.coach-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0;
 }
 
-.available {
-  background-color: #27ae60; /* Green for available coaches */
+.coach-seats {
+  font-size: 14px;
+  color: #28a745;
+}
+
+.coach-card.not-available .coach-seats {
+  color: #dc3545;
+}
+
+.book-now-button {
+  background-color: #28a745;
   color: white;
-}
-
-.not-available {
-  background-color: #e74c3c; /* Red for not available coaches */
-  color: white;
-}
-
-.book-now {
-  display: flex;
-  justify-content: flex-end; /* Aligns the button to the right */
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
   margin-top: 10px;
 }
 
-.book-now button {
-  padding: 10px 20px;
-  background: #3498db;
-  border: none;
-  border-radius: 20px;
-  color: white;
-  font-size: 0.9rem;
-  cursor: pointer;
+.book-now-button:hover {
+  background-color: #218838;
 }
 
-.book-now button:hover {
-  background: #2980b9;
+.loading,
+.error {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  color: #dc3545;
+}
+
+@media (max-width: 768px) {
+  .coaches-section {
+    flex-wrap: wrap;
+  }
+
+  .coach-card {
+    width: calc(50% - 5px);
+    margin-bottom: 10px;
+  }
 }

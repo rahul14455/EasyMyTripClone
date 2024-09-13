@@ -36,60 +36,79 @@ const TrainTicket = ({ source, destination, weekday, price }) => {
     getData();
   }, [from, to, day, source, destination, weekday, price]);
 
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">{error}</div>;
+
   return (
     <div className="train-detail-container">
-      {loading ? (
-        <p>Loading trains...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : data.length > 0 ? (
+      {data.length > 0 ? (
         data.map((item) => (
           <div key={item._id} className="train-ticket-card">
-            {/* Train Header */}
-            <div className="train-header">
-              <h3 className="train-name">{item.trainName}</h3>
-              <div className="train-number">#{item.trainNumber}</div>
-            </div>
-
-            {/* Route Info */}
-            <div className="train-route">
-              <span>{item.source}</span> → <span>{item.destination}</span>
-            </div>
-
-            {/* Timings */}
-            <div className="train-timing">
-              <div>Departure: {item.departureTime}</div>
-              <div>Arrival: {item.arrivalTime}</div>
-            </div>
-
-            {/* Duration and Fare */}
-            <div className="train-info">
-              <div className="train-duration">{item.travelDuration}</div>
-              <div className="fare">₹ {item.fare}</div>
-            </div>
-
-            {/* Coaches */}
-            <div className="coaches-info">
-              {item.coaches.map((coach) => (
-                <div
-                  key={coach._id}
-                  className={`coach-details ${
-                    coach.numberOfSeats > 0 ? "available" : "not-available"
-                  }`}
-                >
-                  <div className="coach-type">{coach.coachType}</div>
-                  <div className="seats">
-                    {coach.numberOfSeats > 0
-                      ? `${coach.numberOfSeats} Seats Available`
-                      : "NOT AVAILABLE"}
+            <div className="train-route-header">
+              <div className="route-info">
+                <span className="train-route">
+                  <span className="train-station">{item.source}</span>
+                  <span className="train-arrow">→</span>
+                  <span className="train-station">{item.destination}</span>
+                </span>
+                <span className="days-of-operation">
+                  Runs on: {item.daysOfOperation.join(", ")}
+                </span>
+              </div>
+              <div className="train-details">
+                <div className="train-name">
+                  <h3 className="train-name">{item.trainName}</h3>
+                  <span className="train-number">#{item.trainNumber}</span>
+                </div>
+                <div className="journey-info">
+                  <div className="time-block departure">
+                    <span className="time">{item.departureTime}</span>
+                    <span className="station">{item.source}</span>
+                    <span className="date">
+                      {format(departureDate, "EEE, dd MMM yyyy")}
+                    </span>
+                  </div>
+                  <div className="duration-block">
+                    <span className="duration">{item.travelDuration}</span>
+                    <span className="seats-left">
+                      {item.availableSeats} Seats Left
+                    </span>
+                  </div>
+                  <div className="time-block arrival">
+                    <span className="time">{item.arrivalTime}</span>
+                    <span className="station">{item.destination}</span>
+                    <span className="date">
+                      {format(departureDate, "EEE, dd MMM yyyy")}
+                    </span>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
-
-            {/* Book Now Button */}
-            <div className="book-now">
-              <button>Book Now</button>
+            <div className="seat-availability">
+              <h3>Seat Availability</h3>
+              <div className="coaches-section">
+                {item.coaches.map((coach) => (
+                  <div
+                    key={coach._id}
+                    className={`coach-card ${
+                      coach.numberOfSeats > 0 ? "available" : "not-available"
+                    }`}
+                  >
+                    <div className="coach-info">
+                      <span className="coach-type">({coach.coachType})</span>
+                      <span className="coach-price">₹ {coach.fare}</span>
+                      <span className="coach-seats">
+                        {coach.numberOfSeats > 0
+                          ? `${coach.numberOfSeats} Seats Available`
+                          : "NOT AVAILABLE"}
+                      </span>
+                    </div>
+                    {coach.numberOfSeats > 0 && (
+                      <button className="book-now-button">Book Now</button>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ))
