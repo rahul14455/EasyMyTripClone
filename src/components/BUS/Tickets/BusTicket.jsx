@@ -74,10 +74,14 @@ const BusTicket = ({ source, destination, weekday, price }) => {
                 </span>
               </div>
             </div>
-            <div className="bus-amenities">
-              <h4>Amenities</h4>
-              <p>{item?.amenities?.join(", ") || "No amenities available"}</p>
-            </div>
+
+            {/* Accordion Section */}
+            <details className="accordion">
+              <summary className="accordion-summary">Amenities</summary>
+              <div className="bus-amenities">
+                <p>{item?.amenities?.join(", ") || "No amenities available"}</p>
+              </div>
+            </details>
           </div>
         ))
       ) : (
