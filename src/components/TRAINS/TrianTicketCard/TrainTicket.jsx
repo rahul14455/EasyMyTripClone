@@ -87,35 +87,39 @@ const TrainTicket = ({ source, destination, weekday, price }) => {
                   Runs on: {item.daysOfOperation.join(", ")}
                 </span>
               </div>
-              <div className="train-details">
-                <div className="train-name">
-                  <h3 className="train-name">{item.trainName}</h3>
-                  <span className="train-number">#{item.trainNumber}</span>
+            </div>
+
+            <div className="train-name">
+              <h3 className="train-name">{item.trainName}</h3>
+              <span className="train-number">#{item.trainNumber}</span>
+            </div>
+
+            <div className="train-details">
+              <div className="journey-info">
+                <div className="time-block departure">
+                  <span className="time">{item.departureTime}</span>
+                  <span className="station">{item.source}</span>
+                  <span className="date">
+                    {format(departureDate, "EEE, dd MMM yyyy")}
+                  </span>
                 </div>
-                <div className="journey-info">
-                  <div className="time-block departure">
-                    <span className="time">{item.departureTime}</span>
-                    <span className="station">{item.source}</span>
-                    <span className="date">
-                      {format(departureDate, "EEE, dd MMM yyyy")}
-                    </span>
-                  </div>
-                  <div className="duration-block">
-                    <span className="duration">{item.travelDuration}</span>
-                    <span className="seats-left">
-                      {item.availableSeats} Seats Left
-                    </span>
-                  </div>
-                  <div className="time-block arrival">
-                    <span className="time">{item.arrivalTime}</span>
-                    <span className="station">{item.destination}</span>
-                    <span className="date">
-                      {format(departureDate, "EEE, dd MMM yyyy")}
-                    </span>
-                  </div>
+                <div className="duration-block">
+                  <span className="seats-left">
+                    {item.availableSeats} Seats Left
+                  </span>
+                </div>
+                <div className="time-block arrival">
+                  <span className="time">{item.arrivalTime}</span>
+                  <span className="station">{item.destination}</span>
+                  <span className="date">
+                    {format(departureDate, "EEE, dd MMM yyyy")}
+                  </span>
                 </div>
               </div>
             </div>
+
+            {/* <span className="duration">{item.travelDuration}</span> */}
+
             <div className="seat-availability">
               <h3>Seat Availability</h3>
               <div className="coaches-section">

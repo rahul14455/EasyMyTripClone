@@ -1,81 +1,100 @@
 .train-detail-container {
-  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 1200px;
   margin: 0 auto;
-  background-color: #fff;
-  width: 100%;
 }
 
 .train-ticket-card {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
   border: 1px solid #e0e0e0;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 20px;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.train-ticket-card:hover {
+  transform: translateY(-5px);
 }
 
 .train-route-header {
-  background-color: #f5f7fa;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   padding: 20px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f7f9fc;
 }
 
 .route-info {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+  align-items: flex-start;
+  flex-direction: column;
+  flex: 2;
 }
 
 .train-route {
-  font-size: 16px;
+  font-size: 22px;
+  font-weight: bold;
   color: #333;
-  padding: 5px;
 }
 
 .train-arrow {
-  color: #007bff;
-  margin: 0 8px;
+  margin: 0 15px;
+  color: #1a73e8;
+  font-size: 22px;
 }
 
 .days-of-operation {
   font-size: 14px;
-  padding: 5px;
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: auto;
+  text-align: right;
 }
 
 .train-details {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px 0;
 }
 
 .train-name {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
-  margin: 0;
+  margin-bottom: 10px;
+  color: #007bff;
   padding: 5px;
 }
 
 .train-number {
   font-size: 16px;
-  color: #666;
-  padding: 8px;
+  color: #888;
+  padding: 5px;
 }
 
 .journey-info {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #f7f9fc;
-  padding: 20px;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .time-block {
   text-align: center;
+  flex: 1;
 }
 
 .time {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  color: #333;
 }
 
 .station {
@@ -90,111 +109,131 @@
 
 .duration-block {
   text-align: center;
+  flex: 1;
 }
 
 .duration {
   font-size: 18px;
-  color: #ff5722;
   font-weight: bold;
+  color: #333;
 }
 
 .seats-left {
-  font-size: 16px;
-  color: #28a745;
+  font-size: 14px;
+  color: #ff5722;
+  margin-top: 5px;
 }
 
 .seat-availability {
   padding: 20px;
-  border: 5px solid aqua;
-}
-
-.seat-availability h3 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-top: 20px;
+  border: 1px solid #e0e0e0;
 }
 
 .coaches-section {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .coach-card {
+  flex: 1 1 calc(25% - 20px);
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 15px;
+  padding: 20px;
   text-align: center;
-  width: calc(20% - 8px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.coach-card.available {
-  border-color: #28a745;
+.coach-card:hover {
+  transform: scale(1.05);
 }
 
-.coach-card.not-available {
-  border-color: #dc3545;
-}
-
-.coach-type {
-  font-weight: bold;
-  color: #333;
-  font-size: 16px;
-}
-
-.coach-price {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin: 5px 0;
-}
-
-.coach-seats {
-  font-size: 14px;
-  color: #28a745;
-}
-
-.coach-card.not-available .coach-seats {
-  color: #dc3545;
+.coach-info {
+  margin-bottom: 10px;
 }
 
 .book-now-button {
-  background-color: #28a745;
-  color: white;
+  background-color: #ff5722;
+  color: #fff;
+  padding: 10px 15px;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 10px;
 }
 
 .book-now-button:hover {
-  background-color: #218838;
+  background-color: #e64a19;
 }
 
-.loading,
-.error {
-  text-align: center;
-  padding: 20px;
-  font-size: 18px;
-  color: #666;
-}
+/* Media Queries */
+@media (max-width: 1024px) {
+  .coaches-section {
+    justify-content: space-around;
+  }
 
-.error {
-  color: #dc3545;
+  .coach-card {
+    flex: 1 1 calc(33.33% - 15px);
+  }
 }
 
 @media (max-width: 768px) {
   .coaches-section {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
   }
 
   .coach-card {
-    width: calc(50% - 5px);
-    margin-bottom: 10px;
+    width: 90%;
+    margin-bottom: 20px;
   }
+}
+
+.train-route-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f7f9fc;
+  position: relative; /* To allow absolute positioning for the days-of-operation */
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+  /* Added box shadow */
+  border-radius: 5px;
+}
+
+.route-info {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  flex: 2;
+}
+
+.train-route {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+}
+
+.train-arrow {
+  margin: 0 15px;
+  color: #1a73e8;
+  font-size: 22px;
+}
+
+.days-of-operation {
+  font-size: 14px;
+  background-color: #10d43e;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute; /* This will place it on the right */
+  top: 20px; /* Align it vertically at the top */
+  right: 20px; /* Align it horizontally to the right */
+  text-align: right;
 }
