@@ -5,9 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { useBusMainContext } from "../../Context/Bus/BusMainContext";
 import BusPopup from "../BUS/Popups/BusPopup";
 import BusNoPopup from "../BUS/Popups/BusNoPopup";
-import DateNoPopup from "../TRAINS/DepartureDate/DateNoPopup";
-import DatePopup from "./DatesPopup/DatePopup";
+import "../BUS/DatesPopup/DateNoPopup";
+import "../BUS/DatesPopup/DatePopup";
 
+import toast from "react-hot-toast";
+import { BusCity, busData } from "../Services/apiBus";
+import DateNoPopup from "../BUS/DatesPopup/DateNoPopup";
+import DatePopup from "../BUS/DatesPopup/DatePopup";
 const Bus = () => {
   const {
     handleFrom,
@@ -21,6 +25,8 @@ const Bus = () => {
     setFrom,
     to,
     setTo,
+    day,
+    departureDate,
   } = useBusMainContext();
 
   const navigate = useNavigate();
@@ -28,6 +34,29 @@ const Bus = () => {
   const handleSearch = () => {
     navigate("/BusBooking");
   };
+
+  function handleMainSearch() {
+    if (from !== to) {
+      const searchParams = new URLSearchParams();
+      searchParams.append("source");
+      searchParams.append("destination");
+      searchParams.append("destination");
+      searchParams.append("date", `${day}`);
+      searchParams.append("arrival");
+      navigate({
+        pathname: "/BusBooking",
+        search: `?${searchParams.toString()}`,
+      });
+    } else {
+      toast.dismiss();
+      toast.error(
+        "Cannot proceed further until the source and destination are different. Please correct it.",
+        { style: { border: "1px solid black" } }
+      );
+    }
+  }
+
+  console.log({ from, to, day });
 
   return (
     <div>

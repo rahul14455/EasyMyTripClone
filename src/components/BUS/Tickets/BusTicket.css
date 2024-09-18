@@ -1,0 +1,114 @@
+.bus-detail-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.bus-ticket-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bus-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bus-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.bus-info h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.bus-type {
+  font-size: 14px;
+  color: #666;
+}
+
+.recommended-badge {
+  background-color: #28a745;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.bus-timing {
+  display: flex;
+  align-items: center;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.time {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.arrow {
+  font-size: 24px;
+  margin: 0 20px;
+  color: #333;
+}
+
+.fare-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.fare {
+  font-size: 24px;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.select-seats {
+  background-color: #f39c12;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.seat-left {
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
+}
+
+.bus-amenities {
+  margin-top: 20px;
+}
+
+.bus-amenities h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.bus-amenities p {
+  font-size: 14px;
+  color: #555;
+}

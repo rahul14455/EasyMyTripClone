@@ -44,6 +44,7 @@ export const trainCity = [
   "Hubli Junction",
   "Jodhpur Junction",
 ];
+
 export const trainData = async (
   source,
   destination,

@@ -36,3 +36,59 @@ export const BusCity = [
   "Raipur, Chhattisgarh",
   "Amritsar, Punjab",
 ];
+
+export const busData = async (
+  source,
+  destination,
+  day,
+  price,
+  departure,
+  arrival
+) => {
+  const travelData = {
+    source: source,
+    destination: destination,
+  };
+
+  let apiVal = `https://academics.newtonschool.co/api/v1/bookingportals/bus?search=${JSON.stringify(
+    travelData
+  )}&day=${day}`;
+
+  const filters = {};
+  console.log(travelData);
+
+  if (departure) {
+    filters.departureTime = departure;
+  }
+  if (arrival) {
+    filters.arrivalTime = arrival;
+  }
+  if (price) {
+    filters.fare = { $lte: price };
+  }
+
+  if (Object.keys(filters).length > 0) {
+    apiVal += `&filter=${JSON.stringify(filters)}`;
+  }
+
+  console.log(apiVal);
+
+  try {
+    const response = await fetch(apiVal, {
+      method: "GET",
+      headers: {
+        projectID: "wniajom2ck2s",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const res = await response.json();
+    console.log(res.data);
+    return res.data.buses;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};

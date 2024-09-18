@@ -2,25 +2,41 @@ import { createContext, useContext, useRef, useState } from "react";
 const BusMainContext = createContext();
 
 function BusMainProvider({ children }) {
-  const [departureDate, setDepartureDate] = useState(null);
-  const [dayOfWeek, setDayOfWeek] = useState("");
   const [isFromPopupOpen, setIsFromPopupOpen] = useState(false);
   const [isToPopupOpen, setIsToPopupOpen] = useState(false);
   const [isDatePopupOpen, setIsDatePopupOpen] = useState(false);
+  const [departureDate, setDepartureDate] = useState(null);
+  const [dayOfWeek, setDayOfWeek] = useState("");
+
+  const [search, setSearch] = useState("");
+  const [from, setFrom] = useState(
+    "Delhi, National Capital Territory of Delhi"
+  );
+  const [to, setTo] = useState("Visakhapatnam, Andhra Pradesh");
+
+  const destinaionref = useRef(null);
+  const inputRef = useRef(null);
+  const toref = useRef(null);
+
   const [fromIndex, setFromIndex] = useState();
   const [toIndex, setToIndex] = useState();
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const [search, setSearch] = useState("");
-  const [from, setFrom] = useState();
-  const [to, setTo] = useState();
-
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    setDepartureDate(date);
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const day = new Date(date).getDay();
+    setDayOfWeek(days[day]);
+    console.log(day);
   };
-  const destinaionref = useRef(null);
-  const inputRef = useRef(null);
-  const toref = useRef(null);
 
   const handleFrom = () => {
     setIsFromPopupOpen(true);
@@ -30,13 +46,14 @@ function BusMainProvider({ children }) {
     setIsFromPopupOpen(false);
     setIsToPopupOpen(true);
   };
+
   const chooseCity = (index, e, destination) => {
     e.stopPropagation();
     if (destination === "from") {
-      setFromIndex(index);
+      setFrom(index);
       setIsFromPopupOpen(false);
     } else if (destination === "to") {
-      setToIndex(index);
+      setTo(index);
       setIsToPopupOpen(false);
     }
   };
