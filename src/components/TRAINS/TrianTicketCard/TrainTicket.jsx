@@ -2,14 +2,22 @@ import React, { useEffect, useState } from "react";
 import { trainData } from "../../Services/apiTrain";
 import { useTrainMainContext } from "../../../Context/Trains/TrainMainContext";
 import { format } from "date-fns";
-import "./TrainTicket.css";
-
+import { useNavigate } from "react-router-dom";
+import "../TrianTicketCard/TrainTicket.css";
 const TrainTicket = ({ source, destination, weekday, price }) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const { from, to, departureDate } = useTrainMainContext();
+  const {
+    from,
+    to,
+    departureDate,
+    data,
+    setData,
+    loading,
+    setLoading,
+    error,
+    setError,
+  } = useTrainMainContext();
   const day = format(departureDate, "EEE");
+  const navigate = useNavigate();
 
   const getData = async () => {
     setLoading(true);
@@ -35,6 +43,30 @@ const TrainTicket = ({ source, destination, weekday, price }) => {
   useEffect(() => {
     getData();
   }, [from, to, day, source, destination, weekday, price]);
+
+  const handleBookNow = (
+    trainName,
+    trainNumber,
+    departureTime,
+    source,
+    travelDuration,
+    arrivalTime,
+    destination,
+    fare
+  ) => {
+    navigate("/TrainSeatBooking", {
+      state: {
+        trainName,
+        trainNumber,
+        departureTime,
+        source,
+        travelDuration,
+        arrivalTime,
+        destination,
+        fare,
+      },
+    });
+  };
 
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">{error}</div>;
@@ -104,7 +136,23 @@ const TrainTicket = ({ source, destination, weekday, price }) => {
                       </span>
                     </div>
                     {coach.numberOfSeats > 0 && (
-                      <button className="book-now-button">Book Now</button>
+                      <button
+                        className="book-now-button"
+                        onClick={() =>
+                          handleBookNow(
+                            item.trainName,
+                            item.trainNumber,
+                            item.departureTime,
+                            item.source,
+                            item.travelDuration,
+                            item.arrivalTime,
+                            item.destination,
+                            item.fare
+                          )
+                        }
+                      >
+                        Book Now
+                      </button>
                     )}
                   </div>
                 ))}

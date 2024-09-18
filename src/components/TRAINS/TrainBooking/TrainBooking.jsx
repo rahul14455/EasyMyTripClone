@@ -8,7 +8,9 @@ import DatePopup from "../DepartureDate/DatePopup";
 import TrainTicket from "../TrianTicketCard/TrainTicket";
 import { trainData } from "../../Services/apiTrain";
 import { useSearchParams } from "react-router-dom";
+import { useBusIndiudvalContext } from "../../../Context/Bus/BusIndiudvalContext";
 const TrainBooking = () => {
+  const { fromtrainCity, toTrainCity, cityName } = useBusIndiudvalContext();
   const {
     to,
     setTo,

@@ -15,7 +15,6 @@
 .train-route-header {
   background-color: #f5f7fa;
   padding: 20px;
-  border: 5px solid red;
 }
 
 .route-info {
@@ -23,13 +22,11 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  border: 5px solid green;
 }
 
 .train-route {
   font-size: 16px;
   color: #333;
-  border: 5px solid orangered;
   padding: 5px;
 }
 
@@ -40,7 +37,6 @@
 
 .days-of-operation {
   font-size: 14px;
-  color: #28a745;
   padding: 5px;
 }
 
@@ -48,7 +44,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 5px solid blue;
 }
 
 .train-name {
@@ -56,13 +51,13 @@
   font-weight: bold;
   color: #333;
   margin: 0;
-  border: 5px solid black;
+  padding: 5px;
 }
 
 .train-number {
   font-size: 16px;
   color: #666;
-  border: 5px solid orange;
+  padding: 8px;
 }
 
 .journey-info {
@@ -71,7 +66,6 @@
   align-items: center;
   background-color: #f7f9fc;
   padding: 20px;
-  border: 8px solid seagreen;
 }
 
 .time-block {
@@ -87,18 +81,15 @@
 .station {
   font-size: 16px;
   color: #666;
-  border: 5px solid gold;
 }
 
 .date {
   font-size: 14px;
   color: #999;
-  border: 5px solid yellowgreen;
 }
 
 .duration-block {
   text-align: center;
-  border: 5px solid palegoldenrod;
 }
 
 .duration {

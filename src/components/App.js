@@ -23,6 +23,8 @@ import TrainBooking from "./TRAINS/TrainBooking/TrainBooking";
 import BusBooking from "./BUS/BusBooking/BusBooking";
 import { BusMainProvider } from "../Context/Bus/BusMainContext";
 import { BusIndiudvalProvider } from "../Context/Bus/BusIndiudvalContext";
+import SeatSelection from "./BUS/BusRecords/SeatSelection";
+import TrainSeatBooking from "./TRAINS/Records/TrainSeatBooking";
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -71,6 +73,16 @@ function App() {
                                 <Route
                                   path="/BusBooking"
                                   element={<BusBooking />}
+                                />
+
+                                <Route
+                                  path="/SeatSelection"
+                                  element={<SeatSelection />}
+                                />
+
+                                <Route
+                                  path="/TrainSeatBooking"
+                                  element={<TrainSeatBooking />}
                                 />
                               </Route>
                             </Routes>

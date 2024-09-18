@@ -19,6 +19,10 @@ function TrainMainProvider({ children }) {
   const destinaionref = useRef(null);
   const toref = useRef(null);
 
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const handleTrainDateChange = (date) => {
     setDepartureDate(date);
     const days = [
@@ -94,6 +98,12 @@ function TrainMainProvider({ children }) {
         chooseCity,
         toHandleClickout,
         handleClickOut,
+        data,
+        setData,
+        loading,
+        setLoading,
+        error,
+        setError,
       }}
     >
       {children}

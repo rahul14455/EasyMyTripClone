@@ -1,0 +1,156 @@
+.train-seat-booking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f5faff;
+  width: 100%;
+}
+
+.train-card-full {
+  background-color: #ffffff;
+  border: 1px solid #d0e1f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px 0;
+  width: 70%;
+  height: 55vh;
+}
+.travellers-card {
+  background-color: #ffffff;
+  border: 1px solid #d0e1f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px 0;
+  width: 70%;
+  height: 45vh;
+}
+
+.card-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: left;
+  background-color: #cfe2f3;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.train-route {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  background-color: #f0f8ff;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.station-name {
+  font-weight: bold;
+  font-size: 20px;
+  color: #003580;
+}
+
+.train-arrow {
+  font-size: 24px;
+  color: #333;
+  margin: 0 15px;
+}
+
+.train-info {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #003580;
+}
+
+.train-journey-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.time-block,
+.duration-block {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.time-dept {
+  font-size: 22px;
+  color: #333;
+  font-weight: bold;
+}
+
+.rail-station {
+  font-size: 18px;
+  color: #555;
+  font-weight: bold;
+}
+
+.date-train {
+  font-size: 16px;
+  color: #888;
+}
+
+.duration-travel {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #d0e1f9;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.price-summary-card {
+  background-color: #e0f1ff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: left;
+  width: 300px;
+  margin-top: 20px;
+}
+
+.price-summary-card h4 {
+  font-size: 18px;
+  color: #333;
+}
+
+.price-summary-card p {
+  font-size: 16px;
+  color: #666;
+}
+
+.price-summary-card .total {
+  font-size: 20px;
+  color: #ff5722;
+  font-weight: bold;
+}
+
+.continue-booking-button {
+  background-color: #ff5722;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+}

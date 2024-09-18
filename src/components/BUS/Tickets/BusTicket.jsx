@@ -3,6 +3,7 @@ import { busData } from "../../Services/apiBus";
 import { format, isValid } from "date-fns";
 import "../Tickets/BusTicket.css";
 import { useBusMainContext } from "../../../Context/Bus/BusMainContext";
+import { useNavigate } from "react-router-dom";
 
 const BusTicket = ({ source, destination, weekday, price }) => {
   const { from, to, departureDate } = useBusMainContext();
@@ -15,6 +16,11 @@ const BusTicket = ({ source, destination, weekday, price }) => {
     : new Date();
   const day = format(validDepartureDate, "EEE");
 
+  const navigate = useNavigate();
+
+  function selectseat() {
+    navigate("/SeatSelection");
+  }
   const getData = async () => {
     setLoading(true);
     setError(null);
@@ -66,7 +72,9 @@ const BusTicket = ({ source, destination, weekday, price }) => {
               </div>
               <div className="fare-section">
                 <span className="fare">₹{item?.fare}</span>
-                <button className="select-seats">Select Seats</button>
+                <button className="select-seats" onClick={selectseat}>
+                  Select Seats
+                </button>
                 <span className="seat-left">
                   {item?.available
                     ? `${item?.seats} Seats Left`
