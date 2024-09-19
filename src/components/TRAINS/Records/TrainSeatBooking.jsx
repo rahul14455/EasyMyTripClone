@@ -30,7 +30,7 @@ const TrainSeatBooking = () => {
       : departureDate;
 
   return (
-    <div>
+    <div className="cross-dip">
       <div className="train-seat-booking-container">
         <div className="train-card-full">
           <h2 className="card-title">Train Details</h2>
