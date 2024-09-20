@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { flightData } from "../../Services/apiFlightdata";
 import { useFlightsMainContext } from "../../../Context/Flights/FlightsMainContext";
 import "./FlightTicket.css"; // Ensure you have the correct path
+import { useNavigate } from "react-router-dom";
 
 const FlightTicket = ({
   source,
@@ -14,6 +15,7 @@ const FlightTicket = ({
 }) => {
   const [data, setData] = useState([]);
   const { fromCity, toCity } = useFlightsMainContext();
+
   const getData = async () => {
     const flightDataArr = await flightData(
       source,
@@ -25,6 +27,31 @@ const FlightTicket = ({
       selectDeparture
     );
     setData(flightDataArr);
+  };
+
+  const navigate = useNavigate();
+
+  // Ensure `goTOSeat` is passed as a function reference, not invoked immediately
+  const goTOSeat = (
+    flightID,
+    departureTime,
+    source,
+    duration,
+    arrivalTime,
+    destination,
+    ticketPrice
+  ) => {
+    navigate("/FlightSeatBooking", {
+      state: {
+        flightID,
+        departureTime,
+        source,
+        duration,
+        arrivalTime,
+        destination,
+        ticketPrice,
+      },
+    });
   };
 
   useEffect(() => {
@@ -62,7 +89,21 @@ const FlightTicket = ({
               </div>
             </div>
             <div className="booknow">
-              <button>Book Now</button>
+              <button
+                onClick={() =>
+                  goTOSeat(
+                    item.flightID,
+                    item.departureTime,
+                    item.source,
+                    item.duration,
+                    item.arrivalTime,
+                    item.destination,
+                    item.ticketPrice
+                  )
+                }
+              >
+                Book Now
+              </button>
             </div>
           </div>
         ))
