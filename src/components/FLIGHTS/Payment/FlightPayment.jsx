@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import "../Payment/FlightPayment.css";
 import qrcode from "../Payment/QRCode.png";
+import { useLocation } from "react-router-dom";
 
 const FlightPayment = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("upi");
+
+  const location = useLocation();
+
+  const { ticketPrice } = location.state || {};
 
   // State for UPI and Card inputs
   const [upiId, setUpiId] = useState("");
@@ -89,7 +94,7 @@ const FlightPayment = () => {
             </div>
             <div className="total-fare">
               <span>Total Fare: </span>
-              <span className="fare-amount">₹ 2059</span>
+              <span className="fare-amount">₹ {ticketPrice}</span>
             </div>
             <button
               type="submit"
@@ -164,7 +169,7 @@ const FlightPayment = () => {
 
               <div className="total-fare">
                 <span>Total Fare: </span>
-                <span className="fare-amount">₹ 2059</span>
+                <span className="fare-amount">₹ {ticketPrice}</span>
               </div>
 
               <button

@@ -91,7 +91,7 @@
 
 .upi-id-input {
   width: 60%; /* Full width for UPI ID input */
-  margin-bottom: 25px;
+  /* margin-bottom: 10px; */
 }
 
 .qr-code {

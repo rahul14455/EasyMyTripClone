@@ -26,9 +26,13 @@ const FlightSeatBooking = () => {
 
   const navigate = useNavigate();
 
-  function Payment() {
-    navigate("/FlightPayment");
-  }
+  const Payment = (ticketPrice) => {
+    navigate("/FlightPayment", {
+      state: {
+        ticketPrice,
+      },
+    });
+  };
 
   return (
     <div className="cross-dip">
@@ -85,7 +89,10 @@ const FlightSeatBooking = () => {
         <p>Travel Fare</p>
         <div className="total">₹ {ticketPrice}</div>
 
-        <button className="continue-booking-button" onClick={Payment}>
+        <button
+          className="continue-booking-button"
+          onClick={() => Payment(ticketPrice)}
+        >
           Continue Booking
         </button>
       </div>
