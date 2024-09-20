@@ -9,7 +9,6 @@ const FlightPayment = () => {
   const location = useLocation();
 
   const { ticketPrice } = location.state || {};
-
   // State for UPI and Card inputs
   const [upiId, setUpiId] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -32,6 +31,7 @@ const FlightPayment = () => {
     /^[0-9]+$/.test(expYear) && // Ensures year is numeric
     cvv.length === 3 &&
     /^[0-9]+$/.test(cvv); // Ensures CVV is 3 numeric digits
+  console.log({ ticketPrice });
 
   return (
     <div className="payment-flight-main">

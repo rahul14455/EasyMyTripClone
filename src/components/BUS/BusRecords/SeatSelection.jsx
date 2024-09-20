@@ -1,66 +1,123 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../BusRecords/SeatSelection.css";
+import { useLocation } from "react-router-dom";
 
-const SeatSelection = () => {
+const BusSeatSelection = () => {
+  const [selectedSeats, setSelectedSeats] = useState([]);
+  const location = useLocation();
+
+  // Provide fallback for seats in case state is undefined
+  const {
+    seats = [],
+    fare,
+    arrivalTime,
+    departureTime,
+    source,
+    destination,
+  } = location.state || {};
+
+  useEffect(() => {
+    // Log the location state to ensure data is being passed correctly
+    console.log("Location State: ", location.state);
+  }, [location.state]);
+
+  // Lower deck seats (S1 to S20) and Upper deck seats (S21 to S40)
+  const lowerDeckSeats = Array.from(
+    { length: seats / 2 },
+    (_, index) => `S${index + 1}` // S1 to S20
+  );
+  const upperDeckSeats = Array.from(
+    { length: seats / 2 },
+    (_, index) => `S${index + 21}` // S21 to S40
+  );
+
+  // Example of booked seats, ensure this comes from the actual booking data
+  const bookedSeats = ["S5", "S15", "S25", "S35"];
+
+  const handleSeatClick = (seat) => {
+    // Prevent selecting booked seats
+    if (bookedSeats.includes(seat)) return;
+
+    if (selectedSeats.includes(seat)) {
+      setSelectedSeats(selectedSeats.filter((s) => s !== seat));
+    } else {
+      setSelectedSeats([...selectedSeats, seat]);
+    }
+  };
+
+  const getSeatClass = (seat) => {
+    if (bookedSeats.includes(seat)) return "seat booked";
+    if (selectedSeats.includes(seat)) return "seat selected";
+    return "seat available";
+  };
+
+  const calculateFare = () => selectedSeats.length * fare;
+
   return (
-    <div class="bus-seat-selection-container">
-      {/* <!-- Left Side: Seat Selection Area --> */}
-      <div class="seat-selection-area">
-        <div class="seat-header">
-          <h3>Mumbai, Maharashtra → Pune, Maharashtra</h3>
-          <p>GreenValley Bus Services, Non-AC</p>
-          <div class="status-indicators">
-            <span class="booked">Booked</span>
-            <span class="available">Available</span>
-            <span class="selected">Selected</span>
-          </div>
-          <div class="seat-price-wrapper">
-            <span>Seat Price</span>
-            <span class="seat-price">₹1544</span>
-          </div>
+    <div className="bus-seat-selection-container">
+      <div className="seat-layout-container">
+        <h3>Select Your Seat</h3>
+
+        {/* Lower Deck */}
+        <div className="deck-title">Lower Deck</div>
+        <div className="seat-grid lower-deck">
+          {lowerDeckSeats.map((seat) => (
+            <div
+              key={seat}
+              className={getSeatClass(seat)}
+              onClick={() => handleSeatClick(seat)}
+            >
+              {seat}
+            </div>
+          ))}
         </div>
 
-        <div class="seat-layout-container">
-          {/* <!-- Upper Section --> */}
-          <div class="upper-section">
-            <h4>UPPER</h4>
-            <div class="seat-grid upper-grid">
-              {/* <!-- Upper Seats --> */}
-              <div class="seat">U1</div>
-              <div class="seat">U2</div>
-              <div class="seat">U3</div>
-              {/* <!-- Add more seats here --> */}
+        {/* Upper Deck */}
+        <div className="deck-title">Upper Deck</div>
+        <div className="seat-grid upper-deck">
+          {upperDeckSeats.map((seat) => (
+            <div
+              key={seat}
+              className={getSeatClass(seat)}
+              onClick={() => handleSeatClick(seat)}
+            >
+              {seat}
             </div>
-          </div>
-
-          {/* <!-- Lower Section --> */}
-          <div class="lower-section">
-            <h4>LOWER</h4>
-            <div class="seat-grid lower-grid">
-              {/* <!-- Lower Seats --> */}
-              <div class="seat">L1</div>
-              <div class="seat">L2</div>
-              <div class="seat">L3</div>
-              {/* <!-- Add more seats here --> */}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
-      <div class="fare-summary">
-        <div class="fare-details">
-          <p>Boarding Point: 06:00 : Mumbai, Maharashtra</p>
-          <p>Dropping Point: 19:00 : Pune, Maharashtra</p>
+      <div className="boarding-summary">
+        <div className="details">
+          <p>
+            <strong>Boarding Point:</strong> {arrivalTime} : {source}
+          </p>
+          <p>
+            <strong>Dropping Point:</strong> {departureTime}: {destination}
+          </p>
         </div>
-        <div class="seat-summary">
-          <p>Base Fare(+): ₹1544</p>
-          <p>Selected No. Seats: 0 Seats</p>
-          <p>Total Amount: ₹0 (Including All Taxes)</p>
+        <div className="fare-summary">
+          <p>
+            <strong>Base Fare(+):</strong> ₹{fare}
+          </p>
+          <p>
+            <strong>Selected No. Seats:</strong> {selectedSeats.length} Seats
+          </p>
+          <p>
+            <strong>Total Amount:</strong> ₹{calculateFare()} (Including All
+            Taxes)
+          </p>
         </div>
-        <button class="continue-btn">Continue</button>
+        <button
+          className="continue-btn"
+          onClick={() => alert("Proceed to checkout")}
+          disabled={selectedSeats.length === 0}
+        >
+          Continue
+        </button>
       </div>
     </div>
   );
 };
 
-export default SeatSelection;
+export default BusSeatSelection;

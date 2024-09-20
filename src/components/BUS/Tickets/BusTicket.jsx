@@ -3,7 +3,7 @@ import { busData } from "../../Services/apiBus";
 import { format, isValid } from "date-fns";
 import "../Tickets/BusTicket.css";
 import { useBusMainContext } from "../../../Context/Bus/BusMainContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const BusTicket = ({ source, destination, weekday, price }) => {
   const { from, to, departureDate } = useBusMainContext();
@@ -17,10 +17,28 @@ const BusTicket = ({ source, destination, weekday, price }) => {
   const day = format(validDepartureDate, "EEE");
 
   const navigate = useNavigate();
+  const location = useLocation();
 
-  function selectseat() {
-    navigate("/SeatSelection");
-  }
+  const selectseat = (
+    seats,
+    fare,
+    arrivalTime,
+    departureTime,
+    source,
+    destination
+  ) => {
+    navigate("/SeatSelection", {
+      state: {
+        seats,
+        fare,
+        arrivalTime,
+        departureTime,
+        source,
+        destination, // Pass source and destination here
+      },
+    });
+  };
+
   const getData = async () => {
     setLoading(true);
     setError(null);
@@ -72,7 +90,20 @@ const BusTicket = ({ source, destination, weekday, price }) => {
               </div>
               <div className="fare-section">
                 <span className="fare">₹{item?.fare}</span>
-                <button className="select-seats" onClick={selectseat}>
+                <button
+                  className="select-seats"
+                  onClick={() =>
+                    selectseat(
+                      item.seats,
+                      item.fare,
+                      item.arrivalTime,
+                      item.departureTime,
+                      item.source, // Pass item.source
+                      item.destination // Pass item.destination
+                    )
+                  }
+                  disabled={!item.available || item.seats <= 0} // Disable button if no seats available
+                >
                   Select Seats
                 </button>
                 <span className="seat-left">

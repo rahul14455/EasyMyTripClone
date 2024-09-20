@@ -2,148 +2,133 @@
 .bus-seat-selection-container {
   display: flex;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: 20px auto;
   padding: 20px;
-  background-color: white;
+  background-color: #f4f4f4;
+  max-width: 1200px;
+  margin: auto;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Left Side: Seat Selection Area */
-.seat-selection-area {
-  width: 65%;
-  padding-right: 20px;
-  border-right: 1px solid #e0e0e0;
-}
-
-.seat-header h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.seat-header p {
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.status-indicators {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.status-indicators span {
-  font-size: 14px;
-  padding: 5px 10px;
-  border-radius: 15px;
-}
-
-.booked {
-  background-color: #ccc;
-}
-
-.available {
-  background-color: #4caf50;
-  color: #fff;
-}
-
-.selected {
-  background-color: #3498db;
-  color: #fff;
-}
-
-.seat-price-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.seat-price {
-  background-color: #3498db;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: bold;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Seat Layout */
 .seat-layout-container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+  flex: 2;
+  margin-right: 30px;
 }
 
+.seat-layout-container h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* Deck Titles */
+.deck-title {
+  text-align: left;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Seat Grid */
 .seat-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(10, 60px); /* 10 seats in a row */
+  grid-gap: 10px;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
+/* Lower Deck Grid */
+.lower-deck {
+  grid-template-columns: repeat(10, 60px); /* Adds space for gap */
+}
+/* Seat */
 .seat {
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  background-color: #fff;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
-  text-align: center;
-  font-size: 14px;
   cursor: pointer;
-}
-
-.seat:hover {
-  background-color: #f1f1f1;
-}
-
-.upper-section h4,
-.lower-section h4 {
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #555;
-}
-
-/* Right Side: Fare Summary */
-.fare-summary {
-  width: 30%;
-  background-color: #f7f7f7;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  text-align: center;
-}
-
-.fare-details p,
-.seat-summary p {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.seat-summary p {
-  font-size: 16px;
-}
-
-.seat-summary p:nth-child(3) {
-  font-size: 22px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  font-size: 1rem;
   font-weight: bold;
-  color: #e74c3c;
+  transition: all 0.3s ease;
 }
 
-.continue-btn {
-  background-color: #f39c12;
+/* Seat States */
+.seat.available {
+  border: 2px solid #28a745;
+}
+
+.seat.selected {
+  background-color: #28a745;
   color: white;
+}
+
+.seat.booked {
+  background-color: #6c757d;
+  color: white;
+  cursor: not-allowed;
+}
+
+/* Hover effect for available seats */
+.seat.available:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Boarding Summary */
+.boarding-summary {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.details,
+.fare-summary {
+  margin-bottom: 20px;
+}
+
+.details p,
+.fare-summary p {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+.fare-summary p:last-of-type {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: red;
+}
+
+/* Continue Button */
+.continue-btn {
   padding: 15px;
-  width: 100%;
+  background-color: #ff5733;
+  color: white;
   border: none;
   border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
-  margin-top: 20px;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
 
-.continue-btn:hover {
-  background-color: #e67e22;
+.continue-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.continue-btn:hover:not(:disabled) {
+  background-color: #e14e2d;
 }
