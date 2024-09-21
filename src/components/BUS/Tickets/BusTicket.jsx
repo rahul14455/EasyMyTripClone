@@ -25,7 +25,9 @@ const BusTicket = ({ source, destination, weekday, price }) => {
     arrivalTime,
     departureTime,
     source,
-    destination
+    destination,
+    type,
+    name
   ) => {
     navigate("/SeatSelection", {
       state: {
@@ -34,7 +36,9 @@ const BusTicket = ({ source, destination, weekday, price }) => {
         arrivalTime,
         departureTime,
         source,
-        destination, // Pass source and destination here
+        destination,
+        type,
+        name,
       },
     });
   };
@@ -99,7 +103,9 @@ const BusTicket = ({ source, destination, weekday, price }) => {
                       item.arrivalTime,
                       item.departureTime,
                       item.source, // Pass item.source
-                      item.destination // Pass item.destination
+                      item.destination, // Pass item.destination
+                      item.type,
+                      item.name
                     )
                   }
                   disabled={!item.available || item.seats <= 0} // Disable button if no seats available

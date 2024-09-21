@@ -1,10 +1,37 @@
 import React, { useState, useEffect } from "react";
 import "../BusRecords/SeatSelection.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const BusSeatSelection = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const location = useLocation();
+
+  const navigate = useNavigate();
+  const HandleSeat = (
+    fare,
+    arrivalTime,
+    departureTime,
+    source,
+    destination,
+    name,
+    type,
+    selectedSeats,
+    totalFare
+  ) => {
+    navigate("/BusRecord", {
+      state: {
+        fare,
+        arrivalTime,
+        departureTime,
+        source,
+        destination,
+        name,
+        type,
+        selectedSeats,
+        totalFare, // Pass total fare
+      },
+    });
+  };
 
   // Provide fallback for seats in case state is undefined
   const {
@@ -14,6 +41,8 @@ const BusSeatSelection = () => {
     departureTime,
     source,
     destination,
+    name,
+    type,
   } = location.state || {};
 
   useEffect(() => {
@@ -110,11 +139,24 @@ const BusSeatSelection = () => {
         </div>
         <button
           className="continue-btn"
-          onClick={() => alert("Proceed to checkout")}
           disabled={selectedSeats.length === 0}
+          onClick={() =>
+            HandleSeat(
+              fare,
+              arrivalTime,
+              departureTime,
+              source,
+              destination,
+              name,
+              type,
+              selectedSeats,
+              calculateFare() // Pass the calculated total fare
+            )
+          }
         >
           Continue
         </button>
+        ;
       </div>
     </div>
   );
