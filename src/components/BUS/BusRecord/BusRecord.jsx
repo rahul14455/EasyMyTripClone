@@ -1,7 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
 import { useBusMainContext } from "../../../Context/Bus/BusMainContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const BusRecord = () => {
   const { from, to, departureDate } = useBusMainContext();
@@ -9,6 +9,47 @@ const BusRecord = () => {
   const formattedDate = departureDate
     ? format(new Date(departureDate), "EEEE, dd MMM yyyy")
     : "Invalid Date";
+
+  const navigate = useNavigate();
+
+  // Modified BusPayment function to ensure all parameters are passed
+  const BusPayment = (
+    fare,
+    arrivalTime,
+    departureTime,
+    source,
+    destination,
+    name,
+    type,
+    selectedSeats,
+    totalFare // Retrieve total fare
+  ) => {
+    console.log({
+      fare,
+      arrivalTime,
+      departureTime,
+      source,
+      destination,
+      name,
+      type,
+      selectedSeats,
+      totalFare,
+    });
+
+    navigate("/BusPayment", {
+      state: {
+        fare,
+        arrivalTime,
+        departureTime,
+        source,
+        destination,
+        name,
+        type,
+        selectedSeats,
+        totalFare, // Pass total fare
+      },
+    });
+  };
 
   const location = useLocation();
   const {
@@ -77,11 +118,28 @@ const BusRecord = () => {
       {/* Display selected seats and price summary */}
       <div className="price-summary-card">
         <h4>Price Summary</h4>
-        <p>Passenger x{selectedSeats.length}</p>
+        <p>Passenger x{selectedSeats?.length}</p>
         <p>Travel Fare</p>
         <div className="total">₹ {totalFare}</div>
 
-        <button className="continue-booking-button">Continue Booking</button>
+        <button
+          className="continue-booking-button"
+          onClick={() =>
+            BusPayment(
+              fare,
+              arrivalTime,
+              departureTime,
+              source,
+              destination,
+              name,
+              type,
+              selectedSeats,
+              totalFare
+            )
+          }
+        >
+          Continue Booking
+        </button>
       </div>
     </div>
   );

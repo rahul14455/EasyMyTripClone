@@ -28,6 +28,7 @@ import TrainSeatBooking from "./TRAINS/Records/TrainSeatBooking";
 import FlightSeatBooking from "./FLIGHTS/Records/FlightSeatBooking";
 import FlightPayment from "./FLIGHTS/Payment/FlightPayment";
 import BusRecord from "./BUS/BusRecord/BusRecord";
+import BusPayment from "./BUS/Payment/BusPayment";
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -102,6 +103,11 @@ function App() {
                                 <Route
                                   path="/BusRecord"
                                   element={<BusRecord />}
+                                />
+
+                                <Route
+                                  path="/BusPayment"
+                                  element={<BusPayment />}
                                 />
                               </Route>
                             </Routes>
