@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTrainMainContext } from "../../../Context/Trains/TrainMainContext";
 import "../Records/TrainSeatBooking.css";
 import { format } from "date-fns";
@@ -6,8 +6,8 @@ import { format } from "date-fns";
 const TrainSeatBooking = () => {
   const { from, to, departureDate } = useTrainMainContext();
   const location = useLocation();
+  const navigate = useNavigate();
 
-  // Access the state object from location
   const {
     trainName,
     trainNumber,
@@ -18,6 +18,18 @@ const TrainSeatBooking = () => {
     destination,
     fare,
   } = location.state || {};
+
+  const handleTrainPayment = () => {
+    navigate("/TrainPayment", {
+      state: {
+        fare,
+        arrivalTime,
+        departureTime,
+        source,
+        destination,
+      },
+    });
+  };
 
   const formattedDate =
     departureDate instanceof Date
@@ -35,24 +47,20 @@ const TrainSeatBooking = () => {
         <div className="train-card-full">
           <h2 className="card-title">Train Details</h2>
           <div className="train-info-container">
-            {/* Left section: Train Name and Number */}
             <div className="train-left">
               <div className="train-name">
-                <span>{trainName && <span>{trainName}</span>}</span>
+                {trainName && <span>{trainName}</span>}
               </div>
               <div className="train-number">
-                <span>{trainNumber && <span>#{trainNumber}</span>}</span>
+                {trainNumber && <span>#{trainNumber}</span>}
               </div>
             </div>
-
-            {/* Right section: Route and Timings */}
             <div className="train-right">
               <div className="train-route">
                 <span className="station-name">{from}</span>
                 <span className="train-arrow">→</span>
                 <span className="station-name">{to}</span>
               </div>
-
               <div className="train-journey-info">
                 <div className="time-block departure">
                   <span className="time-dept">{departureTime}</span>
@@ -87,8 +95,13 @@ const TrainSeatBooking = () => {
         <h4>Price Summary</h4>
         <p>Passenger x1</p>
         <p>Travel Fare</p>
-        <div className="total">₹ {fare || { fare }}</div>
-        <button className="continue-booking-button">Continue Booking</button>
+        <div className="total">₹ {fare}</div>
+        <button
+          className="continue-booking-button"
+          onClick={handleTrainPayment}
+        >
+          Continue Booking
+        </button>
       </div>
     </div>
   );
