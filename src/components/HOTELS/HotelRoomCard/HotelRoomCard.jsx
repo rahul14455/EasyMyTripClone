@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { hotelListWithCityName } from "../../Services/apiHotels";
 import { useHotelMainContext } from "../../../Context/Hotels/HotelMainContext";
 import "./HotelRoomCard.css"; // Import the CSS file
+import { useNavigate } from "react-router-dom";
 
 const HotelRoomCard = () => {
   const [data, setData] = useState([]);
@@ -15,6 +16,11 @@ const HotelRoomCard = () => {
   useEffect(() => {
     getData();
   }, [cityName]);
+
+  const navigate = useNavigate();
+  function HandleRoom() {
+    navigate("/RoomBooking");
+  }
 
   return (
     <div className="hotel-section">
@@ -50,7 +56,7 @@ const HotelRoomCard = () => {
                       </p>
                     )}
                     <div className="view-room">
-                      <button>View Room</button>
+                      <button onClick={HandleRoom}>View Room</button>
                     </div>
                   </div>
                 </div>
