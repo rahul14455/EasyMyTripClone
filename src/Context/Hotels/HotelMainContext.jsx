@@ -40,7 +40,7 @@ function HotelMainProvider({ children }) {
     setDestinationPopup(true);
   };
   const handleClickOut = (event) => {
-    if (destinationref && !destinationref.current.contains(event.target)) {
+    if (destinationref && !destinationref.current?.contains(event.target)) {
       setDestinationPopup(false);
     }
   };

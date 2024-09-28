@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { hotelListWithCityName } from "../../Services/apiHotels";
 import { useHotelMainContext } from "../../../Context/Hotels/HotelMainContext";
 import "./HotelRoomCard.css"; // Import the CSS file
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const HotelRoomCard = () => {
   const [data, setData] = useState([]);
@@ -17,10 +17,16 @@ const HotelRoomCard = () => {
     getData();
   }, [cityName]);
 
+  const location = useLocation();
   const navigate = useNavigate();
-  function HandleRoom() {
-    navigate("/RoomBooking");
-  }
+
+  const HandleRoom = (hotel_id) => {
+    navigate("/RoomBooking", {
+      state: {
+        hotel_id,
+      },
+    });
+  };
 
   return (
     <div className="hotel-section">
@@ -56,7 +62,13 @@ const HotelRoomCard = () => {
                       </p>
                     )}
                     <div className="view-room">
-                      <button onClick={HandleRoom}>View Room</button>
+                      <button
+                        onClick={() => {
+                          HandleRoom(hotel._id);
+                        }}
+                      >
+                        View Room
+                      </button>
                     </div>
                   </div>
                 </div>
