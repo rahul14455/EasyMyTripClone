@@ -43,7 +43,25 @@ const HotelBooking = () => {
             <span className="labelicon">
               <FaMapMarkerAlt /> DESTINATION
             </span>
-            {!destinationPopup ? <HotelNoPopup /> : <HotelPopup />}
+            {!destinationPopup ? (
+              <HotelNoPopup />
+            ) : (
+              <div
+                style={{
+                  position: "absolute",
+                  maxWidth: "400px",
+                  zIndex: 10,
+                  backgroundColor: "white",
+                  borderRadius: "4px",
+                  boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                  padding: "10px",
+                  top: "-53px",
+                  left: "0px",
+                }}
+              >
+                <HotelPopup destination="to" />
+              </div>
+            )}
           </div>
 
           <div className="datepicker">

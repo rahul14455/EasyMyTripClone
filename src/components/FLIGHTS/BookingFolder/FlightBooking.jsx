@@ -153,7 +153,7 @@ const FlightBooking = () => {
                     boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
                     padding: "10px",
                     top: "40px",
-                    left: "110px",
+                    left: "130px",
                   }}
                 >
                   <FlightPopup destination="to" />
