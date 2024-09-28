@@ -114,7 +114,25 @@ const FlightBooking = () => {
                 <FaPlaneDeparture /> FROM
               </span>
               {!isFromPopupOpen && <FlightsNoPopup destination="from" />}
-              {isFromPopupOpen && <FlightPopup destination="from" />}
+              {isFromPopupOpen && (
+                <div
+                  className="flight-popup"
+                  style={{
+                    position: "absolute",
+                    maxWidth: "400px",
+                    zIndex: 10,
+                    backgroundColor: "white",
+                    border: "1px solid #ced4da",
+                    borderRadius: "4px",
+                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                    padding: "10px",
+                    top: "40px",
+                    left: "10px",
+                  }}
+                >
+                  <FlightPopup destination="from" />
+                </div>
+              )}
             </div>
           </div>
           <div>
@@ -123,7 +141,24 @@ const FlightBooking = () => {
                 <FaPlaneArrival /> TO
               </span>
               {!isToPopupOpen && <FlightsNoPopup destination="to" />}
-              {isToPopupOpen && <FlightPopup destination="to" />}
+              {isToPopupOpen && (
+                <div
+                  style={{
+                    position: "absolute",
+                    maxWidth: "400px",
+                    zIndex: 10,
+                    backgroundColor: "white",
+                    border: "1px solid #ced4da",
+                    borderRadius: "4px",
+                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                    padding: "10px",
+                    top: "40px",
+                    left: "110px",
+                  }}
+                >
+                  <FlightPopup destination="to" />
+                </div>
+              )}
             </div>
           </div>
         </div>
