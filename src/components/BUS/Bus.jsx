@@ -81,7 +81,22 @@ const Bus = () => {
                 }}
               />
               {isFromPopupOpen ? (
-                <BusPopup destination="from" />
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "365px",
+                    zIndex: 10,
+                    backgroundColor: "white",
+                    border: "1px solid #ced4da",
+                    borderRadius: "4px",
+                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                    padding: "10px",
+                    top: "8px",
+                    left: "176px",
+                  }}
+                >
+                  <BusPopup destination="from" />
+                </div>
               ) : (
                 <BusNoPopup destination="from" />
               )}
@@ -104,7 +119,22 @@ const Bus = () => {
                 }}
               />
               {isToPopupOpen ? (
-                <BusPopup destination="to" />
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "365px",
+                    zIndex: 10,
+                    backgroundColor: "white",
+                    border: "1px solid #ced4da",
+                    borderRadius: "4px",
+                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                    padding: "10px",
+                    top: "8px",
+                    left: "526px",
+                  }}
+                >
+                  <BusPopup destination="to" />
+                </div>
               ) : (
                 <BusNoPopup destination="to" />
               )}

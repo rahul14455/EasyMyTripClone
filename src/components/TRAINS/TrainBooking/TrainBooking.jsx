@@ -78,7 +78,22 @@ const TrainBooking = () => {
                 }}
               />
               {isFromPopupOpen ? (
-                <TrainPopup destination="from" />
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "470px",
+                    zIndex: 10,
+                    backgroundColor: "white",
+                    border: "1px solid #ced4da",
+                    borderRadius: "4px",
+                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                    padding: "10px",
+                    top: "-70px",
+                    left: "180px",
+                  }}
+                >
+                  <TrainPopup destination="from" />
+                </div>
               ) : (
                 <TrainNoPopup destination="from" />
               )}
@@ -101,7 +116,22 @@ const TrainBooking = () => {
                 }}
               />
               {isToPopupOpen ? (
-                <TrainPopup destination="to" />
+                <div
+                  style={{
+                    position: "absolute",
+                    width: "470px",
+                    zIndex: 10,
+                    backgroundColor: "white",
+                    border: "1px solid #ced4da",
+                    borderRadius: "4px",
+                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                    padding: "10px",
+                    top: "-70px",
+                    left: "510px",
+                  }}
+                >
+                  <TrainPopup destination="to" />
+                </div>
               ) : (
                 <TrainNoPopup destination="to" />
               )}
