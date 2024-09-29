@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../HotelBooking/HotelBooking.css";
 import { useHotelMainContext } from "../../../Context/Hotels/HotelMainContext";
 import { FaCalendarAlt, FaMapMarkerAlt, FaUsers } from "react-icons/fa";
@@ -24,6 +24,19 @@ const HotelBooking = () => {
     checkOutDate,
   } = useHotelMainContext();
 
+  const [rating, setRating] = useState("");
+  const [price, setPrice] = useState("");
+
+  const handleChange = (event) => {
+    const selectedPrice = event.target.value;
+    setPrice(selectedPrice);
+    const filterCondition = {
+      price: { $lte: selectedPrice },
+    };
+
+    // You can use this filterCondition to update your query or perform other actions
+    console.log("Filter Condition:", filterCondition);
+  };
   useEffect(() => {
     document.addEventListener("click", handleClickOut);
     return () => {
@@ -110,27 +123,57 @@ const HotelBooking = () => {
             <div className="hotel-prices">
               <h3>Price per night</h3>
               <div className="price-checks">
-                <input type="checkbox" value={0} />
+                <input
+                  type="checkbox"
+                  value={0}
+                  onClick={() => {
+                    setPrice({ $lte: "2000" });
+                  }}
+                />
                 <label> ₹ Below - ₹ 2000</label>
               </div>
 
               <div className="price-checks">
-                <input type="checkbox" value={0} />
+                <input
+                  type="checkbox"
+                  value={0}
+                  onClick={() => {
+                    setPrice({ $gte: "2001", $lte: "3000" });
+                  }}
+                />
                 <label> ₹ 2001 - ₹ 3000</label>
               </div>
 
               <div className="price-checks">
-                <input type="checkbox" value={0} />
+                <input
+                  type="checkbox"
+                  value={0}
+                  onClick={() => {
+                    setPrice({ $gte: "3001", $lte: "5000" });
+                  }}
+                />
                 <label> ₹ 3001 - ₹ 5000</label>
               </div>
 
               <div className="price-checks">
-                <input type="checkbox" value={0} />
+                <input
+                  type="checkbox"
+                  value={0}
+                  onClick={() => {
+                    setPrice({ $gte: "5001", $lte: "8000" });
+                  }}
+                />
                 <label> ₹ 5001 - ₹ 8000</label>
               </div>
 
               <div className="price-checks">
-                <input type="checkbox" value={0} />
+                <input
+                  type="checkbox"
+                  value={0}
+                  onClick={() => {
+                    setPrice({ $gte: "8000" });
+                  }}
+                />
                 <label> ₹ above - ₹ 8000</label>
               </div>
             </div>

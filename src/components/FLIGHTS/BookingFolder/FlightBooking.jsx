@@ -51,8 +51,6 @@ const FlightBooking = () => {
     setToIndex,
     setFromIndex,
     setSelectedDate,
-    setTravelClass,
-    totalTravellers,
   } = useFlightsMainContext();
 
   console.log(day);
@@ -62,9 +60,6 @@ const FlightBooking = () => {
     setFromIndex(source);
     setToIndex(destination);
     setSelectedDate(new Date(selectDate));
-    // setTravelClass(passengerType);
-    // setNumber(noOfPassengers);
-    // setMaximumPrice(highestFlightPrice);
   }, [source, destination, selectDate]);
 
   const handleChange = (event) => {

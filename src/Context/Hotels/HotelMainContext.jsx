@@ -16,6 +16,9 @@ function HotelMainProvider({ children }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [guestsInput, setGuestsInput] = useState("");
 
+  const [sort, setSort] = useState("cheap");
+  const [filter, setFilter] = useState([]);
+
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -108,6 +111,11 @@ function HotelMainProvider({ children }) {
         setChild,
         adults,
         setAdults,
+
+        sort,
+        setSort,
+        filter,
+        setFilter,
       }}
     >
       {children}
