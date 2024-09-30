@@ -1,0 +1,45 @@
+/* Basic styles for the flight info container */
+.flight-info {
+  text-align: center;
+  padding: 20px;
+}
+
+.flight-info h1 {
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.flight-info span {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .flight-info {
+    padding: 15px;
+  }
+
+  .flight-info h1 {
+    font-size: 1.75rem;
+  }
+
+  .flight-info span {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .flight-info {
+    padding: 10px;
+  }
+
+  .flight-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .flight-info span {
+    font-size: 0.9rem;
+  }
+}

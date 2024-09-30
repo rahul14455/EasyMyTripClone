@@ -61,7 +61,6 @@
   display: flex;
   align-items: self-start;
 }
-
 .sidebar {
   margin-left: 10px;
   width: 15%;
@@ -72,14 +71,12 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border: 0.5px solid lightgray;
 }
-
 .sunicon.clicked {
   background-color: gray;
 }
 .sunicon.clicked span {
   color: whitesmoke;
 }
-
 .progrss {
   display: flex;
   flex-direction: column;
@@ -89,7 +86,6 @@
   height: 100px;
   width: 100%;
 }
-
 .progrss span {
   font-size: 14px;
   font-weight: bold;
@@ -99,7 +95,6 @@
   justify-content: center;
   width: 100%;
 }
-
 .mini p {
   font-size: 14px;
   font-weight: bold;
@@ -149,18 +144,15 @@
   gap: 10px;
   width: 100%;
 }
-
 .stops span {
   font-size: 14px;
   font-weight: 600;
 }
-
 .duration span {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 10px;
 }
-
 .duration {
   display: flex;
   flex-direction: column;
@@ -199,11 +191,9 @@
   width: 100%;
   gap: 10px;
 }
-
 .departure {
   margin-top: 10px;
 }
-
 .departure span {
   font-size: 14px;
   font-weight: 600;
@@ -215,4 +205,56 @@
 }
 .filter-icons {
   display: flex;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .Booking-main {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .flight-from,
+  .right {
+    width: 100%;
+    max-width: 650px;
+  }
+  .search-btn {
+    width: 100%;
+    max-width: 650px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .center {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+  .filter-icons {
+    flex-wrap: wrap;
+  }
+  .sunicon {
+    flex: 1 1 calc(50% - 10px);
+    min-width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Booking-main {
+    padding: 10px;
+    gap: 15px;
+  }
+  .flight-from,
+  .right {
+    height: auto;
+    min-height: 100px;
+  }
+  .search-btn {
+    padding: 20px;
+  }
 }

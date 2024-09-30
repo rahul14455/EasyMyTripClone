@@ -1,5 +1,6 @@
 import React from "react";
 import { useFlightsMainContext } from "../../../Context/Flights/FlightsMainContext";
+import "../Traveller&Class/TravelPopUpOpen.css";
 
 const TravellerClassPopupOpen = () => {
   const {

@@ -1,5 +1,6 @@
 import React from "react";
 import { useFlightsMainContext } from "../../../Context/Flights/FlightsMainContext";
+import "../FlightApiCall/FlightNoPopup.css";
 
 const FlightsNoPopup = ({ destination }) => {
   const {

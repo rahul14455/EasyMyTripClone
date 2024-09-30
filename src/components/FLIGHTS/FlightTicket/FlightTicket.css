@@ -5,10 +5,7 @@
   gap: 20px;
   padding: 20px;
   background-color: #f7f9fc;
-  /* height: 650px; */
-  /* border: 3px solid red; */
   width: 100%;
-  /* margin-top: 50px; */
 }
 
 /* Horizontal flight ticket card */
@@ -16,68 +13,62 @@
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  /* width: 100%; */
   display: flex;
+  flex-wrap: wrap;
   padding: 20px;
   align-items: center;
-  height: 150px;
-  /* border: 3px solid red; */
+  min-height: 150px;
 }
-
-/* .flight-ticket-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-} */
 
 /* Flight ID section */
 .ticket-id {
-  flex: 1;
+  flex: 1 1 100%;
   font-size: 18px;
   font-weight: 700;
   color: #333333;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 /* Flight route information */
 .flight-route {
-  flex: 2;
+  flex: 1 1 100%;
   font-size: 16px;
   font-weight: 500;
   color: #007bff;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 /* Departure time and Arrival time */
-.time-details {
-  flex: 2;
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
-}
-
 .dept-time,
 .flight-arrival-time {
+  flex: 1 1 30%;
   font-size: 14px;
   font-weight: 500;
   color: #555555;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 /* Flight duration */
 .segment-duration {
-  flex: 1;
+  flex: 1 1 30%;
   font-size: 14px;
   font-weight: 500;
   color: #999999;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 /* Ticket price */
 .ticketprice {
-  flex: 1;
+  flex: 1 1 100%;
   font-size: 20px;
   font-weight: 700;
   color: #28a745;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 /* Seats left */
@@ -86,12 +77,14 @@
   font-weight: 500;
   color: #dc3545;
   text-align: center;
+  margin-top: 5px;
 }
 
 /* Book now button */
 .booknow {
-  flex: 1;
+  flex: 1 1 100%;
   text-align: center;
+  margin-top: 10px;
 }
 
 .booknow button {
@@ -117,4 +110,60 @@
   font-weight: 500;
   text-align: center;
   margin-top: 20px;
+}
+
+/* Media Queries for Responsiveness */
+@media (min-width: 768px) {
+  .flight-ticket-card {
+    flex-wrap: nowrap;
+  }
+
+  .ticket-id,
+  .flight-route,
+  .dept-time,
+  .segment-duration,
+  .flight-arrival-time,
+  .ticketprice,
+  .booknow {
+    flex: 1 1 0;
+    margin-bottom: 0;
+  }
+
+  .ticketprice {
+    text-align: right;
+  }
+
+  .booknow {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .flight-ticket-card {
+    padding: 15px;
+  }
+
+  .ticket-id,
+  .flight-route {
+    font-size: 16px;
+  }
+
+  .dept-time,
+  .flight-arrival-time,
+  .segment-duration {
+    font-size: 12px;
+  }
+
+  .ticketprice {
+    font-size: 18px;
+  }
+
+  .seats {
+    font-size: 12px;
+  }
+
+  .booknow button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
 }

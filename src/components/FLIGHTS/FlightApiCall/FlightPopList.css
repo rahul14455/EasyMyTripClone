@@ -1,32 +1,95 @@
-/* FlightPopupList.css */
+/* ... (keep the existing styles) ... */
+
+/* Flight popup list styling */
 .popup-list-item {
-  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .popup-list-item:hover {
-  background-color: #e0e0e0;
+  background-color: #f0f0f0;
 }
 
-.popup-list-item .flight-info {
+.flight-info {
   display: flex;
   align-items: center;
 }
 
-.popup-list-item .flight-info svg {
+.airplane-icon {
+  font-size: 1.2rem;
   margin-right: 10px;
-  color: #007bff; /* Blue color for airplane icon */
+  color: #2f80ed;
 }
 
-.popup-list-item .flight-info p {
+.city-country {
+  font-size: 14px;
   margin: 0;
 }
 
-.popup-list-item .iata-code {
+.iata-code {
   font-size: 14px;
+  font-weight: bold;
   color: #666;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+  /* ... (keep existing styles) ... */
+}
+
+@media screen and (max-width: 992px) {
+  /* ... (keep existing styles) ... */
+
+  .popup-list-item {
+    padding: 8px;
+  }
+
+  .airplane-icon {
+    font-size: 1rem;
+    margin-right: 8px;
+  }
+
+  .city-country,
+  .iata-code {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* ... (keep existing styles) ... */
+
+  .popup-list-item {
+    padding: 8px;
+  }
+
+  .airplane-icon {
+    font-size: 1rem;
+    margin-right: 8px;
+  }
+
+  .city-country,
+  .iata-code {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* ... (keep existing styles) ... */
+
+  .popup-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .flight-info {
+    margin-bottom: 5px;
+  }
+
+  .iata-code {
+    align-self: flex-end;
+  }
 }

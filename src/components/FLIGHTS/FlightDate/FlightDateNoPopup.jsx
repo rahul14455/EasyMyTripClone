@@ -1,6 +1,7 @@
 import React from "react";
 import { useFlightsMainContext } from "../../../Context/Flights/FlightsMainContext";
 import ReactDatePicker from "react-datepicker";
+import "../FlightDate/FlightDate.css";
 
 const FlightDateNoPopup = () => {
   const { handleDateChange, dayOfWeek, selectedDate } = useFlightsMainContext();

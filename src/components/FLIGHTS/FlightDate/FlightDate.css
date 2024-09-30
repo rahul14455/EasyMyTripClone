@@ -1,0 +1,52 @@
+/* Styling for the date input */
+.date-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  outline: none;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.date-input:focus {
+  border-color: #007bff;
+}
+
+/* Styling for the day of the week display */
+span {
+  display: block;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #666;
+  text-align: center;
+}
+
+/* Responsive design */
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+  .date-input {
+    max-width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  span {
+    font-size: 0.9rem;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+  .date-input {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+
+  span {
+    font-size: 0.8rem;
+  }
+}

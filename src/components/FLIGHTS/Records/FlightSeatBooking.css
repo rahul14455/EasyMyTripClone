@@ -6,16 +6,16 @@
   font-family: Arial, sans-serif;
   background-color: #f5faff;
   width: 70%;
-  position: relative; /* Add this for the relative position of the children */
+  position: relative;
 }
 
 .cross-dip {
   display: flex;
-  align-items: flex-start; /* Align items to the top */
-  justify-content: space-between; /* Space between items */
+  align-items: flex-start;
+  justify-content: space-between;
   width: 100%;
   height: auto;
-  position: relative; /* Set this to be the reference for absolute positioning */
+  position: relative;
   background-color: #f5faff;
 }
 
@@ -29,6 +29,7 @@
   width: 70%;
   height: 55vh;
 }
+
 .travellers-card {
   background-color: #ffffff;
   border: 1px solid #d0e1f9;
@@ -173,4 +174,54 @@
   border: none;
   cursor: pointer;
   margin-top: 15px;
+}
+
+@media screen and (max-width: 1024px) {
+  .cross-dip {
+    flex-direction: column;
+  }
+
+  .train-seat-booking-container,
+  .price-summary-card {
+    width: 100%;
+    max-width: none;
+  }
+
+  .price-summary-card {
+    position: static;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cross-dip {
+    padding: 10px;
+  }
+
+  .train-card-full,
+  .travellers-card,
+  .price-summary-card {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card-title {
+    font-size: 18px;
+  }
+
+  .station-name,
+  .time-dept {
+    font-size: 16px;
+  }
+
+  .rail-station,
+  .duration-travel {
+    font-size: 14px;
+  }
+
+  .continue-booking-button {
+    font-size: 16px;
+    padding: 12px;
+  }
 }
