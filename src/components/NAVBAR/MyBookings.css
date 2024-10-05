@@ -1,0 +1,10 @@
+.booking-history {
+  width: 100%;
+  height: 160px;
+  background-color: #2f81ed;
+  background-image: linear-gradient(to right, #2f80ed, #56ccf2);
+}
+
+.booking-history {
+  border-radius: 0px 0px 120px 120px; /* Top-left, Top-right, Bottom-right, Bottom-left */
+}

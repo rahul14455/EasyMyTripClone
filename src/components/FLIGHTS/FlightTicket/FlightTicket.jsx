@@ -12,6 +12,7 @@ const FlightTicket = ({
   price,
   selectedStop,
   selectDeparture,
+  date,
 }) => {
   const [data, setData] = useState([]);
   const { fromCity, toCity } = useFlightsMainContext();
@@ -33,7 +34,7 @@ const FlightTicket = ({
 
   // Ensure `goTOSeat` is passed as a function reference, not invoked immediately
   const goTOSeat = (
-    flightID,
+    _id,
     departureTime,
     source,
     duration,
@@ -41,15 +42,17 @@ const FlightTicket = ({
     destination,
     ticketPrice
   ) => {
+    console.log(date);
     navigate("/FlightSeatBooking", {
       state: {
-        flightID,
+        _id,
         departureTime,
         source,
         duration,
         arrivalTime,
         destination,
         ticketPrice,
+        date,
       },
     });
   };
@@ -92,7 +95,7 @@ const FlightTicket = ({
               <button
                 onClick={() =>
                   goTOSeat(
-                    item.flightID,
+                    item._id,
                     item.departureTime,
                     item.source,
                     item.duration,

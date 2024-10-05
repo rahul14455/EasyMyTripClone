@@ -141,3 +141,78 @@
   font-size: 14px;
   color: #555;
 }
+
+/**/
+
+/* Add these media queries at the end of your existing CSS */
+
+@media screen and (max-width: 1024px) {
+  .bus-detail-container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bus-detail-container {
+    width: 95%;
+    padding: 5px;
+  }
+
+  .bus-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bus-timing {
+    margin: 15px 0;
+  }
+
+  .fare-section {
+    align-items: flex-start;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .bus-ticket-card {
+    padding: 15px;
+  }
+
+  .bus-info h3 {
+    font-size: 18px;
+  }
+
+  .bus-type {
+    font-size: 12px;
+  }
+
+  .time {
+    font-size: 16px;
+  }
+
+  .arrow {
+    font-size: 20px;
+    margin: 0 10px;
+  }
+
+  .fare {
+    font-size: 20px;
+  }
+
+  .select-seats {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .seat-left {
+    font-size: 12px;
+  }
+
+  .accordion-summary {
+    font-size: 14px;
+  }
+
+  .bus-amenities p {
+    font-size: 12px;
+  }
+}

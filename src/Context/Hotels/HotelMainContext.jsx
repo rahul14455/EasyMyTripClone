@@ -71,10 +71,14 @@ function HotelMainProvider({ children }) {
     const day = new Date(date).getDay();
     setDayOfWeek(days[day]);
   };
-
+  console.log(selectedOutDate, selectedInDate, adults, "main");
   return (
     <HotelMainContext.Provider
       value={{
+        setSelectedOutDate,
+        selectedOutDate,
+        setSelectedInDate,
+        selectedInDate,
         search,
         setSearch,
         destinationPopup,
@@ -91,13 +95,11 @@ function HotelMainProvider({ children }) {
         setCheckInDate,
         dayOfWeek,
         setDayOfWeek,
-        selectedInDate,
-        setSelectedInDate,
+
         handleDateChange,
         setCheckOutDate,
         checkOutDate,
-        selectedOutDate,
-        setSelectedOutDate,
+
         handleDone,
         handleChildrenChange,
         handleAdultsChange,
@@ -122,7 +124,6 @@ function HotelMainProvider({ children }) {
     </HotelMainContext.Provider>
   );
 }
-
 function useHotelMainContext() {
   const context = useContext(HotelMainContext);
   if (context === undefined) {

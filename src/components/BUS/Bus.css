@@ -12,15 +12,15 @@ body {
 /* Bus main section styling */
 .Bus-MainSection {
   margin-top: 20px;
-  height: 40vh;
-  max-width: 100%;
+  min-height: 40vh;
+  width: 100%;
   background-color: #2f81ed;
   background-image: linear-gradient(to right, #2f80ed, #56ccf2);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 40px 20px;
 }
 
 .caption-bus {
@@ -28,35 +28,32 @@ body {
   font-weight: 600;
   font-size: 24px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 /* Bus ticket box styling */
 .Bus-ticket-Box {
   background-color: white;
-  width: 80%;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1000px;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .bsearch {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end; /* Align items to the bottom */
-  width: 100%;
-  /* gap: 20px; */
+  align-items: flex-end;
+  gap: 15px;
 }
 
 /* Bus details styling */
-.bus {
+.bus,
+.datepicker-bus {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .label {
@@ -65,38 +62,90 @@ body {
   margin-bottom: 5px;
 }
 
-.bus-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-
-/* Datepicker styling */
-.datepicker-bus {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
+.bus-input,
 .date-input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 42px; /* Consistent height */
+}
+
+/* Ensure the datepicker aligns with other inputs */
+.datepicker-bus {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 /* Search button styling */
 .search-button-bus {
   background-color: #ff6f61;
   color: white;
-  padding: 11px 20px;
+  padding: 0 20px;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  align-self: flex-end;
+  height: 42px; /* Match the height of input fields */
+  min-width: 120px; /* Ensure button has a minimum width */
 }
 
-.search-button:hover {
+.search-button-bus:hover {
   background-color: #ff5a4a;
+}
+
+/* Responsive design */
+@media screen and (max-width: 1024px) {
+  .Bus-ticket-Box {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Bus-MainSection {
+    padding: 30px 15px;
+  }
+
+  .Bus-ticket-Box {
+    padding: 15px;
+  }
+
+  .bsearch {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bus,
+  .datepicker-bus,
+  .search-button-bus {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .search-button-bus {
+    margin-top: 5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .caption-bus {
+    font-size: 20px;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .bus-input,
+  .date-input,
+  .search-button-bus {
+    font-size: 14px;
+  }
+
+  .Bus-ticket-Box {
+    padding: 10px;
+  }
 }

@@ -132,3 +132,84 @@
 .continue-btn:hover:not(:disabled) {
   background-color: #e14e2d;
 }
+
+/**/
+/* Add these media queries at the end of your existing CSS */
+
+@media screen and (max-width: 1200px) {
+  .bus-seat-selection-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .seat-layout-container {
+    margin-right: 0;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .boarding-summary {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .seat-grid {
+    grid-template-columns: repeat(8, 50px);
+    grid-gap: 8px;
+  }
+
+  .seat {
+    width: 50px;
+    height: 50px;
+    font-size: 0.9rem;
+  }
+
+  .details p,
+  .fare-summary p {
+    font-size: 1rem;
+  }
+
+  .fare-summary p:last-of-type {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .bus-seat-selection-container {
+    padding: 10px;
+  }
+
+  .seat-layout-container h3 {
+    font-size: 1.2rem;
+  }
+
+  .deck-title {
+    font-size: 1rem;
+  }
+
+  .seat-grid {
+    grid-template-columns: repeat(6, 40px);
+    grid-gap: 5px;
+  }
+
+  .seat {
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .details p,
+  .fare-summary p {
+    font-size: 0.9rem;
+  }
+
+  .fare-summary p:last-of-type {
+    font-size: 1.1rem;
+  }
+
+  .continue-btn {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}

@@ -12,7 +12,7 @@ body {
 /* Train main section styling */
 .Train-booking-MainSection {
   margin-top: 10px;
-  height: 20vh;
+  height: 28vh;
   /* max-width: 100%; */
   background-color: #2f81ed;
   background-image: linear-gradient(to right, #2f80ed, #56ccf2);
@@ -134,4 +134,104 @@ body {
   align-items: center;
   gap: 10px;
   padding: 5px;
+}
+
+/* Existing styles remain unchanged */
+
+/* Add these media queries at the end of your existing CSS */
+
+@media (max-width: 1200px) {
+  .Train-ticketBooking-Box {
+    width: 90%;
+  }
+
+  .search-button-train {
+    width: 15%;
+  }
+}
+
+@media (max-width: 992px) {
+  .tsearch {
+    flex-wrap: wrap;
+  }
+
+  .train,
+  .datepicker-train {
+    flex: 1 1 40%;
+  }
+
+  .search-button-train {
+    width: 20%;
+    margin-top: 10px;
+  }
+
+  .train-center {
+    flex-direction: column;
+  }
+
+  .train-side-pannel {
+    width: 90%;
+    margin: 10px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .Train-booking-MainSection {
+    height: auto;
+    padding: 20px 10px;
+  }
+
+  .Train-ticketBooking-Box {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .tsearch {
+    flex-direction: column;
+  }
+
+  .train,
+  .datepicker-train {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .search-button-train {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .label {
+    font-size: 12px;
+  }
+
+  .train-input,
+  .date-input {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .search-button-train {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .train-side-pannel {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .hotel-prices h3,
+  .departure-coach h3,
+  .arrival-coach h3 {
+    font-size: 1em;
+  }
+
+  .price-checks,
+  .departure-checks,
+  .arrival-checks {
+    font-size: 13px;
+  }
 }

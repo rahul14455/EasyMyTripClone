@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const HotelRoomCard = () => {
   const [data, setData] = useState([]);
-  const { cityName } = useHotelMainContext();
+  const { cityName, checkInDate, checkOutDate } = useHotelMainContext();
 
   const getData = async () => {
     const hotelDataArr = await hotelListWithCityName(cityName);
@@ -27,6 +27,7 @@ const HotelRoomCard = () => {
       },
     });
   };
+  console.log(cityName, checkInDate, checkOutDate);
 
   return (
     <div className="hotel-section">

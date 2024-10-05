@@ -90,13 +90,11 @@ const BusRecord = () => {
                 <div className="time-block departure">
                   <span className="time-dept">{departureTime}</span>
                   <span className="rail-station">{source}</span>
-                  <span className="date-train">{formattedDate}</span>
                 </div>
                 <div className="duration-block"></div>
                 <div className="time-block arrival">
                   <span className="time-dept">{arrivalTime}</span>
                   <span className="rail-station">{destination}</span>
-                  <span className="date-train">{formattedDate}</span>
                 </div>
               </div>
             </div>

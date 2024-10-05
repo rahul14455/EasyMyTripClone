@@ -31,6 +31,9 @@ import BusRecord from "./BUS/BusRecord/BusRecord";
 import BusPayment from "./BUS/Payment/BusPayment";
 import TrainPayment from "./TRAINS/Payment/TrainPayment";
 import RoomBooking from "./HOTELS/RoomBooking/RoomBooking";
+import MyBookings from "./NAVBAR/MyBookings";
+import RoomInfo from "./HOTELS/RoomInfo/RoomInfo";
+import HotelPayment from "./HOTELS/HotelPayment/HotelPayment";
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -120,6 +123,21 @@ function App() {
                                 <Route
                                   path="/RoomBooking"
                                   element={<RoomBooking />}
+                                />
+
+                                <Route
+                                  path="/MyBookings"
+                                  element={<MyBookings />}
+                                />
+
+                                <Route
+                                  path="/Roominfo"
+                                  element={<RoomInfo />}
+                                />
+
+                                <Route
+                                  path="/HotelPayment"
+                                  element={<HotelPayment />}
                                 />
                               </Route>
                             </Routes>

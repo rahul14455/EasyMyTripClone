@@ -82,6 +82,7 @@ const FlightBooking = () => {
       searchParams.set("date", `${month}/${day}/${year}`);
       searchParams.set("passenger", travelClass);
       searchParams.set("number", number);
+      console.log(`${month}/${day}/${year}`);
       navigate({
         pathname: "/FlightBooking",
         search: `?${searchParams.toString()}`,
@@ -388,6 +389,7 @@ const FlightBooking = () => {
           selectDeparture={selectDeparture}
           selectedStop={selectedStop}
           price={price}
+          date={`${day}/${month}/${year}`}
         />
       </div>
     </div>

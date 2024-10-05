@@ -8,28 +8,30 @@ const FlightSeatBooking = () => {
   const { from, to, departureDate } = useFlightsMainContext();
   const location = useLocation();
 
-  // Access the state object from location
   const {
-    flightID,
+    _id,
     departureTime,
     source,
     duration,
     arrivalTime,
     destination,
     ticketPrice,
+    date,
   } = location.state || {};
 
-  // Ensure departureDate is either a valid Date or format it properly
   const formattedDate = departureDate
     ? format(new Date(departureDate), "EEEE, dd MMM yyyy")
     : "Invalid Date";
 
+  console.log(formattedDate);
   const navigate = useNavigate();
 
-  const Payment = (ticketPrice) => {
+  const Payment = () => {
     navigate("/FlightPayment", {
       state: {
         ticketPrice,
+        _id, // Include flightID
+        date, // Include date
       },
     });
   };
@@ -40,21 +42,17 @@ const FlightSeatBooking = () => {
         <div className="train-card-full">
           <h2 className="card-title">Flight Details</h2>
           <div className="train-info-container">
-            {/* Left section: Flight ID */}
             <div className="train-left">
               <div className="train-name">
-                <span>{flightID && <span>{flightID}</span>}</span>
+                <span>{_id && <span>{_id}</span>}</span>
               </div>
             </div>
-
-            {/* Right section: Route and Timings */}
             <div className="train-right">
               <div className="train-route">
                 <span className="station-name">{from}</span>
                 <span className="train-arrow">→</span>
                 <span className="station-name">{to}</span>
               </div>
-
               <div className="train-journey-info">
                 <div className="time-block departure">
                   <span className="time-dept">{departureTime}</span>
@@ -66,6 +64,7 @@ const FlightSeatBooking = () => {
                 <div className="time-block arrival">
                   <span className="time-dept">{arrivalTime}</span>
                   <span className="rail-station">{destination}</span>
+                  <span className="rail-station">{date}</span>
                 </div>
               </div>
             </div>
@@ -91,7 +90,7 @@ const FlightSeatBooking = () => {
 
         <button
           className="continue-booking-button"
-          onClick={() => Payment(ticketPrice)}
+          onClick={Payment} // Call the updated Payment function
         >
           Continue Booking
         </button>

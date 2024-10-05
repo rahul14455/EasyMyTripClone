@@ -26,7 +26,7 @@ const HotelBooking = () => {
 
   const [rating, setRating] = useState("");
   const [price, setPrice] = useState("");
-
+  console.log(checkInDate, checkOutDate);
   const handleChange = (event) => {
     const selectedPrice = event.target.value;
     setPrice(selectedPrice);

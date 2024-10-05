@@ -9,7 +9,7 @@ import CheckOutNoPop from "../DatesCheckOut/CheckOutNoPop";
 import CheckOutPop from "../DatesCheckOut/CheckOutPop";
 import GuestNoPopup from "../HotelApiCall/Guest/GuestNoPopup";
 import GuestPopup from "../HotelApiCall/Guest/GuestPopup";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../RoomBooking/RoomBooking.css";
 
 const RoomBooking = () => {
@@ -20,23 +20,27 @@ const RoomBooking = () => {
     handleClickOut,
     dropdownOpen,
     setDropdownOpen,
-    checkInDate,
+    setSelectedOutDate,
+    selectedOutDate,
+    setSelectedInDate,
+    selectedInDate,
     checkOutDate,
+    checkInDate,
+    adults,
   } = useHotelMainContext();
 
   const location = useLocation();
-
   const { hotel_id } = location.state || {};
 
-  console.log(hotel_id);
+  const [hotelData, setHotelData] = useState(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.addEventListener("click", handleClickOut);
     return () => {
       document.removeEventListener("click", handleClickOut);
     };
   }, [handleClickOut]);
-
-  const [hotelData, setHotelData] = useState(null);
 
   useEffect(() => {
     const fetchHotelDetails = async () => {
@@ -65,6 +69,27 @@ const RoomBooking = () => {
 
     fetchHotelDetails();
   }, [hotel_id]);
+
+  const HandleRoom = (room) => {
+    if (!room || !room.costPerNight) {
+      console.error("Room details or cost per night are not available.");
+      return;
+    }
+
+    navigate("/Roominfo", {
+      state: {
+        hotel_id, // Pass hotel_id here
+        hotelName: hotelData.name,
+        cityName: hotelData.location,
+        selectedInDate,
+        selectedOutDate,
+        roomDetails: room,
+        travelers: adults,
+        roomPrice: room.costPerNight || "Price not available",
+        roomImage: hotelData.images[1] || "default-image-url.jpg",
+      },
+    });
+  };
 
   if (!hotelData) return <div>Loading...</div>;
 
@@ -115,7 +140,6 @@ const RoomBooking = () => {
 
       <div className="hotel-container">
         <div className="hotel-card">
-          {/* Left Section: Hotel Main Image */}
           <div className="hotel-image-section">
             <img
               src={hotelData.images[0]}
@@ -124,7 +148,6 @@ const RoomBooking = () => {
             />
           </div>
 
-          {/* Right Section: Hotel Details and Additional Images */}
           <div className="hotel-details-section">
             <h2 className="hotel-name">{hotelData.name}</h2>
             <p className="hotel-location">
@@ -138,7 +161,7 @@ const RoomBooking = () => {
               <p>2 Guests | 1 Room</p>
             </div>
             <div className="room-price">
-              <h4>₹ {hotelData.rooms[0].costPerNight}</h4>
+              <h4>₹ {hotelData.rooms[0]?.costPerNight || "N/A"}</h4>
               <p>+ ₹409 taxes & fees / night</p>
             </div>
             <div className="check-in-out">
@@ -154,7 +177,6 @@ const RoomBooking = () => {
               <span>Free Wifi</span>
             </div>
 
-            {/* Additional Images */}
             <div className="hotel-images-grid">
               {hotelData.images.slice(1).map((image, index) => (
                 <img
@@ -166,7 +188,6 @@ const RoomBooking = () => {
               ))}
             </div>
 
-            {/* Action Buttons */}
             <div className="action-buttons">
               <button className="select-rooms-btn">Select Rooms</button>
               <button className="book-now-btn">Book Now</button>
@@ -180,7 +201,6 @@ const RoomBooking = () => {
         {hotelData.rooms.map((room) => (
           <div key={room._id} className="room-card">
             <div className="room-card-container">
-              {/* Room Type and Image */}
               <div className="room-type">
                 <h4>{room.roomType}</h4>
                 <img
@@ -194,7 +214,6 @@ const RoomBooking = () => {
                 </div>
               </div>
 
-              {/* Room Benefits */}
               <div className="room-benefits">
                 <h4>Room Only</h4>
                 <ul>
@@ -203,11 +222,15 @@ const RoomBooking = () => {
                 </ul>
               </div>
 
-              {/* Room Price and Book Button */}
               <div className="room-price">
                 <span className="price">₹ {room.costPerNight}</span>
                 <p>+ ₹409 Taxes & fees (Per Night)</p>
-                <button className="book-now-btn">Book Now</button>
+                <button
+                  className="book-now-btn"
+                  onClick={() => HandleRoom(room)}
+                >
+                  Book Now
+                </button>
               </div>
             </div>
           </div>

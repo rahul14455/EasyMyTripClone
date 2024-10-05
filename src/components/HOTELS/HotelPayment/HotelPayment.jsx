@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import "../Payment/FlightPayment.css";
-import qrcode from "../Payment/QRCode.png";
 import { useLocation } from "react-router-dom";
+import qrcode from "../../FLIGHTS/Payment/QRCode.png";
+import "../HotelPayment/HotelPayment.css";
 import BookingConfirmation from "../../NAVBAR/BookingConfirmation";
 
-const FlightPayment = () => {
+const HotelPayment = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("upi");
-
   const location = useLocation();
-  const { ticketPrice, _id, date } = location.state || {};
 
-  console.log({ ticketPrice, _id, date }); // Log for debugging
+  const { hotel_id, selectedInDate, selectedOutDate, roomPrice } =
+    location.state || {};
+
+  console.log({ roomPrice, hotel_id, selectedInDate, selectedOutDate });
 
   const [upiId, setUpiId] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -32,36 +33,17 @@ const FlightPayment = () => {
     cvv.length === 3 &&
     /^[0-9]+$/.test(cvv);
 
-  function convertDateString(input) {
-    // Parse the input date string
-    const [day, monthStr, year] = input.split("/");
-
-    // Convert month string to month number
-    const month = new Date(Date.parse(monthStr + " 1, 2021")).getMonth(); // Jan is 0, so this will return 9 for Oct
-
-    // Create a new Date object
-    const date = new Date(year, month, day);
-
-    // Convert to ISO string and format it
-    const isoString = date.toISOString(); // This gives the format YYYY-MM-DDTHH:mm:ss.sssZ
-
-    // Add the time and offset, assuming the time is the same as in your example
-    const formattedDate =
-      isoString.replace("Z", "+00:00").slice(0, 23) + "00:00"; // Adjust the last part
-
-    return formattedDate;
-  }
-
   const Payload = () => {
     const bookingData = {
-      bookingType: "flight",
+      bookingType: "hotel",
       bookingDetails: {
-        flightId: _id,
-        startDate: date, // Check-in Date and Time
-        endDate: date, // Check-out Date and Time
+        hotelId: hotel_id,
+        startDate: selectedInDate,
+        endDate: selectedOutDate,
       },
     };
     BookingConfirmation(bookingData);
+    console.log(bookingData);
   };
 
   return (
@@ -123,7 +105,7 @@ const FlightPayment = () => {
             </div>
             <div className="total-fare">
               <span>Total Fare: </span>
-              <span className="fare-amount">₹ {ticketPrice}</span>
+              <span className="fare-amount">₹ {roomPrice}</span>
             </div>
             <button
               type="submit"
@@ -173,7 +155,7 @@ const FlightPayment = () => {
                 />
                 <input
                   type="text"
-                  id="expiry"
+                  id="expiry-year"
                   placeholder="YYYY"
                   className="input-field"
                   value={expYear}
@@ -191,18 +173,20 @@ const FlightPayment = () => {
                   onChange={(e) => setCvv(e.target.value)}
                 />
               </div>
+
+              <div className="total-fare">
+                <span>Total Fare: </span>
+                <span className="fare-amount">₹ {roomPrice}</span>
+              </div>
+              <button
+                type="submit"
+                className="payment-btn"
+                disabled={!isCardPaymentValid}
+                onClick={Payload}
+              >
+                Make Payment
+              </button>
             </form>
-            <div className="total-fare">
-              <span>Total Fare: </span>
-              <span className="fare-amount">₹ {ticketPrice}</span>
-            </div>
-            <button
-              type="submit"
-              className="card-payment-btn"
-              disabled={!isCardPaymentValid}
-            >
-              Make Payment
-            </button>
           </div>
         )}
       </div>
@@ -210,4 +194,4 @@ const FlightPayment = () => {
   );
 };
 
-export default FlightPayment;
+export default HotelPayment;
