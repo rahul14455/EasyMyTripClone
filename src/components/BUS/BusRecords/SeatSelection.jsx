@@ -5,8 +5,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 const BusSeatSelection = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const location = useLocation();
-
   const navigate = useNavigate();
+
   const HandleSeat = (
     fare,
     arrivalTime,
@@ -16,7 +16,9 @@ const BusSeatSelection = () => {
     name,
     type,
     selectedSeats,
-    totalFare
+    totalFare,
+    _id, // Pass _id
+    date // Pass date
   ) => {
     navigate("/BusRecord", {
       state: {
@@ -29,12 +31,15 @@ const BusSeatSelection = () => {
         type,
         selectedSeats,
         totalFare, // Pass total fare
+        _id, // Pass _id to the next component
+        date, // Pass date to the next component
       },
     });
   };
 
-  // Provide fallback for seats in case state is undefined
   const {
+    _id, // Get id from location.state
+    date, // Get date from location.state
     seats = [],
     fare,
     arrivalTime,
@@ -64,9 +69,7 @@ const BusSeatSelection = () => {
   const bookedSeats = ["S5", "S15", "S25", "S35"];
 
   const handleSeatClick = (seat) => {
-    // Prevent selecting booked seats
     if (bookedSeats.includes(seat)) return;
-
     if (selectedSeats.includes(seat)) {
       setSelectedSeats(selectedSeats.filter((s) => s !== seat));
     } else {
@@ -150,13 +153,14 @@ const BusSeatSelection = () => {
               name,
               type,
               selectedSeats,
-              calculateFare() // Pass the calculated total fare
+              calculateFare(), // Pass the calculated total fare
+              _id, // Pass the _id
+              date // Pass the date
             )
           }
         >
           Continue
         </button>
-        ;
       </div>
     </div>
   );

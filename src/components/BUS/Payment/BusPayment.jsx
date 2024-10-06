@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import qrcode from "../../FLIGHTS/Payment/QRCode.png";
 import "../Payment/BusPayment.css";
+import BookingConfirmation from "../../NAVBAR/BookingConfirmation";
+
 const BusPayment = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("upi");
 
   const location = useLocation();
 
-  // Retrieve totalFare from location state
-  const { totalFare } = location.state || {};
-
+  // Retrieve totalFare, _id, and date from location state
+  const { totalFare, _id, date } = location.state || {};
+  console.log(_id);
   // State for UPI and Card inputs
   const [upiId, setUpiId] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -21,17 +23,29 @@ const BusPayment = () => {
   // Validation logic for UPI
   const isUpiPaymentValid = upiId.trim() !== "";
 
+  const Payload = () => {
+    const bookingData = {
+      bookingType: "bus",
+      bookingDetails: {
+        BusId: _id,
+        startDate: date, // Check-in Date and Time
+        endDate: date, // Check-out Date and Time
+      },
+    };
+    BookingConfirmation(bookingData);
+  };
+
   // Validation logic for card payment
   const isCardPaymentValid =
     cardNumber.length === 16 &&
-    /^[0-9]+$/.test(cardNumber) && // Checks if card number is all digits and 16 characters long
+    /^[0-9]+$/.test(cardNumber) &&
     cardName.trim() !== "" &&
     expMonth.length === 2 &&
-    /^[0-9]+$/.test(expMonth) && // Ensures month is numeric
+    /^[0-9]+$/.test(expMonth) &&
     expYear.length === 4 &&
-    /^[0-9]+$/.test(expYear) && // Ensures year is numeric
+    /^[0-9]+$/.test(expYear) &&
     cvv.length === 3 &&
-    /^[0-9]+$/.test(cvv); // Ensures CVV is 3 numeric digits
+    /^[0-9]+$/.test(cvv);
 
   return (
     <div className="payment-flight-main">
@@ -99,7 +113,8 @@ const BusPayment = () => {
             <button
               type="submit"
               className="upi-payment-btn"
-              disabled={!isUpiPaymentValid} // Disable button if UPI ID is invalid
+              disabled={!isUpiPaymentValid}
+              onClick={Payload}
             >
               Make Payment
             </button>
@@ -107,86 +122,74 @@ const BusPayment = () => {
         )}
 
         {selectedPaymentMethod === "card" && (
-          <div className="card-payment-container">
-            <form className="payment-form">
-              <div className="form-group">
-                <label htmlFor="cardNumber">Card Number</label>
-                <input
-                  type="text"
-                  id="cardNumber"
-                  placeholder="Enter Your Card Number Here"
-                  className="input-field"
-                  value={cardNumber}
-                  onChange={(e) => setCardNumber(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="cardName">Name on card</label>
-                <input
-                  type="text"
-                  id="cardName"
-                  placeholder="Enter Your Name On Card"
-                  className="input-field"
-                  value={cardName}
-                  onChange={(e) => setCardName(e.target.value)}
-                />
-              </div>
-              <div className="form-group expiration-group">
-                <div>
-                  <label htmlFor="expMonth">Month</label>
+          <div className="card-payment">
+            <div className="card-number-input">
+              <label>Card Number</label>
+              <input
+                type="text"
+                placeholder="Card Number"
+                className="input-field"
+                value={cardNumber}
+                onChange={(e) => setCardNumber(e.target.value)}
+              />
+            </div>
+
+            <div className="card-holder-name-input">
+              <label>Card Holder Name</label>
+              <input
+                type="text"
+                placeholder="Card Holder Name"
+                className="input-field"
+                value={cardName}
+                onChange={(e) => setCardName(e.target.value)}
+              />
+            </div>
+
+            <div className="card-expiration-cvv">
+              <div className="expiration-input">
+                <label>Expiration (MM/YYYY)</label>
+                <div className="expiration-fields">
                   <input
                     type="text"
-                    id="expMonth"
                     placeholder="MM"
-                    className="input-small"
+                    className="input-field small"
                     value={expMonth}
                     onChange={(e) => setExpMonth(e.target.value)}
                   />
-                </div>
-                <div>
-                  <label htmlFor="expYear">Year</label>
                   <input
                     type="text"
-                    id="expYear"
                     placeholder="YYYY"
-                    className="input-small"
+                    className="input-field small"
                     value={expYear}
                     onChange={(e) => setExpYear(e.target.value)}
                   />
                 </div>
-                <div>
-                  <label htmlFor="cvv">CVV</label>
-                  <input
-                    type="text"
-                    id="cvv"
-                    placeholder="CVV"
-                    className="input-small"
-                    value={cvv}
-                    onChange={(e) => setCvv(e.target.value)}
-                  />
-                </div>
               </div>
 
-              <div className="total-fare">
-                <span>Total Fare: </span>
-                <span className="fare-amount">₹ {totalFare}</span>
+              <div className="cvv-input">
+                <label>CVV</label>
+                <input
+                  type="text"
+                  placeholder="CVV"
+                  className="input-field small"
+                  value={cvv}
+                  onChange={(e) => setCvv(e.target.value)}
+                />
               </div>
+            </div>
 
-              <button
-                type="submit"
-                className="make-payment-btn"
-                disabled={!isCardPaymentValid} // Disable button if card details are invalid
-              >
-                Make Payment
-              </button>
-
-              <p className="terms">
-                By continuing to pay, I understand and agree with the
-                <a href="#">privacy policy</a>, the{" "}
-                <a href="#">user agreement</a>, and{" "}
-                <a href="#">terms of service</a>.
-              </p>
-            </form>
+            <div className="total-fare">
+              <span>Total Fare: </span>
+              <span className="fare-amount">₹ {totalFare}</span>
+            </div>
+            <button
+              type="submit"
+              className="card-payment-btn"
+              disabled={!isCardPaymentValid}
+              onClick={Payload}
+            >
+              Make Payment
+            </button>
           </div>
         )}
       </div>

@@ -12,7 +12,6 @@ const BusRecord = () => {
 
   const navigate = useNavigate();
 
-  // Modified BusPayment function to ensure all parameters are passed
   const BusPayment = (
     fare,
     arrivalTime,
@@ -22,7 +21,9 @@ const BusRecord = () => {
     name,
     type,
     selectedSeats,
-    totalFare // Retrieve total fare
+    totalFare, // Retrieve total fare
+    _id, // Add _id to be passed
+    date // Add date to be passed
   ) => {
     console.log({
       fare,
@@ -34,6 +35,8 @@ const BusRecord = () => {
       type,
       selectedSeats,
       totalFare,
+      _id, // Log _id
+      date, // Log date
     });
 
     navigate("/BusPayment", {
@@ -47,6 +50,8 @@ const BusRecord = () => {
         type,
         selectedSeats,
         totalFare, // Pass total fare
+        _id, // Pass _id
+        date, // Pass date
       },
     });
   };
@@ -62,6 +67,8 @@ const BusRecord = () => {
     type,
     selectedSeats,
     totalFare, // Retrieve total fare
+    _id, // Get _id from location.state
+    date, // Get date from location.state
   } = location.state || {};
 
   return (
@@ -119,7 +126,6 @@ const BusRecord = () => {
         <p>Passenger x{selectedSeats?.length}</p>
         <p>Travel Fare</p>
         <div className="total">₹ {totalFare}</div>
-
         <button
           className="continue-booking-button"
           onClick={() =>
@@ -132,11 +138,13 @@ const BusRecord = () => {
               name,
               type,
               selectedSeats,
-              totalFare
+              totalFare,
+              _id, // Pass _id
+              date // Pass date
             )
           }
         >
-          Continue Booking
+          Pay Now
         </button>
       </div>
     </div>

@@ -20,6 +20,8 @@ const BusTicket = ({ source, destination, weekday, price }) => {
   const location = useLocation();
 
   const selectseat = (
+    _id, // Add id
+    date, // Add date
     seats,
     fare,
     arrivalTime,
@@ -29,8 +31,12 @@ const BusTicket = ({ source, destination, weekday, price }) => {
     type,
     name
   ) => {
+    console.log(_id);
+
     navigate("/SeatSelection", {
       state: {
+        _id, // Pass id
+        date, // Pass date
         seats,
         fare,
         arrivalTime,
@@ -42,7 +48,6 @@ const BusTicket = ({ source, destination, weekday, price }) => {
       },
     });
   };
-
   const getData = async () => {
     setLoading(true);
     setError(null);
@@ -98,12 +103,14 @@ const BusTicket = ({ source, destination, weekday, price }) => {
                   className="select-seats"
                   onClick={() =>
                     selectseat(
+                      item._id, // Pass _id
+                      validDepartureDate, // Pass date
                       item.seats,
                       item.fare,
                       item.arrivalTime,
                       item.departureTime,
-                      item.source, // Pass item.source
-                      item.destination, // Pass item.destination
+                      item.source,
+                      item.destination,
                       item.type,
                       item.name
                     )
