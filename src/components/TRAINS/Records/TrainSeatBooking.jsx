@@ -17,6 +17,8 @@ const TrainSeatBooking = () => {
     arrivalTime,
     destination,
     fare,
+    _id, // Receiving _id
+    date, // Receiving date
   } = location.state || {};
 
   const handleTrainPayment = () => {
@@ -27,6 +29,8 @@ const TrainSeatBooking = () => {
         departureTime,
         source,
         destination,
+        _id, // Passing _id
+        date, // Passing date
       },
     });
   };

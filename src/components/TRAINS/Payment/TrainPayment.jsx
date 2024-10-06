@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import qrcode from "../../FLIGHTS/Payment/QRCode.png";
 import "../Payment/TrainPayment.css";
+import BookingConfirmation from "../../NAVBAR/BookingConfirmation";
+
 const TrainPayment = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("upi");
 
   const location = useLocation();
 
   // Retrieve totalFare from location state
-  const { totalFare } = location.state || {};
-
+  const { fare, _id, date } = location.state || {}; // Destructure _id and date
+  console.log(_id, date);
   // State for UPI and Card inputs
   const [upiId, setUpiId] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -17,8 +19,6 @@ const TrainPayment = () => {
   const [expMonth, setExpMonth] = useState("");
   const [expYear, setExpYear] = useState("");
   const [cvv, setCvv] = useState("");
-
-  const { fare } = location.state || {};
 
   // Validation logic for UPI
   const isUpiPaymentValid = upiId.trim() !== "";
@@ -34,6 +34,18 @@ const TrainPayment = () => {
     /^[0-9]+$/.test(expYear) && // Ensures year is numeric
     cvv.length === 3 &&
     /^[0-9]+$/.test(cvv); // Ensures CVV is 3 numeric digits
+
+  const Payload = () => {
+    const bookingData = {
+      bookingType: "train",
+      bookingDetails: {
+        trainId: _id,
+        startDate: date, // Check-in Date and Time
+        endDate: date, // Check-out Date and Time
+      },
+    };
+    BookingConfirmation(bookingData);
+  };
 
   return (
     <div className="payment-flight-main">
@@ -102,6 +114,7 @@ const TrainPayment = () => {
               type="submit"
               className="upi-payment-btn"
               disabled={!isUpiPaymentValid} // Disable button if UPI ID is invalid
+              onClick={Payload}
             >
               Make Payment
             </button>
@@ -135,23 +148,23 @@ const TrainPayment = () => {
               </div>
               <div className="form-group expiration-group">
                 <div>
-                  <label htmlFor="expMonth">Month</label>
+                  <label htmlFor="expMonth">Expiration Month</label>
                   <input
                     type="text"
                     id="expMonth"
                     placeholder="MM"
-                    className="input-small"
+                    className="input-field"
                     value={expMonth}
                     onChange={(e) => setExpMonth(e.target.value)}
                   />
                 </div>
                 <div>
-                  <label htmlFor="expYear">Year</label>
+                  <label htmlFor="expYear">Expiration Year</label>
                   <input
                     type="text"
                     id="expYear"
                     placeholder="YYYY"
-                    className="input-small"
+                    className="input-field"
                     value={expYear}
                     onChange={(e) => setExpYear(e.target.value)}
                   />
@@ -162,32 +175,24 @@ const TrainPayment = () => {
                     type="text"
                     id="cvv"
                     placeholder="CVV"
-                    className="input-small"
+                    className="input-field"
                     value={cvv}
                     onChange={(e) => setCvv(e.target.value)}
                   />
                 </div>
               </div>
-
               <div className="total-fare">
                 <span>Total Fare: </span>
                 <span className="fare-amount">₹ {fare}</span>
               </div>
-
               <button
                 type="submit"
-                className="make-payment-btn"
-                disabled={!isCardPaymentValid} // Disable button if card details are invalid
+                className="upi-payment-btn"
+                disabled={!isCardPaymentValid} // Disable button if card inputs are invalid
+                onClick={Payload}
               >
                 Make Payment
               </button>
-
-              <p className="terms">
-                By continuing to pay, I understand and agree with the
-                <a href="#">privacy policy</a>, the{" "}
-                <a href="#">user agreement</a>, and{" "}
-                <a href="#">terms of service</a>.
-              </p>
             </form>
           </div>
         )}

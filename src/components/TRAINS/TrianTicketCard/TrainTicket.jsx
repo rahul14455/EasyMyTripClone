@@ -4,6 +4,7 @@ import { useTrainMainContext } from "../../../Context/Trains/TrainMainContext";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import "../TrianTicketCard/TrainTicket.css";
+
 const TrainTicket = ({ source, destination, weekday, price }) => {
   const {
     from,
@@ -52,7 +53,9 @@ const TrainTicket = ({ source, destination, weekday, price }) => {
     travelDuration,
     arrivalTime,
     destination,
-    fare
+    fare,
+    _id, // Passing _id
+    date // Passing date
   ) => {
     navigate("/TrainSeatBooking", {
       state: {
@@ -64,6 +67,8 @@ const TrainTicket = ({ source, destination, weekday, price }) => {
         arrivalTime,
         destination,
         fare,
+        _id, // Include _id
+        date, // Include date
       },
     });
   };
@@ -118,8 +123,6 @@ const TrainTicket = ({ source, destination, weekday, price }) => {
               </div>
             </div>
 
-            {/* <span className="duration">{item.travelDuration}</span> */}
-
             <div className="seat-availability">
               <h3>Seat Availability</h3>
               <div className="coaches-section">
@@ -151,7 +154,9 @@ const TrainTicket = ({ source, destination, weekday, price }) => {
                             item.travelDuration,
                             item.arrivalTime,
                             item.destination,
-                            item.fare
+                            item.fare,
+                            item._id, // Pass _id
+                            departureDate // Pass date
                           )
                         }
                       >
