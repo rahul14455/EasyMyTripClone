@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Payment/FlightPayment.css";
 import qrcode from "../Payment/QRCode.png";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import BookingConfirmation from "../../NAVBAR/BookingConfirmation";
 
 const FlightPayment = () => {
@@ -51,8 +51,10 @@ const FlightPayment = () => {
 
     return formattedDate;
   }
-
+  const navigate = useNavigate();
   const Payload = () => {
+    navigate("/");
+
     const bookingData = {
       bookingType: "flight",
       bookingDetails: {
@@ -200,6 +202,7 @@ const FlightPayment = () => {
               type="submit"
               className="card-payment-btn"
               disabled={!isCardPaymentValid}
+              onClick={Payload}
             >
               Make Payment
             </button>

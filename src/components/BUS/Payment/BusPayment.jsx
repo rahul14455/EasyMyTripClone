@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import qrcode from "../../FLIGHTS/Payment/QRCode.png";
 import "../Payment/BusPayment.css";
 import BookingConfirmation from "../../NAVBAR/BookingConfirmation";
@@ -22,8 +22,11 @@ const BusPayment = () => {
 
   // Validation logic for UPI
   const isUpiPaymentValid = upiId.trim() !== "";
+  const navigate = useNavigate();
 
   const Payload = () => {
+    navigate("/");
+
     const bookingData = {
       bookingType: "bus",
       bookingDetails: {

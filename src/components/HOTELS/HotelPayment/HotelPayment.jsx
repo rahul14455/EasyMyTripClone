@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import qrcode from "../../FLIGHTS/Payment/QRCode.png";
 import "../HotelPayment/HotelPayment.css";
 import BookingConfirmation from "../../NAVBAR/BookingConfirmation";
@@ -33,7 +33,11 @@ const HotelPayment = () => {
     cvv.length === 3 &&
     /^[0-9]+$/.test(cvv);
 
+  const navigate = useNavigate();
+
   const Payload = () => {
+    navigate("/");
+
     const bookingData = {
       bookingType: "hotel",
       bookingDetails: {

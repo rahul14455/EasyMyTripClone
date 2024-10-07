@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import qrcode from "../../FLIGHTS/Payment/QRCode.png";
 import "../Payment/TrainPayment.css";
 import BookingConfirmation from "../../NAVBAR/BookingConfirmation";
@@ -34,8 +34,11 @@ const TrainPayment = () => {
     /^[0-9]+$/.test(expYear) && // Ensures year is numeric
     cvv.length === 3 &&
     /^[0-9]+$/.test(cvv); // Ensures CVV is 3 numeric digits
+  const navigate = useNavigate();
 
   const Payload = () => {
+    navigate("/");
+
     const bookingData = {
       bookingType: "train",
       bookingDetails: {
