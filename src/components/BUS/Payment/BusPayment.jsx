@@ -27,13 +27,14 @@ const BusPayment = () => {
     const bookingData = {
       bookingType: "bus",
       bookingDetails: {
-        BusId: _id,
-        startDate: date, // Check-in Date and Time
-        endDate: date, // Check-out Date and Time
+        busId: _id,
+        startDate: date,
+        endDate: date,
       },
     };
     BookingConfirmation(bookingData);
   };
+  console.log(_id);
 
   // Validation logic for card payment
   const isCardPaymentValid =

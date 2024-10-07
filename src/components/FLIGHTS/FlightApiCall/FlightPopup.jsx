@@ -10,21 +10,47 @@ const FlightPopup = ({ destination, from, setFrom }) => {
   const { inputRef, search, setSearch, cityName, setCityName } =
     useFlightsMainContext();
   const { flightsByCityName } = useFlightListWithCityName();
-  const list = flightsByCityName?.data.airports;
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
 
+  // Fetching the list of airports
+  const list = flightsByCityName?.data?.airports;
+
+  // Focus on the input field on component mount
   useEffect(() => {
     if (inputRef.current) inputRef.current.focus();
   }, []);
 
+  // Handle search, filtering, and API call
   useEffect(() => {
-    if (search) setCityName(search);
-    if (!search) setCityName(null);
+    if (list) {
+      // If search input is empty, show the full list, otherwise filter the list
+      if (!search) {
+        setFilteredSuggestions(list); // Display full list when input is empty
+      } else {
+        const filtered = list.filter((item) => {
+          const airportName = item.name?.toLowerCase() || "";
+          const airportCity = item.city?.toLowerCase() || "";
+          const airportCode = item.code?.toLowerCase() || "";
+
+          return (
+            airportName.includes(search.toLowerCase()) ||
+            airportCity.includes(search.toLowerCase()) ||
+            airportCode.includes(search.toLowerCase())
+          );
+        });
+        setFilteredSuggestions(filtered || []);
+      }
+    }
+  }, [search, list]);
+
+  // Fetch airport data via API when the component mounts
+  useEffect(() => {
     flightListWithCityName(cityName);
-  }, [search, setCityName, cityName]);
+  }, [cityName]);
 
   return (
     <div
-      className="flight-popup "
+      className="flight-popup"
       style={{ left: destination === "to" ? "260px" : "-0px" }}
     >
       <div className="searchbox">
@@ -45,9 +71,18 @@ const FlightPopup = ({ destination, from, setFrom }) => {
         />
       </div>
       <div className="flight-list">
-        {list?.map((item, index) => (
-          <FlightPopupList key={index} destination={destination} item={item} />
-        ))}
+        {/* Display filtered suggestions or full list */}
+        {filteredSuggestions?.length > 0 ? (
+          filteredSuggestions.map((item, index) => (
+            <FlightPopupList
+              key={index}
+              destination={destination}
+              item={item}
+            />
+          ))
+        ) : (
+          <div className="no-suggestions">No suggestions found</div>
+        )}
       </div>
     </div>
   );
