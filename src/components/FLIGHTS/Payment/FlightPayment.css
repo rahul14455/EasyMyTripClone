@@ -170,7 +170,8 @@
   color: #007bff;
 }
 
-.make-payment-btn {
+.make-payment-btn,
+.card-payment-btn {
   width: 100%; /* Full width button for better alignment */
   padding: 12px 30px;
   background-color: #ff6f61;
