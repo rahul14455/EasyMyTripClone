@@ -172,6 +172,7 @@ body {
   border: 1px solid #ddd;
   /* border-radius: 4px; */
   font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .guests-input:focus {
@@ -188,5 +189,5 @@ body {
   font-size: 16px;
   font-weight: bold;
   align-self: flex-end;
-  margin-bottom: 10px;
+  margin-bottom: 23px;
 }

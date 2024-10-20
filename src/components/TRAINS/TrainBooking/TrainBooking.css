@@ -78,6 +78,7 @@ body {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
+  margin-top: 0;
 }
 
 /* Search button styling */

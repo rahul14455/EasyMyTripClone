@@ -109,7 +109,7 @@ const Flights = () => {
 
           {/* Date picker component should be here */}
 
-          <div className="datepicker">
+          <div className="flight-datepicker">
             <span className="label">
               <FaCalendarAlt /> DEPARTURE DATE
             </span>

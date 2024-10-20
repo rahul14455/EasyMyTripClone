@@ -32,10 +32,43 @@ const BusBooking = () => {
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
 
-  const handleSearch = () => {};
+  const [selectedPrice, setSelectedPrice] = useState([]);
+  const [selectedDeparture, setSelectedDeparture] = useState([]);
+  const [selectedArrival, setSelectedArrival] = useState([]);
 
-  console.log(from);
-  console.log(to);
+  const handlePrice = (value) => {
+    if (selectedPrice.includes(value)) {
+      // Exclude 1 (remove it from the array)
+      setSelectedPrice(selectedPrice.filter((price) => price !== value));
+    } else {
+      // Include 1 (add it to the array)
+      setSelectedPrice([...selectedPrice, value]);
+    }
+  };
+
+  const handleDeparture = (value) => {
+    if (selectedDeparture.includes(value)) {
+      // Exclude 1 (remove it from the array)
+      setSelectedDeparture(
+        selectedDeparture.filter((price) => price !== value)
+      );
+    } else {
+      // Include 1 (add it to the array)
+      setSelectedDeparture([...selectedDeparture, value]);
+    }
+  };
+
+  const handleArrival = (value) => {
+    if (selectedArrival.includes(value)) {
+      // Exclude 1 (remove it from the array)
+      setSelectedArrival(selectedArrival.filter((price) => price !== value));
+    } else {
+      // Include 1 (add it to the array)
+      setSelectedArrival([...selectedArrival, value]);
+    }
+  };
+
+  const handleSearch = () => {};
 
   const handleChange = (event) => {
     const selectedPrice = event.target.value;
@@ -128,7 +161,7 @@ const BusBooking = () => {
               )}
             </div>
 
-            <div className="datepicker-bus">
+            <div className="date-input-bus">
               <label className="label" htmlFor="departureDate">
                 Departure Date
               </label>
@@ -150,34 +183,63 @@ const BusBooking = () => {
             <h3>Journey Coach Filter</h3>
 
             <div className="journey-price-checks">
-              <input type="checkbox" value={price} onChange={handleChange} />
+              <input
+                type="checkbox"
+                value={1}
+                checked={selectedPrice.includes(1)}
+                onClick={() => {
+                  handlePrice(1);
+                }}
+              />
               <label> Below - ₹ 600 </label>
             </div>
 
             <div className="price-checks">
-              <input type="checkbox" value={price} onChange={handleChange} />
+              <input
+                type="checkbox"
+                value={0}
+                checked={selectedPrice.includes(2)}
+                onClick={() => {
+                  handlePrice(2);
+                }}
+              />
               <label> ₹ 601 - ₹ 1200</label>
             </div>
 
             <div className="price-checks">
-              <input type="checkbox" value={price} onChange={handleChange} />
+              <input
+                type="checkbox"
+                checked={selectedPrice.includes(3)}
+                value={0}
+                onClick={() => {
+                  handlePrice(3);
+                }}
+              />
               <label> 1201 - ₹ 1600</label>
             </div>
 
             <div className="price-checks">
-              <input type="checkbox" value={price} onChange={handleChange} />
+              <input
+                type="checkbox"
+                checked={selectedPrice.includes(4)}
+                value={0}
+                onClick={() => {
+                  handlePrice(4);
+                }}
+              />
               <label> above - ₹ 1600</label>
             </div>
           </div>
 
           <div className="departure-coach">
-            <h3>Departure From New Delhi</h3>
+            <h3>Departure From {source}</h3>
 
             <div className="departure-checks">
               <input
                 type="checkbox"
+                checked={selectedDeparture.includes(1)}
                 onClick={() => {
-                  setDeparture({ $gte: "12:00", $lte: "6:00" });
+                  handleDeparture(1);
                 }}
               />
               <label> Early Morning 12am - 6am</label>
@@ -186,28 +248,31 @@ const BusBooking = () => {
             <div className="departure-checks">
               <input
                 type="checkbox"
+                checked={selectedDeparture.includes(2)}
                 onClick={() => {
-                  setDeparture({ $gte: "7:00", $lte: "11:00" });
+                  handleDeparture(2);
                 }}
               />
-              <label> Morning 7am - 11 am</label>
+              <label> Morning 6am - 12 pm</label>
             </div>
 
             <div className="departure-checks">
               <input
                 type="checkbox"
+                checked={selectedDeparture.includes(3)}
                 onClick={() => {
-                  setDeparture({ $gte: "12:00", $lte: "17:00" });
+                  handleDeparture(3);
                 }}
               />
-              <label> Afternoon 12pm - 5pm</label>
+              <label> Afternoon 12pm - 6pm</label>
             </div>
 
             <div className="departure-checks">
               <input
                 type="checkbox"
+                checked={selectedDeparture.includes(4)}
                 onClick={() => {
-                  setDeparture({ $gte: "18:00", $lte: "12:00" });
+                  handleDeparture(4);
                 }}
               />
               <label> Night 6pm - 12am</label>
@@ -220,8 +285,9 @@ const BusBooking = () => {
             <div className="arrival-checks">
               <input
                 type="checkbox"
+                checked={selectedArrival.includes(1)}
                 onClick={() => {
-                  setDeparture({ $gte: "12:00", $lte: "6:00" });
+                  handleArrival(1);
                 }}
               />
               <label> Early Morning 12am - 6am</label>
@@ -230,28 +296,31 @@ const BusBooking = () => {
             <div className="arrival-checks">
               <input
                 type="checkbox"
+                checked={selectedArrival.includes(2)}
                 onClick={() => {
-                  setDeparture({ $gte: "7:00", $lte: "11:00" });
+                  handleArrival(2);
                 }}
               />
-              <label> Morning 7am - 11 am</label>
+              <label> Morning 6am - 12 pm</label>
             </div>
 
             <div className="arrival-checks">
               <input
                 type="checkbox"
+                checked={selectedArrival.includes(3)}
                 onClick={() => {
-                  setDeparture({ $gte: "12:00", $lte: "17:00" });
+                  handleArrival(3);
                 }}
               />
-              <label> Afternoon 12pm - 5pm</label>
+              <label> Afternoon 12pm - 6pm</label>
             </div>
 
             <div className="arrival-checks">
               <input
                 type="checkbox"
+                checked={selectedArrival.includes(4)}
                 onClick={() => {
-                  setDeparture({ $gte: "18:00", $lte: "12:00" });
+                  handleArrival(4);
                 }}
               />
               <label> Night 6pm - 12am</label>
@@ -265,6 +334,9 @@ const BusBooking = () => {
           setDeparture={setDeparture}
           setArrival={setArrival}
           price={price}
+          priceArr={selectedPrice}
+          departureArr={selectedDeparture}
+          arrivalArr={selectedArrival}
         />
       </div>
     </div>

@@ -31,7 +31,7 @@
   align-items: center;
   /* border: 2px solid red; */
   position: relative;
-  width: 1550px;
+  /* width: 1550px; */
 }
 
 .offercard {
@@ -44,7 +44,7 @@
   flex-shrink: 0;
   transition: transform 0.3s;
   height: 300px;
-  width: 25%;
+  /* width: 25%; */
   /* border: 2px solid red; */
 }
 

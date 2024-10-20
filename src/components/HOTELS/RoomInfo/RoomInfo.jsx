@@ -1,7 +1,7 @@
 import React from "react";
-import "../RoomInfo/Roominfo.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useHotelMainContext } from "../../../Context/Hotels/HotelMainContext";
+import "../RoomInfo/Roominfo.css";
 
 const RoomInfo = () => {
   const location = useLocation();
@@ -19,7 +19,12 @@ const RoomInfo = () => {
     roomImage,
   } = location.state || {};
 
-  function GoPayment() {
+  const formatDate = (date) => {
+    const options = { day: "2-digit", month: "short", year: "numeric" };
+    return date.toLocaleDateString("en-GB", options);
+  };
+
+  const handleGoPayment = () => {
     navigate("/HotelPayment", {
       state: {
         hotel_id,
@@ -28,12 +33,7 @@ const RoomInfo = () => {
         roomPrice,
       },
     });
-  }
-
-  function formatDate(date) {
-    const options = { day: "2-digit", month: "short", year: "numeric" };
-    return date.toLocaleDateString("en-GB", options);
-  }
+  };
 
   return (
     <div className="cross-dip">
@@ -66,16 +66,14 @@ const RoomInfo = () => {
                   </span>
                 </div>
               </div>
+              {/* {roomImage && (
+                <div className="room-image-container">
+                  <img src={roomImage} alt="Room" className="room-image" />
+                </div>
+              )} */}
             </div>
           </div>
         </div>
-
-        {/* Room Image Display */}
-        {roomImage && (
-          <div className="room-image-container">
-            <img src={roomImage} alt="Room" className="room-image" />
-          </div>
-        )}
 
         <div className="travellers-card">
           <h2 className="card-title">Travellers Details</h2>
@@ -93,7 +91,7 @@ const RoomInfo = () => {
         <p>Passenger x {travelers}</p>
         <p>Travel Fare</p>
         <div className="total">₹ {roomPrice}</div>
-        <button className="continue-booking-button" onClick={GoPayment}>
+        <button className="continue-booking-button" onClick={handleGoPayment}>
           Continue Booking
         </button>
       </div>

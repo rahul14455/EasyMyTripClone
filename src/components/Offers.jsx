@@ -3,14 +3,20 @@ import {
   FaRegArrowAltCircleRight,
   FaRegArrowAltCircleLeft,
 } from "react-icons/fa";
-import "./Offers.css";
+// import "./Offers.css";
 import { useOffersContext } from "../Context/OffersContext";
+import { useMediaQuery } from "@mui/material";
 
 const Offers = () => {
   const [offers, setOffers] = useState([]);
   const [scrollPosition, setScrollPosition] = useState(0);
   const offersSectionRef = useRef(null);
   const { type } = useOffersContext();
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    console.log(isSmallScreen);
+  }, [isSmallScreen]);
 
   useEffect(() => {
     const fetchOffers = async () => {
@@ -61,14 +67,21 @@ const Offers = () => {
   };
 
   return (
-    <div className="carousel-container">
+    <div
+      className="carousel-container"
+      style={{ width: isSmallScreen ? "450px" : "1550px" }}
+    >
       <button onClick={handleScrollLeft} disabled={scrollPosition === 0}>
         <FaRegArrowAltCircleLeft />
       </button>
       <div className="offers-section" ref={offersSectionRef}>
         {offers.length > 0 ? (
           offers.map((offer) => (
-            <div className="offercard" key={offer._id}>
+            <div
+              className="offercard"
+              style={{ width: isSmallScreen ? "100%" : "25%" }}
+              key={offer._id}
+            >
               <div className="offer-details">
                 <img src={offer.newHeroUrl} alt={offer.lob} />
                 <div className="offer-type">

@@ -45,7 +45,6 @@ body {
 
 /* Flight details styling */
 .flight,
-.datepicker,
 .travellers {
   flex: 1;
   display: flex;
@@ -53,7 +52,13 @@ body {
   align-items: flex-start;
   padding: 10px;
 }
-
+.flight-datepicker {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
 .label {
   font-size: 14px;
   font-weight: bold;
@@ -71,11 +76,13 @@ h2 {
 }
 
 /* Datepicker styling */
-.date-input {
+.flight-datepicker input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  margin-top: 10px;
+  height: 45.5px;
 }
 
 /* Travellers dropdown styling */

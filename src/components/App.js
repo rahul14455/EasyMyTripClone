@@ -34,7 +34,10 @@ import RoomBooking from "./HOTELS/RoomBooking/RoomBooking";
 import MyBookings from "./NAVBAR/MyBookings";
 import RoomInfo from "./HOTELS/RoomInfo/RoomInfo";
 import HotelPayment from "./HOTELS/HotelPayment/HotelPayment";
+import { useMediaQuery, ThemeProvider, createTheme } from "@mui/material";
+
 function App() {
+  const theme = createTheme(); // Default MUI theme
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -44,130 +47,132 @@ function App() {
   });
   return (
     <QueryClientProvider client={queryClient}>
-      <OfferProvider>
-        <FlightIndiudvalProvider>
-          <FlightsMainProvider>
-            <HotelIndiudvalProvider>
-              <HotelMainProvider>
-                <TrainIndiudvalProvider>
-                  <TrainMainProvider>
-                    <BusIndiudvalProvider>
-                      <BusMainProvider>
-                        <div className="App">
-                          <BrowserRouter>
-                            <ReactQueryDevtools initialIsOpen={false} />
-                            <Routes>
-                              <Route element={<Applayout />}>
-                                <Route path="/" element={<Flights />} />
-                                <Route path="/Hotel" element={<Hotels />} />
-                                <Route path="/Train" element={<Train />} />
-                                <Route path="/Bus" element={<Bus />} />
-                                <Route path="/Login" element={<Login />} />
-                                <Route
-                                  path="/HomePage"
-                                  element={<HomePage />}
-                                />
-                                <Route
-                                  path="/FlightBooking"
-                                  element={<FlightBooking />}
-                                />
+      <ThemeProvider theme={theme}>
+        <OfferProvider>
+          <FlightIndiudvalProvider>
+            <FlightsMainProvider>
+              <HotelIndiudvalProvider>
+                <HotelMainProvider>
+                  <TrainIndiudvalProvider>
+                    <TrainMainProvider>
+                      <BusIndiudvalProvider>
+                        <BusMainProvider>
+                          <div className="App">
+                            <BrowserRouter>
+                              <ReactQueryDevtools initialIsOpen={false} />
+                              <Routes>
+                                <Route element={<Applayout />}>
+                                  <Route path="/" element={<Flights />} />
+                                  <Route path="/Hotel" element={<Hotels />} />
+                                  <Route path="/Train" element={<Train />} />
+                                  <Route path="/Bus" element={<Bus />} />
+                                  <Route path="/Login" element={<Login />} />
+                                  <Route
+                                    path="/HomePage"
+                                    element={<HomePage />}
+                                  />
+                                  <Route
+                                    path="/FlightBooking"
+                                    element={<FlightBooking />}
+                                  />
 
-                                <Route
-                                  path="/FlightPayment"
-                                  element={<FlightPayment />}
-                                />
+                                  <Route
+                                    path="/FlightPayment"
+                                    element={<FlightPayment />}
+                                  />
 
-                                <Route
-                                  path="/HotelBooking"
-                                  element={<HotelBooking />}
-                                />
-                                <Route
-                                  path="/TrainBooking"
-                                  element={<TrainBooking />}
-                                />
-                                <Route
-                                  path="/BusBooking"
-                                  element={<BusBooking />}
-                                />
+                                  <Route
+                                    path="/HotelBooking"
+                                    element={<HotelBooking />}
+                                  />
+                                  <Route
+                                    path="/TrainBooking"
+                                    element={<TrainBooking />}
+                                  />
+                                  <Route
+                                    path="/BusBooking"
+                                    element={<BusBooking />}
+                                  />
 
-                                <Route
-                                  path="/SeatSelection"
-                                  element={<SeatSelection />}
-                                />
+                                  <Route
+                                    path="/SeatSelection"
+                                    element={<SeatSelection />}
+                                  />
 
-                                <Route
-                                  path="/TrainSeatBooking"
-                                  element={<TrainSeatBooking />}
-                                />
+                                  <Route
+                                    path="/TrainSeatBooking"
+                                    element={<TrainSeatBooking />}
+                                  />
 
-                                <Route
-                                  path="/FlightSeatBooking"
-                                  element={<FlightSeatBooking />}
-                                />
+                                  <Route
+                                    path="/FlightSeatBooking"
+                                    element={<FlightSeatBooking />}
+                                  />
 
-                                <Route
-                                  path="/BusRecord"
-                                  element={<BusRecord />}
-                                />
+                                  <Route
+                                    path="/BusRecord"
+                                    element={<BusRecord />}
+                                  />
 
-                                <Route
-                                  path="/BusPayment"
-                                  element={<BusPayment />}
-                                />
+                                  <Route
+                                    path="/BusPayment"
+                                    element={<BusPayment />}
+                                  />
 
-                                <Route
-                                  path="/TrainPayment"
-                                  element={<TrainPayment />}
-                                />
+                                  <Route
+                                    path="/TrainPayment"
+                                    element={<TrainPayment />}
+                                  />
 
-                                <Route
-                                  path="/RoomBooking"
-                                  element={<RoomBooking />}
-                                />
+                                  <Route
+                                    path="/RoomBooking"
+                                    element={<RoomBooking />}
+                                  />
 
-                                <Route
-                                  path="/MyBookings"
-                                  element={<MyBookings />}
-                                />
+                                  <Route
+                                    path="/MyBookings"
+                                    element={<MyBookings />}
+                                  />
 
-                                <Route
-                                  path="/Roominfo"
-                                  element={<RoomInfo />}
-                                />
+                                  <Route
+                                    path="/Roominfo"
+                                    element={<RoomInfo />}
+                                  />
 
-                                <Route
-                                  path="/HotelPayment"
-                                  element={<HotelPayment />}
-                                />
-                              </Route>
-                            </Routes>
-                          </BrowserRouter>
-                        </div>
-                        <Toaster
-                          position="top-center"
-                          gutter={12}
-                          containerStyle={{ margin: "8px" }}
-                          toastOptions={{
-                            success: { duration: 3000 },
-                            error: { duration: 5000 },
-                            style: {
-                              fontSize: "text-base",
-                              maxWidth: "500px",
-                              padding: "16px 24px",
-                              backgroundColor: "rgb(249 250 251)",
-                              color: "rgb(55 65 81)",
-                            },
-                          }}
-                        />
-                      </BusMainProvider>
-                    </BusIndiudvalProvider>
-                  </TrainMainProvider>
-                </TrainIndiudvalProvider>
-              </HotelMainProvider>
-            </HotelIndiudvalProvider>
-          </FlightsMainProvider>
-        </FlightIndiudvalProvider>
-      </OfferProvider>
+                                  <Route
+                                    path="/HotelPayment"
+                                    element={<HotelPayment />}
+                                  />
+                                </Route>
+                              </Routes>
+                            </BrowserRouter>
+                          </div>
+                          <Toaster
+                            position="top-center"
+                            gutter={12}
+                            containerStyle={{ margin: "8px" }}
+                            toastOptions={{
+                              success: { duration: 3000 },
+                              error: { duration: 5000 },
+                              style: {
+                                fontSize: "text-base",
+                                maxWidth: "500px",
+                                padding: "16px 24px",
+                                backgroundColor: "rgb(249 250 251)",
+                                color: "rgb(55 65 81)",
+                              },
+                            }}
+                          />
+                        </BusMainProvider>
+                      </BusIndiudvalProvider>
+                    </TrainMainProvider>
+                  </TrainIndiudvalProvider>
+                </HotelMainProvider>
+              </HotelIndiudvalProvider>
+            </FlightsMainProvider>
+          </FlightIndiudvalProvider>
+        </OfferProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

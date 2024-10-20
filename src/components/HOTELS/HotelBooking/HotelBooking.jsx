@@ -26,6 +26,7 @@ const HotelBooking = () => {
 
   const [rating, setRating] = useState("");
   const [price, setPrice] = useState("");
+
   console.log(checkInDate, checkOutDate);
   const handleChange = (event) => {
     const selectedPrice = event.target.value;
@@ -43,6 +44,30 @@ const HotelBooking = () => {
       document.removeEventListener("click", handleClickOut);
     };
   }, [handleClickOut]);
+
+  const [selectedPrice, setSelectedPrice] = useState([]);
+  const [selectedRating, setSelectedRating] = useState([]);
+  console.log(selectedPrice);
+
+  const handlePrice = (value) => {
+    if (selectedPrice.includes(value)) {
+      // Exclude 1 (remove it from the array)
+      setSelectedPrice(selectedPrice.filter((price) => price !== value));
+    } else {
+      // Include 1 (add it to the array)
+      setSelectedPrice([...selectedPrice, value]);
+    }
+  };
+
+  const handleRating = (value) => {
+    if (selectedRating.includes(value)) {
+      // Exclude 1 (remove it from the array)
+      setSelectedRating(selectedRating.filter((price) => price !== value));
+    } else {
+      // Include 1 (add it to the array)
+      setSelectedRating([...selectedRating, value]);
+    }
+  };
 
   return (
     <div className="hotelbooking-main">
@@ -125,9 +150,10 @@ const HotelBooking = () => {
               <div className="price-checks">
                 <input
                   type="checkbox"
-                  value={0}
+                  value={1}
+                  checked={selectedPrice.includes(1)}
                   onClick={() => {
-                    setPrice({ $lte: "2000" });
+                    handlePrice(1);
                   }}
                 />
                 <label> ₹ Below - ₹ 2000</label>
@@ -138,7 +164,7 @@ const HotelBooking = () => {
                   type="checkbox"
                   value={0}
                   onClick={() => {
-                    setPrice({ $gte: "2001", $lte: "3000" });
+                    handlePrice(2);
                   }}
                 />
                 <label> ₹ 2001 - ₹ 3000</label>
@@ -149,7 +175,7 @@ const HotelBooking = () => {
                   type="checkbox"
                   value={0}
                   onClick={() => {
-                    setPrice({ $gte: "3001", $lte: "5000" });
+                    handlePrice(3);
                   }}
                 />
                 <label> ₹ 3001 - ₹ 5000</label>
@@ -160,7 +186,7 @@ const HotelBooking = () => {
                   type="checkbox"
                   value={0}
                   onClick={() => {
-                    setPrice({ $gte: "5001", $lte: "8000" });
+                    handlePrice(4);
                   }}
                 />
                 <label> ₹ 5001 - ₹ 8000</label>
@@ -171,7 +197,7 @@ const HotelBooking = () => {
                   type="checkbox"
                   value={0}
                   onClick={() => {
-                    setPrice({ $gte: "8000" });
+                    handlePrice(5);
                   }}
                 />
                 <label> ₹ above - ₹ 8000</label>
@@ -182,34 +208,42 @@ const HotelBooking = () => {
                 <h3>User Rating</h3>
               </div>
               <div className="rating-all">
-                <input type="checkbox" value={5} />
-                <label>Excellent: 5</label>
+                <input
+                  type="checkbox"
+                  value={5}
+                  onClick={() => {
+                    handleRating(3);
+                  }}
+                />
+                <label>Excellent: 4.2+</label>
               </div>
 
               <div className="rating-all">
-                <input type="checkbox" value={4.5} />
-                <label>Excellent: 4.5+</label>
+                <input
+                  type="checkbox"
+                  value={4.5}
+                  onClick={() => {
+                    handleRating(2);
+                  }}
+                />
+                <label>Very good: 3.5+</label>
               </div>
 
               <div className="rating-all">
-                <input type="checkbox" value={4} />
-                <label>Excellent: 4+</label>
-              </div>
-
-              <div className="rating-all">
-                <input type="checkbox" value={3.5} />
-                <label>Excellent: 3.5+</label>
-              </div>
-
-              <div className="rating-all">
-                <input type="checkbox" value={3} />
-                <label>Excellent: 3+</label>
+                <input
+                  type="checkbox"
+                  value={4}
+                  onClick={() => {
+                    handleRating(1);
+                  }}
+                />
+                <label>Good: 3+</label>
               </div>
             </div>
           </div>
         </div>
         <div>
-          <HotelRoomCard />
+          <HotelRoomCard priceArr={selectedPrice} ratingArr={selectedRating} />
         </div>
       </div>
     </div>

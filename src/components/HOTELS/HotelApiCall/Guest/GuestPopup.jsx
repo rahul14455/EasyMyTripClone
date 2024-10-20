@@ -6,15 +6,9 @@ const GuestPopup = () => {
     handleDone,
     handleChildrenChange,
     handleAdultsChange,
-    toggleDropdown,
     child,
-    guestsInput,
-    setGuestsInput,
     dropdownOpen,
-    setDropdownOpen,
-    setChild,
     adults,
-    setAdults,
   } = useHotelMainContext();
   return (
     <div>
