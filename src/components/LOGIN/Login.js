@@ -40,6 +40,7 @@ const Login = ({ closeButton, handleToggle, onLoginSuccess }) => {
       }
 
       const data = await response.json();
+
       if (data.token && data.data && data.data.user) {
         localStorage.setItem("token", data.token);
         onLoginSuccess(data.data.user);

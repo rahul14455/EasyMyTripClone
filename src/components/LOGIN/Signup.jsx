@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import "../LOGIN/Signup.css";
-const Signup = ({ handleToggle, closeButton }) => {
+const Signup = ({ handleToggle, closeButton, onLoginSuccess }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -52,6 +52,7 @@ const Signup = ({ handleToggle, closeButton }) => {
           "All-User-Details",
           JSON.stringify(data.data.user)
         );
+        onLoginSuccess(data.data.user);
         closeButton();
         navigate("/");
       } else {
@@ -72,6 +73,7 @@ const Signup = ({ handleToggle, closeButton }) => {
             <IoIosClose className="close" onClick={closeButton} />
           </div>
           <input
+            className="names-input"
             type="text"
             placeholder="Full Name"
             name="name"

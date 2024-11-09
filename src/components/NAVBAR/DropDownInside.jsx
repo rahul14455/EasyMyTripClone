@@ -90,7 +90,11 @@ const DropDownInside = ({ closeDropdown }) => {
         aria-describedby="modal-modal-description"
       >
         {isSignup ? (
-          <Signup handleToggle={handleToggle} closeButton={handleClose} />
+          <Signup
+            handleToggle={handleToggle}
+            closeButton={handleClose}
+            onLoginSuccess={handleLoginSuccess}
+          />
         ) : (
           <Login
             handleToggle={handleToggle}

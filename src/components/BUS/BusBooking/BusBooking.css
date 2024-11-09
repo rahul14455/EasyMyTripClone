@@ -73,11 +73,11 @@ body {
 }
 
 .date-input-bus {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
+  /* width: 100%; */
+  /* padding: 10px; */
+  /* border: 1px solid #ddd; */
   margin-top: 10px;
-  height: 45.5px;
+  /* height: 45.5px; */
 }
 
 /* Search button styling */

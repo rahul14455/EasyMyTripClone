@@ -14,7 +14,6 @@ import FlightDateNoPopup from "./FlightDate/FlightDateNoPopup";
 import FlightDatePopup from "./FlightDate/FlightDatePopup";
 import TravellerClassNoPopup from "./Traveller&Class/TravellerClassNoPopup";
 import TravellerClassPopupOpen from "./Traveller&Class/TravellerClassPopupOpen";
-import OfferComponent from "../OfferComponent";
 import { useNavigate } from "react-router-dom";
 import Offers from "../Offers";
 import toast from "react-hot-toast";
@@ -56,10 +55,6 @@ const Flights = () => {
 
   const navigate = useNavigate();
 
-  function HandleGo() {
-    navigate("/FlightBooking");
-  }
-
   function handleMainSearch() {
     if (fromIndex !== toIndex) {
       const searchParams = new URLSearchParams();
@@ -84,7 +79,6 @@ const Flights = () => {
 
   return (
     <div className="flightMainSection">
-      {/* <p className="caption">Search Lowest Price</p> */}
       <div className="flightSearchSection">
         <div className="flightSelection">
           <div className="flightFrom" onClick={handleFrom} ref={destinaionref}>
@@ -103,8 +97,6 @@ const Flights = () => {
             {isToPopupOpen && <FlightPopup destination="to" />}
           </div>
 
-          {/* Date picker component should be here */}
-
           <div className="flightDate" onClick={handleDeparture} ref={dateref}>
             <span className="flightLabelFTDT">
               <FaCalendarAlt /> DEPARTURE DATE
@@ -113,7 +105,6 @@ const Flights = () => {
             {isDatePopupOpen && <FlightDatePopup />}
           </div>
 
-          {/* Travellers & class dropdown component should be here */}
           <div className="flightTravel" onClick={handleClass} ref={classref}>
             <span className="flightLabelFTDT">TRAVELLERS & CLASS</span>
             {!travellersVisible && <TravellerClassNoPopup />}

@@ -25,6 +25,7 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   gap: 20px;
+  /* flex-wrap: wrap; */
 }
 .flightSearchButton {
   /* border: 3px solid seagreen; */
@@ -190,53 +191,250 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 1200px) {
-  .Booking-main {
-    flex-wrap: wrap;
-    height: auto;
+/* Base styles remain the same until media queries */
+
+/* Large Screens (Desktops) */
+@media screen and (max-width: 1200px) {
+  .flightSelection {
+    width: 90%;
   }
-  .flight-from,
-  .right {
-    width: 100%;
-    max-width: 650px;
+
+  .flightSearchButton {
+    width: 120px;
   }
-  .search-btn {
-    width: 100%;
-    max-width: 650px;
-    border-radius: 10px;
-    margin-top: 10px;
+
+  .center {
+    padding: 0 15px;
+  }
+
+  .sidebar {
+    width: 20%;
   }
 }
 
-@media (max-width: 768px) {
+/* Medium Screens (Tablets) */
+@media screen and (max-width: 992px) {
+  .flightBookingSearchSection {
+    height: auto;
+    padding: 15px;
+  }
+
+  .flightSelection {
+    width: 95%;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .flightFrom,
+  .flightTo,
+  .flightDate,
+  .flightTravel {
+    width: 48%;
+    padding: 10px 5px;
+  }
+
+  .flightSearchButton {
+    height: auto;
+    padding: 15px;
+    width: 95%;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+
   .center {
     flex-direction: column;
+    gap: 20px;
   }
+
   .sidebar {
     width: 100%;
-    margin-left: 0;
-    margin-bottom: 20px;
+    margin: 0;
+    padding: 15px;
   }
+
+  .progrss {
+    margin-top: 15px;
+  }
+
   .filter-icons {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
+
   .sunicon {
-    flex: 1 1 calc(50% - 10px);
-    min-width: 60px;
+    margin-top: 10px;
+    padding: 8px;
   }
 }
 
-@media (max-width: 480px) {
-  .Booking-main {
+/* Small Screens (Mobile) */
+@media screen and (max-width: 768px) {
+  .flightBookingSearchSection {
+    flex-direction: column;
     padding: 10px;
-    gap: 15px;
   }
-  .flight-from,
-  .right {
+  .flightSearchSection {
+    flex-direction: column;
+    height: 600px;
+  }
+  .flightSelection {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .flightFrom,
+  .flightTo,
+  .flightDate,
+  .flightTravel {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding: 8px 5px;
+  }
+
+  .flightLabelFTDT {
+    font-size: 14px;
+  }
+
+  .flightSearchButton {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .sidebar {
+    padding: 12px;
+  }
+
+  .heading p {
+    font-size: 16px;
+  }
+
+  .progrss span,
+  .stops span,
+  .duration span,
+  .departure span {
+    font-size: 14px;
+  }
+
+  .mini p {
+    font-size: 12px;
+  }
+
+  .stops,
+  .duration {
+    gap: 8px;
+  }
+
+  .filter-icons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .sunicon {
+    padding: 6px;
+  }
+
+  .sunicon div span {
+    font-size: 12px;
+  }
+  .flightTravellerMain {
+    width: 45% !important;
+    top: 30px !important;
+  }
+}
+
+/* Extra Small Screens */
+@media screen and (max-width: 480px) {
+  .flightMainSection {
+    gap: 5px;
+  }
+  .flightTravellerMain {
+    width: 45% !important;
+    top: 30px !important;
+  }
+
+  .flightBookingSearchSection {
+    padding: 8px;
+  }
+
+  .flightSelection {
+    padding: 8px;
+  }
+
+  .flightLabelFTDT {
+    font-size: 13px;
+  }
+
+  .progrss {
     height: auto;
-    min-height: 100px;
+    padding: 10px 0;
   }
-  .search-btn {
-    padding: 20px;
+
+  .stops,
+  .duration {
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .filter-icons {
+    grid-template-columns: 1fr;
+  }
+
+  .sunicon {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .sunicon div {
+    text-align: left;
+  }
+
+  /* Improve touch targets for mobile */
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  .non-stop,
+  .one-stop,
+  .two-stop,
+  .one,
+  .two,
+  .three,
+  .four,
+  .five,
+  .six {
+    padding: 5px 0;
+  }
+
+  label {
+    font-size: 14px;
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .flightBookingSearchSection {
+    background-image: none;
+    background-color: #2f80ed;
+  }
+
+  .flightSearchButton {
+    background-color: #ff4433;
   }
 }

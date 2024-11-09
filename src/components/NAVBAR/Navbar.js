@@ -9,10 +9,12 @@ export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [userName, setUserName] = useState("My Account");
   const { handleFilterChange } = useOffersContext();
+  // console.log(localStorage.getItem("All-User-Details"));
 
   useEffect(() => {
     const handleStorageChange = () => {
       const userDetailsString = localStorage.getItem("All-User-Details");
+      console.log(localStorage.getItem("All-User-Details"));
       if (userDetailsString) {
         try {
           const userDetails = JSON.parse(userDetailsString);
