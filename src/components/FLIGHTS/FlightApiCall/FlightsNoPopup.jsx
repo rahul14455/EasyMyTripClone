@@ -27,11 +27,33 @@ const FlightsNoPopup = ({ destination }) => {
     country = toCountry;
   }
   return (
-    <div>
-      <h1>{city}</h1>
-      <span>
-        {iataCode}, {name} {country}
-      </span>
+    <div
+      style={{
+        // border: "2px solid red",
+        padding: "2px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "5px",
+      }}
+    >
+      <h1
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {city}
+      </h1>
+      <div
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        [{iataCode}] {name} {country}
+      </div>
     </div>
   );
 };

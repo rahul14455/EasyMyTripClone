@@ -48,17 +48,19 @@ const FlightPopup = ({ destination, from, setFrom }) => {
     flightListWithCityName(cityName);
   }, [cityName]);
 
+  useEffect(() => {
+    setSearch("");
+  }, [setSearch]);
+
   return (
-    <div
-      className="flight-popup"
-      style={{ left: destination === "to" ? "260px" : "-0px" }}
-    >
-      <div className="searchbox">
-        <CiSearch />
+    <div className="flightPopup">
+      <div className="flightSearchBox">
+        <CiSearch className="flightSearchIcon" />
         <input
+          className="flightSearchInput"
           type="text"
           ref={inputRef}
-          placeholder={`Search ${destination}`}
+          placeholder={` ${destination.toUpperCase()}`}
           value={search}
           onChange={(e) => {
             const value = e.target.value;
@@ -70,7 +72,7 @@ const FlightPopup = ({ destination, from, setFrom }) => {
           }}
         />
       </div>
-      <div className="flight-list">
+      <div className="flightPopupList">
         {/* Display filtered suggestions or full list */}
         {filteredSuggestions?.length > 0 ? (
           filteredSuggestions.map((item, index) => (
@@ -81,9 +83,10 @@ const FlightPopup = ({ destination, from, setFrom }) => {
             />
           ))
         ) : (
-          <div className="no-suggestions">No suggestions found</div>
+          <div className="">No suggestions found</div>
         )}
       </div>
+      <div className="flightDummyClass"></div>
     </div>
   );
 };

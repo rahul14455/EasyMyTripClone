@@ -7,197 +7,92 @@
 body {
   font-family: Arial, sans-serif;
 }
-
-/* Flight main section styling */
-.Flight-MainSection {
-  margin-top: 10px;
-  height: 35vh;
-  max-width: 100%;
+.flightMainSection {
+  /* border: 3px solid red; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.flightSearchSection {
+  /* border: 3px solid orangered; */
   background-color: #2f81ed;
   background-image: linear-gradient(to right, #2f80ed, #56ccf2);
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  padding: 20px;
+  padding: 20px 0px;
+  width: 100%;
+  height: 300px;
 }
-
-.caption {
-  color: white;
-  font-weight: 600;
-  font-size: 24px;
-  margin-bottom: 30px;
-  border: 2px solid red;
-}
-
-/* Flight ticket box styling */
-.Flight-ticket-Box {
-  background-color: white;
+.flightSelection {
+  /* border: 3px solid saddlebrown; */
+  display: flex;
   width: 80%;
-  max-width: 1200px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-}
-
-/* Flight details styling */
-.flight,
-.travellers {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 10px;
-}
-.flight-datepicker {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 10px;
-}
-.label {
-  font-size: 14px;
-  font-weight: bold;
-  color: #999;
-}
-
-h1 {
-  font-size: 24px;
-  margin: 5px 0;
-}
-
-h2 {
-  font-size: 16px;
-  margin: 0;
-}
-
-/* Datepicker styling */
-.flight-datepicker input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-top: 10px;
-  height: 45.5px;
-}
-
-/* Travellers dropdown styling */
-.travellers-dropdown {
-  position: relative;
-  width: 100%;
-}
-
-.travellers-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.travellers-form {
-  position: absolute;
-  width: 240px;
   background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  z-index: 1000;
+  padding: 0px 15px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  gap: 20px;
 }
-
-.travellers-counter {
+.flightSearchButton {
+  /* border: 3px solid seagreen; */
+  height: 90.8px;
+  width: 150px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+}
+.flightFrom,
+.flightTo,
+.flightDate,
+.flightTravel {
+  /* border: 3px solid brown; */
+  width: 25%;
+  padding: 2px;
+}
+.flightLabelFTDT {
+  /* border: 1px solid red; */
+  display: flex;
+  padding: 2px;
+  gap: 10px;
+  cursor: pointer;
+}
+.flightFrom,
+.flightTo,
+.flightDate {
+  border-right: 1px solid lightgrey;
+}
+.flightDate,
+.flightTravel {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
-
-.counter {
+.flightFrom,
+.flightTravel .flightTo {
+  position: relative;
+}
+.offersOption h2 {
+  text-align: center;
+}
+.offersOption ul {
   display: flex;
+  padding: 10px;
+  gap: 40px;
+  justify-content: center;
   align-items: center;
-}
-
-.counter-label {
-  flex: 1;
-}
-
-.counter-button {
-  padding: 5px 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #f0f0f0;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.counter-button:hover {
-  background-color: #e0e0e0;
-}
-
-.counter-value {
-  margin: 0 10px;
-  font-size: 16px;
-}
-
-.travel-class {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.classes-label {
-  font-size: 14px;
   font-weight: bold;
+  font-size: 20px;
 }
-
-.classes-dropdown {
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
+.offerActive {
+  background-color: #abcaeb;
+  border-radius: 5px;
+  border-bottom: 1px solid black;
+  padding: 5px;
   cursor: pointer;
-  font-size: 14px;
-}
-
-.done-button {
-  background-color: #ff6f61;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-.done-button:hover {
-  background-color: #ff5a4a;
-}
-
-.search-button {
-  background-color: #ff6f61;
-  color: white;
-  padding: 63px;
-  border: none;
-  border-radius: 0 10px 10px 0;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-}
-
-.search-button:hover {
-  background-color: #ff5a4a;
-}
-
-.search-container {
-  display: flex;
-  flex: 1;
 }

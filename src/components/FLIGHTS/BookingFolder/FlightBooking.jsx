@@ -9,11 +9,17 @@ import NightlightOutlinedIcon from "@mui/icons-material/NightlightOutlined";
 import WbTwilightOutlinedIcon from "@mui/icons-material/WbTwilightOutlined";
 import FlightTicket from "../FlightTicket/FlightTicket";
 import FlightPopup from "../FlightApiCall/FlightPopup";
-import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
+import {
+  FaCalendarAlt,
+  FaPlaneArrival,
+  FaPlaneDeparture,
+} from "react-icons/fa";
 import TravellerClassNoPopup from "../Traveller&Class/TravellerClassNoPopup";
 import TravellerClassPopupOpen from "../Traveller&Class/TravellerClassPopupOpen";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import FlightDateNoPopup from "../FlightDate/FlightDateNoPopup";
+import FlightDatePopup from "../FlightDate/FlightDatePopup";
 
 const FlightBooking = () => {
   const [searchparams] = useSearchParams();
@@ -51,6 +57,13 @@ const FlightBooking = () => {
     setToIndex,
     setFromIndex,
     setSelectedDate,
+    isDatePopupOpen,
+    handleClickOutside,
+    handleDeparture,
+    handleClass,
+    dateref,
+    classref,
+    handleMainSearch,
   } = useFlightsMainContext();
 
   console.log(day);
@@ -98,299 +111,260 @@ const FlightBooking = () => {
 
   return (
     <div>
-      <div className="Booking-main">
-        <div className="flight-from">
-          <div>
+      <div className="flightMainSection">
+        {/* <p className="caption">Search Lowest Price</p> */}
+        <div className="flightBookingSearchSection">
+          <div className="flightSelection">
             <div
-              className="flight from"
+              className="flightFrom"
               onClick={handleFrom}
               ref={destinaionref}
             >
-              <span className="label">
+              <span className="flightLabelFTDT">
                 <FaPlaneDeparture /> FROM
               </span>
               {!isFromPopupOpen && <FlightsNoPopup destination="from" />}
-              {isFromPopupOpen && (
-                <div
-                  className="flight-popup"
-                  style={{
-                    position: "absolute",
-                    maxWidth: "400px",
-                    zIndex: 10,
-                    backgroundColor: "white",
-                    border: "1px solid #ced4da",
-                    borderRadius: "4px",
-                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-                    padding: "10px",
-                    top: "40px",
-                    left: "10px",
-                  }}
-                >
-                  <FlightPopup destination="from" />
-                </div>
-              )}
+              {isFromPopupOpen && <FlightPopup destination="from" />}
             </div>
-          </div>
-          <div>
-            <div className="flight to" onClick={handleTo} ref={toref}>
-              <span className="label">
+
+            <div className="flightTo" onClick={handleTo} ref={toref}>
+              <span className="flightLabelFTDT">
                 <FaPlaneArrival /> TO
               </span>
               {!isToPopupOpen && <FlightsNoPopup destination="to" />}
-              {isToPopupOpen && (
-                <div
-                  style={{
-                    position: "absolute",
-                    maxWidth: "400px",
-                    zIndex: 10,
-                    backgroundColor: "white",
-                    border: "1px solid #ced4da",
-                    borderRadius: "4px",
-                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-                    padding: "10px",
-                    top: "40px",
-                    left: "130px",
-                  }}
-                >
-                  <FlightPopup destination="to" />
-                </div>
-              )}
+              {isToPopupOpen && <FlightPopup destination="to" />}
             </div>
-          </div>
-        </div>
-        <div className="right">
-          <div className="date-picker">
-            <ReactDatePicker
-              selected={selectedDate}
-              onChange={handleDateChange}
-              className="date-input"
-              dateFormat="dd/MM/yyyy"
-              placeholderText="Select a date"
-            />
-          </div>
-          {selectedDate && <span>{dayOfWeek}</span>}
 
-          <div className="traveller">
-            <div className="travellers">
-              <span className="label">TRAVELLERS & CLASS</span>
+            {/* Date picker component should be here */}
+
+            <div className="flightDate" onClick={handleDeparture} ref={dateref}>
+              <span className="flightLabelFTDT">
+                <FaCalendarAlt /> DEPARTURE DATE
+              </span>
+              {!isDatePopupOpen && <FlightDateNoPopup />}
+              {isDatePopupOpen && <FlightDatePopup />}
+            </div>
+
+            {/* Travellers & class dropdown component should be here */}
+            <div className="flightTravel" onClick={handleClass} ref={classref}>
+              <span className="flightLabelFTDT">TRAVELLERS & CLASS</span>
               {!travellersVisible && <TravellerClassNoPopup />}
               {travellersVisible && <TravellerClassPopupOpen />}
             </div>
           </div>
-          {/* <span>{travelClass}</span> */}
+          <button className="flightSearchButton" onClick={handlesubSearch}>
+            SEARCH
+          </button>
         </div>
-        <button className="search-btn" onClick={handlesubSearch}>
-          SEARCH
-        </button>
-      </div>
-      <div className="center">
-        <div className="sidebar">
-          <div className="heading">
-            <p>FILTER</p>
-          </div>
-          <div className="progrss">
-            <span>One Way Price: ₹{price}</span>
-            <input
-              type="range"
-              id="slider"
-              name="slider"
-              min="0"
-              max="2500"
-              value={price}
-              onChange={handleChange}
-            />
-            <div className="mini">
-              <p>Min: ₹0</p>
-              <p>Max: ₹2500</p>
+        <div className="center">
+          <div className="sidebar">
+            <div className="heading">
+              <p>FILTER</p>
             </div>
-          </div>
-
-          <div className="stops">
-            <span>Stops From {fromCity}</span>
-            <div className="non-stop">
+            <div className="progrss">
+              <span>One Way Price: ₹{price}</span>
               <input
-                type="checkbox"
-                value="0"
-                checked={selectedStop === "0"}
-                onChange={(e) => {
-                  setSelectedStop("0");
-                }}
+                type="range"
+                id="slider"
+                name="slider"
+                min="0"
+                max="2500"
+                value={price}
+                onChange={handleChange}
               />
-              <label> Non Stop</label>
+              <div className="mini">
+                <p>Min: ₹0</p>
+                <p>Max: ₹2500</p>
+              </div>
             </div>
 
-            <div className="one-stop">
-              <input
-                type="checkbox"
-                value="1"
-                checked={selectedStop === "1"}
-                onChange={(e) => {
-                  setSelectedStop("1");
-                }}
-              />
-              <label> 1 Stop</label>
-            </div>
-
-            <div className="two-stop">
-              <input
-                type="checkbox"
-                value="2"
-                checked={selectedStop === "2"}
-                onChange={(e) => {
-                  setSelectedStop("2");
-                }}
-              />
-              <label> 2 Stop</label>
-            </div>
-          </div>
-
-          <div className="duration">
-            <span>Duration</span>
-            <div className="one">
-              <input
-                type="checkbox"
-                value="1"
-                checked={selectedDuration === "1"}
-                onChange={(e) => {
-                  setSelectedDuration("1");
-                }}
-              />
-              <label>1 Hour</label>
-            </div>
-
-            <div className="two">
-              <input
-                type="checkbox"
-                value="2"
-                checked={selectedDuration === "2"}
-                onChange={(e) => {
-                  setSelectedDuration("2");
-                }}
-              />
-              <label>2 Hour</label>
-            </div>
-
-            <div className="three">
-              <input
-                type="checkbox"
-                value="3"
-                checked={selectedDuration === "3"}
-                onChange={(e) => {
-                  setSelectedDuration("3");
-                }}
-              />
-              <label>3 Hour</label>
-            </div>
-
-            <div className="four">
-              <input
-                type="checkbox"
-                value="4"
-                checked={selectedDuration === "4"}
-                onChange={(e) => {
-                  setSelectedDuration("4");
-                }}
-              />
-              <label>4 Hour</label>
-            </div>
-
-            <div className="five">
-              <input
-                type="checkbox"
-                value="5"
-                checked={selectedDuration === "5"}
-                onChange={(e) => {
-                  setSelectedDuration("5");
-                }}
-              />
-              <label>5 Hour</label>
-            </div>
-
-            <div className="six">
-              <input
-                type="checkbox"
-                checked={selectedDuration === "6"}
-                value="6"
-                onChange={(e) => {
-                  setSelectedDuration("6");
-                }}
-              />
-              <label>6 Hour</label>
-            </div>
-          </div>
-
-          <div className="departure">
-            <span>Departure From {fromCity}</span>
-            <div className="filter-icons">
-              <div
-                className="sunicon"
-                onClick={() => {
-                  setSelectedDeparture({ $gte: "6:00" });
-                }}
-              >
-                <LandscapeIcon />
-                <div>
-                  <span>Before</span>
-                  <br />
-                  <span>6 AM</span>
-                </div>
+            <div className="stops">
+              <span>Stops From {fromCity}</span>
+              <div className="non-stop">
+                <input
+                  type="checkbox"
+                  value="0"
+                  checked={selectedStop === "0"}
+                  onChange={(e) => {
+                    setSelectedStop("0");
+                  }}
+                />
+                <label> Non Stop</label>
               </div>
 
-              <div
-                className="sunicon"
-                onClick={() => {
-                  setSelectedDeparture({ $gte: "6:00", $lte: "12:00" });
-                }}
-              >
-                <LightModeIcon />
-                <div>
-                  <span>6 AM-</span>
-                  <br />
-                  <span>12 PM</span>
-                </div>
+              <div className="one-stop">
+                <input
+                  type="checkbox"
+                  value="1"
+                  checked={selectedStop === "1"}
+                  onChange={(e) => {
+                    setSelectedStop("1");
+                  }}
+                />
+                <label> 1 Stop</label>
               </div>
 
-              <div
-                className="sunicon"
-                onClick={() => {
-                  setSelectedDeparture({ $gte: "12:00", $lte: "18:00" });
-                }}
-              >
-                <WbTwilightOutlinedIcon />
-                <div>
-                  <span>12PM-</span>
-                  <br />
-                  <span>6 PM</span>
-                </div>
+              <div className="two-stop">
+                <input
+                  type="checkbox"
+                  value="2"
+                  checked={selectedStop === "2"}
+                  onChange={(e) => {
+                    setSelectedStop("2");
+                  }}
+                />
+                <label> 2 Stop</label>
+              </div>
+            </div>
+
+            <div className="duration">
+              <span>Duration</span>
+              <div className="one">
+                <input
+                  type="checkbox"
+                  value="1"
+                  checked={selectedDuration === "1"}
+                  onChange={(e) => {
+                    setSelectedDuration("1");
+                  }}
+                />
+                <label>1 Hour</label>
               </div>
 
-              <div
-                className="sunicon"
-                onClick={() => {
-                  setSelectedDeparture({ $gte: "18:00" });
-                }}
-              >
-                <NightlightOutlinedIcon />
-                <div>
-                  <span>After</span>
-                  <br />
-                  <span>6 PM</span>
+              <div className="two">
+                <input
+                  type="checkbox"
+                  value="2"
+                  checked={selectedDuration === "2"}
+                  onChange={(e) => {
+                    setSelectedDuration("2");
+                  }}
+                />
+                <label>2 Hour</label>
+              </div>
+
+              <div className="three">
+                <input
+                  type="checkbox"
+                  value="3"
+                  checked={selectedDuration === "3"}
+                  onChange={(e) => {
+                    setSelectedDuration("3");
+                  }}
+                />
+                <label>3 Hour</label>
+              </div>
+
+              <div className="four">
+                <input
+                  type="checkbox"
+                  value="4"
+                  checked={selectedDuration === "4"}
+                  onChange={(e) => {
+                    setSelectedDuration("4");
+                  }}
+                />
+                <label>4 Hour</label>
+              </div>
+
+              <div className="five">
+                <input
+                  type="checkbox"
+                  value="5"
+                  checked={selectedDuration === "5"}
+                  onChange={(e) => {
+                    setSelectedDuration("5");
+                  }}
+                />
+                <label>5 Hour</label>
+              </div>
+
+              <div className="six">
+                <input
+                  type="checkbox"
+                  checked={selectedDuration === "6"}
+                  value="6"
+                  onChange={(e) => {
+                    setSelectedDuration("6");
+                  }}
+                />
+                <label>6 Hour</label>
+              </div>
+            </div>
+
+            <div className="departure">
+              <span>Departure From {fromCity}</span>
+              <div className="filter-icons">
+                <div
+                  className="sunicon"
+                  onClick={() => {
+                    setSelectedDeparture({ $gte: "6:00" });
+                  }}
+                >
+                  <LandscapeIcon />
+                  <div>
+                    <span>Before</span>
+                    <br />
+                    <span>6 AM</span>
+                  </div>
+                </div>
+
+                <div
+                  className="sunicon"
+                  onClick={() => {
+                    setSelectedDeparture({ $gte: "6:00", $lte: "12:00" });
+                  }}
+                >
+                  <LightModeIcon />
+                  <div>
+                    <span>6 AM-</span>
+                    <br />
+                    <span>12 PM</span>
+                  </div>
+                </div>
+
+                <div
+                  className="sunicon"
+                  onClick={() => {
+                    setSelectedDeparture({ $gte: "12:00", $lte: "18:00" });
+                  }}
+                >
+                  <WbTwilightOutlinedIcon />
+                  <div>
+                    <span>12PM-</span>
+                    <br />
+                    <span>6 PM</span>
+                  </div>
+                </div>
+
+                <div
+                  className="sunicon"
+                  onClick={() => {
+                    setSelectedDeparture({ $gte: "18:00" });
+                  }}
+                >
+                  <NightlightOutlinedIcon />
+                  <div>
+                    <span>After</span>
+                    <br />
+                    <span>6 PM</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <FlightTicket
+            source={source}
+            destination={destination}
+            weekday={selectday}
+            selectedDuration={selectedDuration}
+            selectDeparture={selectDeparture}
+            selectedStop={selectedStop}
+            price={price}
+            date={`${day}/${month}/${year}`}
+          />
         </div>
-
-        <FlightTicket
-          source={source}
-          destination={destination}
-          weekday={selectday}
-          selectedDuration={selectedDuration}
-          selectDeparture={selectDeparture}
-          selectedStop={selectedStop}
-          price={price}
-          date={`${day}/${month}/${year}`}
-        />
       </div>
     </div>
   );

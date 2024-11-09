@@ -16,18 +16,17 @@ export const flightList = async () => {
 };
 
 export const flightListWithCityName = async (cityName) => {
+  console.log(cityName);
   if (!cityName) {
     return flightList();
   }
   const city = { city: cityName };
   try {
     const response = await fetch(
-      `${url}/airport?search={"city":"${JSON.stringify(city)}"}`,
+      `${url}/airport?search={${JSON.stringify(city)}}`,
       {
-        method: "GET",
         headers: {
           projectID: { projectID },
-          authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );

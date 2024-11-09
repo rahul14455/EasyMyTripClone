@@ -1,20 +1,18 @@
 import React from "react";
 import { useFlightsMainContext } from "../../../Context/Flights/FlightsMainContext";
-import ReactDatePicker from "react-datepicker";
 import "../FlightDate/FlightDate.css";
+import { FaCalendarAlt } from "react-icons/fa";
 
 const FlightDateNoPopup = () => {
-  const { handleDateChange, dayOfWeek, selectedDate } = useFlightsMainContext();
+  const { weekday, year, month, day } = useFlightsMainContext();
   return (
-    <div>
-      <ReactDatePicker
-        selected={selectedDate}
-        onChange={handleDateChange}
-        className="date-input"
-        dateFormat="dd/MM/yyyy"
-        placeholderText="Select a date"
-      />
-      {selectedDate && <span>{dayOfWeek}</span>}
+    <div className="flightDateNP">
+      <div>
+        <span className="flightDateNPDay">{day}</span> {month}'{year}
+        {"  "}
+        <FaCalendarAlt />
+      </div>
+      <div>{weekday}</div>
     </div>
   );
 };

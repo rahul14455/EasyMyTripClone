@@ -7,16 +7,16 @@ const FlightPopupList = ({ destination, item }) => {
 
   return (
     <div
-      className="popup-list-item"
+      className="flightPopupListItem"
       onClick={(e) => chooseCity(item.city, e, destination)}
     >
-      <div className="flight-info">
-        <PiAirplaneTakeoff className="airplane-icon" />
-        <p className="city-country">
+      <div className="flightPopupInfo">
+        <PiAirplaneTakeoff className="" />
+        <p className="">
           {item.city}, {item.country}
         </p>
       </div>
-      <div className="iata-code">{item.iata_code}</div>
+      <div className="">{item.iata_code}</div>
     </div>
   );
 };

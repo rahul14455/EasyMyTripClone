@@ -13,82 +13,48 @@ const TravellerClassPopupOpen = () => {
     handleInfantsChange,
     handleTravelClassChange,
     handleDone,
-    travellersVisible,
   } = useFlightsMainContext();
   return (
-    <div style={{ position: "relative" }}>
-      {travellersVisible && (
-        <div className="travellers-form">
-          <div className="travellers-counter">
-            <div className="counter">
-              <div className="counter-label">Adults:</div>
-              <div
-                className="counter-button"
-                onClick={() => handleAdultsChange(-1)}
-              >
-                -
-              </div>
-
-              <div className="counter-value">{adults}</div>
-
-              <div
-                className="counter-button"
-                onClick={() => handleAdultsChange(1)}
-              >
-                +
-              </div>
-            </div>
-
-            <div className="counter">
-              <div className="counter-label">Children:</div>
-              <div
-                className="counter-button"
-                onClick={() => handleChildrenChange(-1)}
-              >
-                -
-              </div>
-              <div className="counter-value">{child}</div>
-              <div
-                className="counter-button"
-                onClick={() => handleChildrenChange(1)}
-              >
-                +
-              </div>
-            </div>
-            <div className="counter">
-              <div className="counter-label">Infants:</div>
-              <div
-                className="counter-button"
-                onClick={() => handleInfantsChange(-1)}
-              >
-                -
-              </div>
-              <div className="counter-value">{infants}</div>
-              <div
-                className="counter-button"
-                onClick={() => handleInfantsChange(1)}
-              >
-                +
-              </div>
-            </div>
-            <div className="travel-classes">
-              <span className="classes-label">Class:</span>
-              <select
-                className="classes-dropdown"
-                value={travelClass}
-                onChange={handleTravelClassChange}
-              >
-                <option value="Economy">Economy</option>
-                <option value="Business">Business</option>
-                <option value="First">First</option>
-              </select>
-            </div>
-            <button className="done-button" onClick={handleDone}>
-              Done
-            </button>
-          </div>
+    <div className="flightTravellerMain">
+      <div className="flightPassengers">
+        <div className="flightPassengerTitle">Adults: </div>
+        <div className="flightPassengerCount">
+          <div onClick={() => handleAdultsChange(-1)}>-</div>
+          <div>{adults}</div>
+          <div onClick={() => handleAdultsChange(1)}>+</div>
         </div>
-      )}
+      </div>
+      <div className="flightPassengers">
+        <div className="flightPassengerTitle">Childs: </div>
+        <div className="flightPassengerCount">
+          <div onClick={() => handleChildrenChange(-1)}>-</div>
+          <div>{child}</div>
+          <div onClick={() => handleChildrenChange(1)}>+</div>
+        </div>
+      </div>
+      <div className="flightPassengers">
+        <div className="flightPassengerTitle">Infants: </div>
+        <div className="flightPassengerCount">
+          <div onClick={() => handleInfantsChange(-1)}>-</div>
+          <div>{infants}</div>
+          <div onClick={() => handleInfantsChange(1)}>+</div>
+        </div>
+      </div>
+      <div className="flightPassengers">
+        <span className="flightPassengerTitle">Class:</span>
+        <select
+          className="flightPassengerDropDown"
+          value={travelClass}
+          onChange={handleTravelClassChange}
+        >
+          <option value="Economy">Economy</option>
+          <option value="Business">Business</option>
+          <option value="First">First</option>
+        </select>
+      </div>
+      <div className="flightDoneButton" onClick={handleDone}>
+        Done
+      </div>
     </div>
   );
 };

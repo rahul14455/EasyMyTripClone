@@ -1,90 +1,63 @@
-.flight-popup {
+.flightPopup {
+  /* border: 3px solid red; */
   position: absolute;
-  width: 290px;
-  z-index: 10;
+  width: 280px;
   background-color: white;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  top: 138px;
-  left: 168px;
+  padding: 8px;
+  z-index: 10;
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
 }
-
-.searchbox {
+.flightSearchBox {
+  /* border: 3px solid red; */
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  max-width: 400px;
-  margin: 0 auto;
+  justify-content: space-evenly;
+  padding: 5px 0;
+  gap: 5px;
+  border-bottom: 0.25px solid grey;
 }
-
-.searchbox svg {
-  margin-right: 10px;
-  color: #007bff;
-}
-
-.searchbox input[type="text"] {
+.flightSearchInput {
+  /* border: 3px solid red; */
   padding: 8px;
   font-size: 14px;
-  border: 1px solid #ced4da;
   border-radius: 4px;
-  flex: 1;
   outline: none;
   transition: border-color 0.15s ease-in-out;
+  border: 0.25px solid lightgray;
+  width: 100%;
 }
-
-.searchbox input[type="text"]:focus {
-  border-color: #007bff;
+.flightSearchIcon {
+  margin-right: 10px;
+  fill: black;
+  font-size: 28px;
+  font-style: bold;
 }
-
-.hotel-list {
-  margin-top: 10px;
-  max-width: 400px;
-  margin: 0 auto;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  background-color: #fff;
-  max-height: 300px;
-  overflow-y: auto;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.popup-list-item {
-  cursor: pointer;
-  padding: 10px;
-  border-bottom: 1px solid #ced4da;
+.flightPopupList {
+  padding: 5px;
   display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 250px;
+  overflow-y: scroll;
+  width: 100%;
+}
+.flightDummyClass {
+  padding: 4px;
+}
+.flightPopupListItem {
+  /* border: 3px solid red; */
+  display: flex;
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #ced4da;
   justify-content: space-between;
   align-items: center;
   transition: background-color 0.3s ease;
 }
-
-.popup-list-item:last-child {
-  border-bottom: none;
-}
-
-.popup-list-item:hover {
-  background-color: #f0f0f0;
-}
-
-.popup-list-item .hotel-info {
+.flightPopupInfo {
   display: flex;
+  gap: 10px;
+  justify-content: center;
   align-items: center;
-}
-
-.popup-list-item .hotel-info svg {
-  margin-right: 8px;
-  color: #007bff;
-}
-
-.popup-list-item .hotel-info p {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.popup-list-item .iata-code {
-  font-size: 14px;
-  color: #666;
 }

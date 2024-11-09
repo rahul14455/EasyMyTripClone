@@ -1,177 +1,47 @@
-.popup-list-item {
+.flightTravellerMain {
+  position: absolute;
+  background-color: white;
+  width: 18%;
+  top: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+  gap: 5px;
+  border-radius: 5px;
+  z-index: 1;
+}
+.flightPassengers {
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-bottom: 1px solid #e0e0e0;
 }
 
-.popup-list-item:last-child {
-  border-bottom: none;
+.flightPassengerTitle {
+  font-weight: 600;
 }
 
-.popup-list-item:hover {
-  background-color: #f5f5f5;
-}
-
-.flight-info {
+.flightPassengerCount {
   display: flex;
+  gap: 10px;
+  justify-content: center;
   align-items: center;
-  gap: 12px;
 }
-
-.airplane-icon {
-  font-size: 1.2rem;
-  color: #2f80ed;
-}
-
-.city-country {
-  font-size: 14px;
-  margin: 0;
-  color: #333;
-}
-
-.iata-code {
-  font-size: 14px;
+.flightPassengerDropDown {
+  padding: 5px;
+  border-radius: 5px;
+  outline: none;
+  font-size: 15px;
   font-weight: bold;
-  color: #666;
-  background-color: #f0f0f0;
-  padding: 4px 8px;
-  border-radius: 4px;
 }
-
-/* Responsive styles */
-/* ... (keep all existing styles up to the media queries) ... */
-
-/* Responsive styles */
-@media screen and (max-width: 768px) {
-  /* ... (keep existing styles for 768px) ... */
+.flightPassengerDropDown option {
+  font-weight: bolder;
 }
-
-@media screen and (max-width: 482px) {
-  .travellers-form {
-    padding: 10px;
-  }
-
-  .travellers-counter {
-    gap: 8px;
-  }
-
-  .counter {
-    flex-wrap: nowrap;
-  }
-
-  .counter-label {
-    font-size: 13px;
-    width: 60px;
-    flex-shrink: 0;
-  }
-
-  .counter-button {
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
-  }
-
-  .counter-value {
-    width: 28px;
-    font-size: 14px;
-  }
-
-  .travel-classes {
-    flex-wrap: nowrap;
-  }
-
-  .classes-label {
-    font-size: 13px;
-    width: 60px;
-    flex-shrink: 0;
-  }
-
-  .classes-dropdown {
-    font-size: 13px;
-    padding: 6px;
-    flex-grow: 1;
-  }
-
-  .done-button {
-    padding: 8px;
-    font-size: 14px;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .travellers-form {
-    padding: 8px;
-  }
-
-  .travellers-counter {
-    gap: 6px;
-  }
-
-  .counter-label,
-  .classes-label {
-    width: 50px;
-    font-size: 12px;
-  }
-
-  .counter-button {
-    width: 26px;
-    height: 26px;
-    font-size: 14px;
-  }
-
-  .counter-value {
-    width: 26px;
-    font-size: 13px;
-  }
-
-  .classes-dropdown {
-    font-size: 12px;
-    padding: 5px;
-  }
-
-  .done-button {
-    padding: 7px;
-    font-size: 13px;
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .travellers-form {
-    padding: 6px;
-  }
-
-  .travellers-counter {
-    gap: 5px;
-  }
-
-  .counter-label,
-  .classes-label {
-    width: 45px;
-    font-size: 11px;
-  }
-
-  .counter-button {
-    width: 24px;
-    height: 24px;
-    font-size: 13px;
-  }
-
-  .counter-value {
-    width: 24px;
-    font-size: 12px;
-  }
-
-  .classes-dropdown {
-    font-size: 11px;
-    padding: 4px;
-  }
-
-  .done-button {
-    padding: 6px;
-    font-size: 12px;
-  }
+.flightDoneButton {
+  padding: 6px;
+  font-size: 15px;
+  background-color: #ff6f61;
+  color: white;
+  text-align: center;
 }

@@ -1,25 +1,10 @@
-/* Styling for the date input */
-.date-input {
-  width: 100%;
-  max-width: 400px;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  outline: none;
-  transition: border-color 0.15s ease-in-out;
+.flightDateNP {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
-
-.date-input:focus {
-  border-color: #007bff;
-}
-
-/* Styling for the day of the week display */
-span {
-  display: block;
-  margin-top: 10px;
-  font-size: 1rem;
-  color: #666;
-  text-align: center;
+.flightDateNPDay {
+  font-weight: 700;
+  font-size: 32px;
 }

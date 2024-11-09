@@ -1,21 +1,27 @@
 import React from "react";
 import { useFlightsMainContext } from "../../../Context/Flights/FlightsMainContext";
+import { BiDownArrow } from "react-icons/bi";
 
 const TravellerClassNoPopup = () => {
-  const { travellersText, setTravellersVisible, travelClass } =
-    useFlightsMainContext();
+  const { travelClass, totalTravellers } = useFlightsMainContext();
   return (
-    <span>
-      <input
-        type="text"
-        className="travellers-input"
-        placeholder="Travellers"
-        value={travellersText}
-        onClick={() => setTravellersVisible((prev) => !prev)}
-        readOnly
-      />
-      <span>{travelClass}</span>
-    </span>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "5px",
+        justifyContent: "center",
+      }}
+    >
+      <div>
+        <span style={{ fontWeight: "700", fontSize: "32px" }}>
+          {totalTravellers}
+        </span>{" "}
+        Traveller
+        {totalTravellers !== 1 ? "s" : ""} <BiDownArrow />
+      </div>
+      <div>{travelClass}</div>
+    </div>
   );
 };
 

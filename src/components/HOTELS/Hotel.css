@@ -35,7 +35,6 @@ body {
   background-color: white;
   width: 80%;
   max-width: 1200px;
-  /* border-radius: 10px; */
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -46,9 +45,8 @@ body {
 .hsearch {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* Align items to the top */
+  align-items: flex-start;
   width: 100%;
-  /* gap: 20px; */
 }
 
 /* Destination input styling */
@@ -68,7 +66,7 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
-  cursor: pointer; /* Make label clickable */
+  cursor: pointer;
 }
 
 /* Input fields styling */
@@ -77,7 +75,6 @@ body {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
-  /* border-radius: 4px; */
 }
 
 /* Datepicker container styling */
@@ -91,78 +88,12 @@ body {
 
 /* Guests section styling */
 .guests {
-  flex: 1; /* Ensure equal height with other sections */
-  position: relative; /* Ensure relative positioning for absolute dropdown */
+  flex: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 10px;
-}
-
-/* Dropdown form styling */
-.dropdown-form {
-  position: absolute;
-  top: calc(
-    100% + 10px
-  ); /* Position below the guests section with additional spacing */
-  left: 0;
-  width: 100%;
-  background-color: white;
-  /* border-radius: 4px; */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  z-index: 1000; /* Ensure dropdown appears above other content */
-}
-
-/* Guests dropdown container styling */
-.guests-control {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px; /* Spacing between controls */
-}
-
-/* Label for dropdown styling */
-.guests-control label {
-  margin-right: 10px;
-}
-
-/* Counter container styling */
-.counter {
-  display: flex;
-  align-items: center;
-}
-
-/* Counter button styling */
-.counter-button {
-  background-color: #eee;
-  color: #333;
-  border: none;
-  padding: 5px;
-  cursor: pointer;
-}
-
-/* Counter value styling */
-.counter-value {
-  margin: 0 10px;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-/* Done button styling */
-.done-button {
-  background-color: #ff6f61;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  /* border-radius: 4px; */
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 10px; /* Add spacing above the button */
-}
-
-.done-button:hover {
-  background-color: #ff5a4a;
 }
 
 /* Guests input styling */
@@ -170,24 +101,103 @@ body {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
-  /* border-radius: 4px; */
   font-size: 16px;
   margin-bottom: 10px;
 }
 
 .guests-input:focus {
-  outline: none; /* Remove outline on focus */
-  border-color: #2f81ed; /* Change border color on focus */
+  outline: none;
+  border-color: #2f81ed;
 }
+
+/* Search button styling */
 .search-button-hotel {
   background-color: #ff6f61;
   color: white;
   padding: 11px 21px;
   border: none;
-  /* border-radius: 4px; */
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
   align-self: flex-end;
   margin-bottom: 23px;
+}
+
+.search-button-hotel:hover {
+  background-color: #ff5a4a;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1024px) {
+  .hsearch {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .destination,
+  .datepicker,
+  .guests {
+    width: 100%;
+    padding: 10px 0;
+    align-items: center;
+  }
+
+  .search-button-hotel {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .Hotel-search-Box {
+    width: 90%;
+  }
+
+  .caption-hotel {
+    font-size: 20px;
+  }
+
+  .search-button-hotel {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .Hotel-MainSection {
+    height: auto;
+    padding: 15px;
+  }
+
+  .caption-hotel {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .Hotel-search-Box {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .hsearch {
+    flex-direction: column;
+  }
+
+  .destination,
+  .datepicker,
+  .guests {
+    width: 100%;
+    padding: 5px 0;
+    align-items: center;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .search-button-hotel {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
 }

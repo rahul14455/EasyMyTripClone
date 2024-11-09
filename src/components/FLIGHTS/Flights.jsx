@@ -20,44 +20,40 @@ import Offers from "../Offers";
 import toast from "react-hot-toast";
 
 const Flights = () => {
-  const { handleFilterChange } = useOffersContext();
+  const { handleFilterChange, type } = useOffersContext();
   const {
     isFromPopupOpen,
     isToPopupOpen,
-    handleFrom,
-    handleTo,
-    handleClickOut,
-    destinaionref,
-    toHandleClickout,
-    toref,
     isDatePopupOpen,
     travellersVisible,
-    toIndex,
-    toIata_Code,
-    fromIata_Code,
     fromIndex,
-    travellersText,
+    toIndex,
     travelClass,
-    number,
-    day,
+    destinaionref,
+    toref,
     year,
     month,
     weekday,
+    day,
+    number,
+    fromIata_Code,
+    toIata_Code,
+    handleTo,
+    handleClickOutside,
+    handleFrom,
+    handleDeparture,
+    handleClass,
+    dateref,
+    classref,
   } = useFlightsMainContext();
 
   useEffect(() => {
-    document.addEventListener("click", handleClickOut);
+    document.addEventListener("click", handleClickOutside);
     return () => {
-      document.removeEventListener("click", handleClickOut);
+      document.removeEventListener("click", handleClickOutside);
     };
-  }, [handleClickOut]);
+  }, [handleClickOutside]);
 
-  useEffect(() => {
-    document.addEventListener("click", toHandleClickout);
-    return () => {
-      document.removeEventListener("click", toHandleClickout);
-    };
-  }, [toHandleClickout]);
   const navigate = useNavigate();
 
   function HandleGo() {
@@ -87,20 +83,20 @@ const Flights = () => {
   }
 
   return (
-    <div className="Flight-MainSection">
+    <div className="flightMainSection">
       {/* <p className="caption">Search Lowest Price</p> */}
-      <div className="Flight-ticket-Box">
-        <div className="search-container">
-          <div className="flight from" onClick={handleFrom} ref={destinaionref}>
-            <span className="label">
+      <div className="flightSearchSection">
+        <div className="flightSelection">
+          <div className="flightFrom" onClick={handleFrom} ref={destinaionref}>
+            <span className="flightLabelFTDT">
               <FaPlaneDeparture /> FROM
             </span>
             {!isFromPopupOpen && <FlightsNoPopup destination="from" />}
             {isFromPopupOpen && <FlightPopup destination="from" />}
           </div>
 
-          <div className="flight to" onClick={handleTo} ref={toref}>
-            <span className="label">
+          <div className="flightTo" onClick={handleTo} ref={toref}>
+            <span className="flightLabelFTDT">
               <FaPlaneArrival /> TO
             </span>
             {!isToPopupOpen && <FlightsNoPopup destination="to" />}
@@ -109,8 +105,8 @@ const Flights = () => {
 
           {/* Date picker component should be here */}
 
-          <div className="flight-datepicker">
-            <span className="label">
+          <div className="flightDate" onClick={handleDeparture} ref={dateref}>
+            <span className="flightLabelFTDT">
               <FaCalendarAlt /> DEPARTURE DATE
             </span>
             {!isDatePopupOpen && <FlightDateNoPopup />}
@@ -118,26 +114,46 @@ const Flights = () => {
           </div>
 
           {/* Travellers & class dropdown component should be here */}
-          <div className="travellers">
-            <span className="label">TRAVELLERS & CLASS</span>
+          <div className="flightTravel" onClick={handleClass} ref={classref}>
+            <span className="flightLabelFTDT">TRAVELLERS & CLASS</span>
             {!travellersVisible && <TravellerClassNoPopup />}
             {travellersVisible && <TravellerClassPopupOpen />}
           </div>
         </div>
-        <button className="search-button" onClick={handleMainSearch}>
+        <button className="flightSearchButton" onClick={handleMainSearch}>
           SEARCH
         </button>
       </div>
-      <div className="offer-caption">
+      <div className="offersOption">
         <h2>Exclusive Offers</h2>
         <ul>
-          <li onClick={() => handleFilterChange("ALL")}>BestOffer</li>
-          <li onClick={() => handleFilterChange("FLIGHTS")}>Flight</li>
-          <li onClick={() => handleFilterChange("HOTELS")}>Hotel</li>
-          <li onClick={() => handleFilterChange("CABS")}>Cab</li>
+          <li
+            className={`${type === "ALL" ? "offerActive" : ""} `}
+            onClick={() => handleFilterChange("ALL")}
+          >
+            BestOffer
+          </li>
+          <li
+            className={`${type === "FLIGHTS" ? "offerActive" : ""} `}
+            onClick={() => handleFilterChange("FLIGHTS")}
+          >
+            Flight
+          </li>
+          <li
+            className={`${type === "HOTELS" ? "offerActive" : ""} `}
+            onClick={() => handleFilterChange("HOTELS")}
+          >
+            Hotel
+          </li>
+          <li
+            className={`${type === "CABS" ? "offerActive" : ""} `}
+            onClick={() => handleFilterChange("CABS")}
+          >
+            Cab
+          </li>
         </ul>
       </div>
-      <div>
+      <div className="offersList">
         <Offers />
       </div>
     </div>
